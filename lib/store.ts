@@ -1,8 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import userSlice from "@/lib/slices/user";
+import mainSlice from "@/lib/slices/main";
 
 export const makeStore = () => {
     return configureStore({
-        reducer: {}
+        reducer: {
+            userSlice,
+            mainSlice,
+        },
     });
 }
 

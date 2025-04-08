@@ -1,0 +1,29 @@
+
+.header {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    gap: 3vh;
+
+    .menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .right {
+            display: flex;
+
+            li:last-child {
+                button {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+    .search {
+        display: grid;
+        grid-template-columns: 1fr 90px;
+        gap: 1vh;
+    }
+}
