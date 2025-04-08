@@ -1,0 +1,56 @@
+@use "@/app/variables.module.scss" as vars;
+
+.header {
+    .main {
+        display: flex;
+        justify-content: space-between;
+        padding: 2vh;
+        align-items: center;
+        border-bottom: 1px solid vars.$border-color-1;
+
+        .search {
+            display: flex;
+            gap: 15px;
+            flex-grow: 1;
+            padding: 0 6vh;
+
+            input, .search-btn {
+                border-radius: 28px;
+            }
+        }
+
+        .menu {
+            ol {
+                display: flex;
+
+                li:last-child {
+                    button {
+                        margin-right: -2vh;
+                    }
+                }
+            }
+
+            &.logged-out {
+                ol {
+                    display: flex;
+                    gap: 10px;
+                    
+                    li:last-child {
+                        button {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .submenu {
+        box-shadow: vars.$border-color-1 0px 3px 5px;
+
+        ol {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
