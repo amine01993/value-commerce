@@ -23,25 +23,25 @@ export default async function RootLayout({
 	const isMobile = device?.type === "mobile";
 
   	return (
-		<StoreProvider>
-			<html lang="en" suppressHydrationWarning>
-				<body className={montserrat.variable + ' ' + open_sans.variable}>
-				<Provider>
-					{isMobile && (
-						<>
-						<Header />
-						<Menu />
-						</>
-					)}
-					{!isMobile && (
-						<>
-						<HeaderDesktop />
-						</>
-					)}
-					{children}
-				</Provider>
-				</body>
-			</html>
-		</StoreProvider>
+		<html lang="en" suppressHydrationWarning>
+			<body className={montserrat.variable + ' ' + open_sans.variable}>
+				<StoreProvider>
+					<Provider>
+						{isMobile && (
+							<>
+							<Header />
+							<Menu />
+							</>
+						)}
+						{!isMobile && (
+							<>
+							<HeaderDesktop />
+							</>
+						)}
+						{children}
+					</Provider>
+				</StoreProvider>
+			</body>
+		</html>
   	);
 }

@@ -1,0 +1,62 @@
+
+.carousel {
+    margin-top: 1rem;
+    position: relative;
+
+    .dots {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        ul {
+            display: flex;
+            gap: 5px;
+
+            li {
+                &.active {
+                    background-color: white;
+                }
+
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border: 2px solid white;
+            }
+        }
+    }
+
+    .slides {
+        ul {
+            display: flex;
+            overflow-x: visible;
+            transform: translateX(-100%);
+
+            li {
+                .banner {
+                    position: relative;
+                    min-width: 100vw;
+                    height: 410px;
+
+                    .text {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        padding: 1rem 1rem 2.5rem;
+                        position: absolute;
+                        bottom: 0;
+
+                        h1, p {
+                            color: white;
+                            font-weight: 600;
+                        }
+
+                        button {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
