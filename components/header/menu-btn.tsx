@@ -12,7 +12,7 @@ export default function MenuButton() {
 
     return (
         <Button variant="plain" aria-label="Open Menu" onClick={() => dispatch(showMenu())}>
-            <Image src={listIcon} alt="List icon" height={25} />
+            <Image src={listIcon} alt="List icon" height={25} priority />
         </Button>
     );
 }

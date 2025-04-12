@@ -16,19 +16,19 @@ export default function Header() {
         <header className={style.header}>
             <nav className={style.menu}>
                 <Link href={'/'} title="Go to home page">
-                    <Image src={logo} alt="Website official logo" height={50} />
+                    <Image src={logo} alt="Website official logo" height={50} priority />
                 </Link>
 
                 <ol className={style.right}>
                     <li>
                         <Button variant="plain" aria-label="Show cart">
-                            <Image src={cartIcon} alt="Cart Icon" height={25} />
+                            <Image src={cartIcon} alt="Cart Icon" height={25} priority />
                         </Button>
                     </li>
                     {loggedIn && (
                         <li>
                             <Button variant="plain" aria-label="Show user information">
-                                <Image src={profileIcon} alt="User profile icon" height={25} />
+                                <Image src={profileIcon} alt="User profile icon" height={25} priority />
                             </Button>
                         </li>
                     )}
@@ -41,7 +41,7 @@ export default function Header() {
             <div className={style.search}>
                 <Input placeholder="Search for anything" size="lg" />
                 <Button colorPalette={'orange'} variant="solid" size="lg" aria-label="Search for anything">
-                    <Image src={searchIcon} alt="Search Icon" height={25} />
+                    <Image src={searchIcon} alt="Search Icon" height={25} priority />
                 </Button>
             </div>
         </header>

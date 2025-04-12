@@ -1,0 +1,46 @@
+
+.footer {
+    background-color: #E7E7E7;
+    padding: 3rem 1.5rem;
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                li {
+                    display: flex;
+                    gap: .3rem;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    [role=separator] {
+        margin: 2rem 0;
+    }
+
+    ul.bottom {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        margin-left: -1rem;
+
+        li {
+            display: flex;
+            gap: .3rem;
+            align-items: center;
+        }
+    }
+}

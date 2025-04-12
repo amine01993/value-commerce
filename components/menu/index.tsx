@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
 import { Avatar, Button, Heading } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { hide as hideMenu } from "@/lib/slices/main";
@@ -12,6 +13,11 @@ export default function Menu() {
     const dispatch = useAppDispatch();
     const isMenuOpen = useAppSelector(state => state.mainSlice.openMenu);
     const loggedIn = true;
+
+    useEffect(() => {
+        if(isMenuOpen) document.documentElement.style.overflow = "hidden";
+        else document.documentElement.style.overflow = "";
+    }, [isMenuOpen]);
     
     return (
         <>

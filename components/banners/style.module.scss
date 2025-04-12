@@ -31,7 +31,8 @@
             display: flex;
             overflow-x: visible;
             transform: translateX(-100%);
-
+            scrollbar-width: none;
+            
             li {
                 .banner {
                     position: relative;

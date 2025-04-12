@@ -8,6 +8,7 @@ import { Provider } from "@/components/ui/provider";
 import Header from "@/components/header";
 import Menu from "@/components/menu";
 import HeaderDesktop from "@/components/header-desktop";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
 	title: "Welcome to Value Commerce",
@@ -39,6 +40,15 @@ export default async function RootLayout({
 							</>
 						)}
 						{children}
+						{isMobile && (
+							<>
+							<Footer />
+							</>
+						)}
+						{!isMobile && (
+							<>
+							</>
+						)}
 					</Provider>
 				</StoreProvider>
 			</body>

@@ -59,7 +59,7 @@ export default function Banners() {
         if(listElem.current) {
             const ulRect = listElem.current.getBoundingClientRect();
             if(ulRect.width - diff) {
-                console.log('scrollBy', ulRect.width - diff)
+                // console.log('scrollBy', ulRect.width - diff)
                 listElem.current.scrollBy({
                     left: ulRect.width - diff,
                     behavior: "smooth",
@@ -82,7 +82,7 @@ export default function Banners() {
         if(listElem.current) {
             const ulRect = listElem.current.getBoundingClientRect();
             if(-ulRect.width + diff) {
-                console.log('scrollBy', -ulRect.width + diff)
+                // console.log('scrollBy', -ulRect.width + diff)
                 listElem.current.scrollBy({
                     left: -ulRect.width + diff,
                     behavior: "smooth",

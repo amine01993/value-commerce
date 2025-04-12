@@ -1,6 +1,10 @@
 
 @use "@/app/variables.module.scss" as vars;
 
+.backdrop, .menu {
+    z-index: 1;
+}
+
 .backdrop {
     display: none;
 
