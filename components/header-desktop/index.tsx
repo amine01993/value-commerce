@@ -9,6 +9,7 @@ import cartIcon from "@/public/cart.svg";
 import globeIcon from "@/public/globe.svg";
 import profileIcon from "@/public/user-profile.svg";
 import bellIcon from "@/public/bell.svg";
+import SubMenu from "./submenu";
 
 export default function HeaderDesktop() {
 
@@ -87,28 +88,7 @@ export default function HeaderDesktop() {
                 </nav>
             </div>
 
-            <nav className={style.submenu}>
-                <ol>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Home</Button>
-                    </li>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Books</Button>
-                    </li>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Electronics</Button>
-                    </li>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Clothes</Button>
-                    </li>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Outdoors</Button>
-                    </li>
-                    <li>
-                        <Button colorPalette="orange" variant="ghost">Sports</Button>
-                    </li>
-                </ol>
-            </nav>
+            <SubMenu />
         </header>
     );
 }

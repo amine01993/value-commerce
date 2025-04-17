@@ -1,25 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MainState {
     openMenu: boolean;
+    isMobile: boolean;
 }
 
 const initialState: MainState = {
     openMenu: false,
+    isMobile: true,
 }; 
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        show(state: MainState) {
+        showMenu(state: MainState) {
             state.openMenu = true;
         },
-        hide(state: MainState) {
+        hideMenu(state: MainState) {
             state.openMenu = false;
+        },
+        setDeviceType(state: MainState, action: PayloadAction<string|undefined>) {
+            if(action.payload) {
+                state.isMobile = action.payload === "mobile";
+            }
         },
     },
 });
 
-export const {show, hide} = mainSlice.actions;
+export const {showMenu, hideMenu, setDeviceType} = mainSlice.actions;
 export default mainSlice.reducer;

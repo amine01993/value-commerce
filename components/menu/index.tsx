@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { Avatar, Button, Heading } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { hide as hideMenu } from "@/lib/slices/main";
+import { hideMenu } from "@/lib/slices/main";
 import style from "./style.module.scss";
 import globeIcon from "@/public/globe.svg";
 

@@ -1,14 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import drum from "@/public/banners/drum-guy.jpg";
 import classic from "@/public/banners/classic-dj.jpg";
 import drone from "@/public/banners/drone-and-a-backpack.jpg";
 import zara from "@/public/banners/zara-black-amber.jpg";
+import chevronLeftIcon from "@/public/chevron-left.svg";
+import chevronRightIcon from "@/public/chevron-right.svg";
+import pauseIcon from "@/public/pause.svg";
+import playIcon from "@/public/play.svg";
 import Banner from "./banner";
 
-export default function Banners() {
+export default function BannersDesktop() {
     const data = useRef([
         {
             src: drum,
@@ -43,57 +49,71 @@ export default function Banners() {
     const firstItem = useRef(data.current[0]);
     const lastItem = useRef(data.current[data.current.length - 1]);
     const listElem = useRef<HTMLUListElement>(null);
-    const timeInterval = useRef(5000); // 3000 ms
+    const timeInterval = useRef(5000); // 5000 ms
     const timer = useRef(0);
     const [activeIndex, setActiveIndex] = useState(1);
-    const activeScrollIndex = useRef(1);
+    const [paused, setPaused] = useState(false);
+    const instantScroll = useRef(false);
+    const isScrolling = useRef(false);
 
-    const nextItem = useCallback((diff: number = 0) => {
+    const togglePause = useCallback(() => {
+        if(isScrolling.current) return;
+        
+        const isPaused = paused;
+        setPaused(p => !p);
+        if(isPaused) {
+            nextItem();
+        }
+    }, [paused]);
+
+    const nextItem = useCallback(() => {
+        if(isScrolling.current) return;
+
         const nextIndex = activeIndex + 1;
         setActiveIndex(nextIndex);
-        activeScrollIndex.current = nextIndex;
 
         timer.current = 0;
 
         if(listElem.current) {
             const ulRect = listElem.current.getBoundingClientRect();
-            if(ulRect.width - diff) {
-                listElem.current.scrollBy({
-                    left: ulRect.width - diff,
-                    behavior: "smooth",
-                });
-            }
-            else {
-                handleScrollEnd();
-            }
+            listElem.current.scrollBy({
+                left: ulRect.width,
+                behavior: "smooth",
+            });
+            isScrolling.current = true;
         }
     }, [activeIndex]);
 
-    const previousItem = useCallback((diff: number = 0) => {
+    const previousItem = useCallback(() => {
+        if(isScrolling.current) return;
+
         const nextIndex = activeIndex - 1;
         setActiveIndex(nextIndex);
-        activeScrollIndex.current = nextIndex;
 
         timer.current = 0;
 
         if(listElem.current) {
             const ulRect = listElem.current.getBoundingClientRect();
-            if(-ulRect.width + diff) {
-                listElem.current.scrollBy({
-                    left: -ulRect.width + diff,
-                    behavior: "smooth",
-                });
-            }
-            else {
-                handleScrollEnd();
-            }
+            listElem.current.scrollBy({
+                left: -ulRect.width,
+                behavior: "smooth",
+            });
+            isScrolling.current = true;
         }
     }, [activeIndex]);
 
     const handleScrollEnd = useCallback(() => {
-        if(activeScrollIndex.current <= 0) {
+        if(isScrolling.current) {
+            isScrolling.current = false;
+        }
+
+        if(instantScroll.current) {
+            instantScroll.current = false;
+            return;
+        }
+
+        if(activeIndex <= 0) {
             setActiveIndex(data.current.length);
-            activeScrollIndex.current = data.current.length;
 
             if(listElem.current) {
                 const ulRect = listElem.current.getBoundingClientRect();
@@ -101,11 +121,11 @@ export default function Banners() {
                     left: ulRect.width * data.current.length,
                     behavior: "instant",
                 });
+                instantScroll.current = true;
             }
         }
-        else if(activeScrollIndex.current >= data.current.length + 1) {
+        else if(activeIndex >= data.current.length + 1) {
             setActiveIndex(1);
-            activeScrollIndex.current = 1;
 
             if(listElem.current) {
                 const ulRect = listElem.current.getBoundingClientRect();
@@ -113,58 +133,40 @@ export default function Banners() {
                     left: ulRect.width,
                     behavior: "instant",
                 });
-            }
-        }
-        else if(activeScrollIndex.current > 0 && activeScrollIndex.current < data.current.length + 1) {
-            if(listElem.current) {
-                const itemElem = listElem.current.querySelector("li:nth-child(" + (activeScrollIndex.current + 1) + ")");
-                if(itemElem) {
-                    const rect = itemElem.getBoundingClientRect();
-                    if(rect.x < 0) {
-                        nextItem(-rect.x);
-                    }
-                    else if(rect.x > 0) {
-                        previousItem(rect.x);
-                    }
-                }
+                instantScroll.current = true;
             }
         }
     }, [activeIndex]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            timer.current += 100;
-            if(timer.current >= timeInterval.current) {
-                let diff = 0;
-                if(listElem.current) {
-                    const itemElem = listElem.current.querySelector("li:nth-child(" + (activeScrollIndex.current + 1) + ")");
-                    if(itemElem) {
-                        const rect = itemElem.getBoundingClientRect();
-                        diff = rect.x;
-                    }
+        let interval: number|NodeJS.Timeout|null = null;
+        
+        if(!paused) {
+            interval = setInterval(() => {
+                timer.current += 100;
+                if(timer.current >= timeInterval.current) {
+                    nextItem();
                 }
+            }, 100);
+        }
 
-                nextItem(-diff);
-            }
-        }, 100);
-
-        // scroll event listener
         if(listElem.current) {
             listElem.current.addEventListener("scrollend", handleScrollEnd);
         }
 
         return () => {
-            clearInterval(interval);
+            if(interval !== null) {
+                clearInterval(interval);
+            }
 
             if(listElem.current) {
                 listElem.current.removeEventListener("scrollend", handleScrollEnd);
             }
         }
-    }, [activeIndex]);
+    }, [activeIndex, paused]);
 
     useEffect(() => {
         if(listElem.current) {
-            listElem.current.style.overflowX = "auto";
             listElem.current.style.transform = "none";
             const ulRect = listElem.current.getBoundingClientRect();
             listElem.current.scroll({
@@ -210,6 +212,25 @@ export default function Banners() {
                         return <li key={"dot-index" + index} className={isActive ? style.active : ''}></li>
                     })}
                 </ul>
+            </div>
+
+            <div className={style.controls}>
+                <Button variant="subtle" aria-label="Show previous slide" onClick={previousItem}>
+                    <Image src={chevronLeftIcon} alt="Show previous slide" height={16} width={16} priority />
+                </Button>
+                <Button variant="subtle" aria-label="Show next slide" onClick={nextItem}>
+                    <Image src={chevronRightIcon} alt="Show next slide" height={16} width={16} priority />
+                </Button>
+                {!paused && (
+                    <Button variant="subtle" aria-label="Stop moving the banners" onClick={togglePause}>
+                        <Image src={pauseIcon} alt="Pause" height={16} width={16} priority />
+                    </Button>
+                )}
+                {paused && (
+                    <Button variant="subtle" aria-label="Continue moving the banners" onClick={togglePause}>
+                        <Image src={playIcon} alt="Play" height={16} width={16} />
+                    </Button>
+                )}
             </div>
         </div>
     );
