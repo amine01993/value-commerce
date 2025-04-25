@@ -1,0 +1,146 @@
+
+.reviews {
+    margin-top: 2rem;
+
+    :global {
+
+        button[data-part=item-trigger] {
+            background-color: var(--chakra-colors-gray-100);
+            margin: 0px -16px 0 -16px;
+            width: 100vw;
+            padding: 1rem 16px;
+            justify-content: space-between;
+        }
+
+        [data-part=item-indicator] {
+            svg {
+                transform: scale(1.6);
+            }
+        }
+
+        [data-part=item-content] {
+            margin: 0px -16px 0 -16px;
+            width: 100vw;
+            padding: 0 16px;
+        }
+
+        [role=separator] {
+            margin: 1.3rem 0;
+        }
+
+        .content {
+            margin-top: 1rem;
+
+            .rating-container {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 0.3rem;
+            }
+
+            .breakdown {
+                margin-top: .7rem
+            }
+
+            .breakdown-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+                margin: 0.6rem 0;
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    align-items: center;
+                }
+            }
+
+            .write-btn {
+                margin-top: 1rem;
+            }
+
+            .rating-summary {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .filter {
+                background-color: var(--chakra-colors-gray-100);
+                margin: 2rem -16px 1rem -16px;
+                width: 100vw;
+                padding: 1.7rem;
+                
+                .verified, .sort {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .sort {
+                    margin-top: .7rem;
+
+                    [data-part=control] {
+                        width: min(70%, 60vw);
+                    }
+                }
+            }
+
+            .review-list {
+                ol {
+                    li {
+                        .review {
+                            .customer {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.7rem;
+                            }
+
+                            .customer-rating {
+                                margin: .8rem 0;
+                            }
+
+                            .customer-content {
+                                margin: .7rem 0;
+                            }
+
+                            .recommendation {
+                                display: flex;
+                                gap: .5rem;
+                                align-items: center;
+                            }
+
+                            .actions {
+                                margin: 1rem 0;
+
+                                button {
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .load-more {
+                    display: block;
+                    width: 100%;
+                }
+
+                .write-btn {
+                    display: block;
+                    margin: 1rem auto;
+                }
+            }
+        }
+    }
+}

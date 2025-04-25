@@ -1,0 +1,29 @@
+
+.specifications {
+    margin-top: 2rem;
+
+    :global {
+
+        button[data-part=item-trigger] {
+            background-color: var(--chakra-colors-gray-100);
+            margin: 0px -16px 0 -16px;
+            width: 100vw;
+            padding: 1rem 16px;
+            justify-content: space-between;
+        }
+
+        [data-part=item-indicator] {
+            svg {
+                transform: scale(1.6);
+            }
+        }
+
+        .content {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 30vw 1fr;
+            row-gap: 1rem;
+            column-gap: 0.9rem;
+        }
+    }
+}

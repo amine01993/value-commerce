@@ -49,7 +49,7 @@ export default function FooterDesktop() {
                 </div>
             </nav>
 
-            <Separator borderColor="#c9c9cf" />
+            <Separator bgColor="var(--chakra-colors-gray-300)" />
 
             <ul className={style.bottom}>
                 <li>

@@ -1,12 +1,13 @@
-"use client";
 
-import { useAppSelector } from "@/lib/hooks";
 import Home from "./home";
 import HomeDesktop from "./home-desktop";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
 
-export default function HomePage() {
+export default async function HomePage() {
 
-	const isMobile = useAppSelector(state => state.mainSlice.isMobile);
+	const { device } = userAgent({ headers: await headers() });
+	const isMobile = device?.type === "mobile";
 
 	return (
 		<>

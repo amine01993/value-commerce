@@ -1,0 +1,88 @@
+
+.detail {
+    margin-top: 2rem;
+
+    :global {
+        .info {
+            .count {
+                font-weight: 300;
+                padding-left: .4rem;
+            }
+        }
+
+        .seller {
+            display: flex;
+            gap: .7rem;
+            align-items: center;
+        }
+
+        [role=separator] {
+            margin: 1.3rem 0;
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+
+            .price-detail {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+
+                .old-price {
+                    text-decoration: line-through;
+                }
+            }
+        }
+
+        .detail {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+
+            .condition {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .quantity {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .nbr {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .btn-group {
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .other {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 27vw 1fr;
+            row-gap: 1rem;
+
+            .payment-methods {
+                display: flex;
+                gap: 1rem;
+
+                span {
+                    border: var(--chakra-colors-gray-800) solid 1px;
+                    border-radius: .5rem;
+                    width: 70px;
+                    padding: 0.3rem .5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
