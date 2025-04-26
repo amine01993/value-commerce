@@ -1,0 +1,165 @@
+
+.reviews {
+    margin-top: 2rem;
+
+    :global {
+
+        button[data-part=item-trigger] {
+            background-color: var(--chakra-colors-gray-100);
+            padding: 1rem 16px;
+            justify-content: space-between;
+        }
+
+        [data-part=item-indicator] {
+            svg {
+                transform: scale(1.6);
+            }
+        }
+
+        [data-part=item-content] {
+            padding: 1rem;
+        }
+
+        [role=separator] {
+            margin: 1.3rem 0;
+        }
+
+        .content {
+            margin-top: 1rem;
+
+            .rating-wrapper {
+                display: flex;
+                gap: 4rem;
+
+                > div > .write-btn {
+                    margin-top: 1rem;
+                }
+            }
+
+            .rating-container {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 0.3rem;
+            }
+
+            .breakdown {
+                margin-top: 1.4rem;
+            }
+
+            .breakdown-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+                margin: 0.6rem 0;
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    align-items: center;
+
+                    [data-scope=progress] {
+                        width: 100%;
+                    }
+
+                    p {
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            .rating-summary {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .filter {
+                background-color: var(--chakra-colors-gray-100);
+                margin: 3rem 0 1rem 0;
+                padding: 1.7rem;
+                display: flex;
+                gap: 3rem;
+                justify-content: flex-end;
+                
+                .verified, .sort {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2rem;
+                    align-items: center;
+                    width: auto;
+
+                    [data-part=label] {
+                        white-space: nowrap;
+                    }
+                }
+
+                .sort {
+                    [data-part=control] {
+                        width: 20vw;
+                    }
+                }
+            }
+
+            .review-list {
+                padding: 1rem;
+
+                ol {
+                    li {
+                        .review {
+                            .customer {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.7rem;
+                            }
+
+                            .customer-rating {
+                                margin: .8rem 0;
+                                display: flex;
+                                gap: 1rem;
+                                align-items: center;
+                            }
+
+                            .customer-content {
+                                margin: .7rem 0;
+                            }
+
+                            .recommendation {
+                                display: flex;
+                                gap: .5rem;
+                                align-items: center;
+                            }
+
+                            .actions {
+                                margin: 1rem 0;
+
+                                button {
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .review-actions {
+                    justify-self: center;
+                    display: flex;
+                    gap: 2rem;
+
+                    button {
+                        width: 25vw;
+                    }
+                }
+            }
+        }
+    }
+}

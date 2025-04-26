@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import Product from "./product";
+import ProductDesktop from "./product-desktop";
 
 export const metadata: Metadata = {
 	title: "Welcome to Value Commerce",
@@ -27,9 +28,9 @@ export default async function ProductPage({params}: ProductPageParams) {
         {isMobile && (
             <Product varid={varid} />
         )}
-        {/* {!isMobile && (
-            // <HomeDesktop />
-        )} */}
+        {!isMobile && (
+            <ProductDesktop varid={varid} />
+        )}
         </>
     );
 }

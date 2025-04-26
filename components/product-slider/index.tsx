@@ -101,7 +101,7 @@ export default function ProductSlider() {
             <div className="slides">
                 <ol>
                     {data.current.map((slide, index) => (
-                    <li onClick={() => handleSlideClick(index)}>
+                    <li key={"slide-" + index} onClick={() => handleSlideClick(index)}>
                         <Image src={slide.img} alt={slide.alt} priority className={index === selectedIndex ? 'active' : undefined} />
                     </li>
                     ))}

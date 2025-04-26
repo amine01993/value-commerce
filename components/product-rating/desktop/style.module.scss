@@ -1,0 +1,11 @@
+.rating {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+
+    :global(.rating-container) {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+}

@@ -1,0 +1,24 @@
+
+.description {
+    margin-top: 2rem;
+
+    :global {
+
+        button[data-part=item-trigger] {
+            background-color: var(--chakra-colors-gray-100);
+            padding: 1rem 16px;
+            justify-content: space-between;
+        }
+
+        [data-part=item-indicator] {
+            svg {
+                transform: scale(1.6);
+            }
+        }
+
+        .content {
+            margin-top: 1rem;
+            padding: 1rem;
+        }
+    }
+}
