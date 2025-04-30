@@ -1,0 +1,67 @@
+
+.listing {
+
+    :global {
+
+        .count {
+            margin: 1rem 0;
+            color: var(--chakra-colors-gray-600);
+        }
+
+        .search-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            column-gap: 0.3rem;
+
+            .product-img {
+                position: relative;
+
+                .favorite-btn {
+                    width: 32px;
+                    border-radius: 50%;
+                    padding: 0;
+                    position: absolute;
+                    bottom: -20px;
+                    right: 0;
+                    background-color: white;
+                    box-shadow: var(--chakra-colors-gray-900) 0px 4px 4px;
+                    position: absolute;
+                    top: .5rem;
+                    right: .5rem;
+                }
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .rating-container, .price-container {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                }
+
+                .price-container {
+                    align-items: flex-end;
+
+                    .old-price {
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+
+        [role=separator] {
+            margin: 1rem 0;
+            background-color: var(--chakra-colors-gray-300);
+        }
+
+        .load-more {
+            margin: auto;
+            display: block;
+            padding: 0 3rem;
+            height: 3rem;
+        }
+    }
+}

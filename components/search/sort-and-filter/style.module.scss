@@ -1,0 +1,145 @@
+
+.sort-and-filter {
+
+    :global {
+        .actions {
+            background-color: var(--chakra-colors-gray-100);
+            padding: .5rem 16px;
+            margin: 0 -16px;
+        }
+    }
+}
+
+.filter-tags {
+    display: flex;
+    margin: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    [role=separator] {
+        border-color: var(--chakra-colors-blue-700);
+        height: 100%;
+        margin: 0 0.3rem;
+    }
+
+    button {
+        margin: -.5rem;
+        padding: .5rem;
+    }
+
+    .clear-all {
+        white-space: nowrap;
+    }
+}
+
+.sort-by {    
+    border-top: 1px solid var(--chakra-colors-gray-300);
+    margin: 0 -16px;
+    width: 100vw;
+
+    [data-part=item-trigger] {
+        justify-content: space-between;
+        padding: 1rem 16px;
+
+        &[data-state=open] {
+            background-color: var(--chakra-colors-gray-100);
+        }
+
+        span {
+            font-weight: normal;
+        }
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: .5rem 16px;
+
+        label {
+            width: 100%;
+        }
+    }
+}
+
+.content {
+    height: 90vh;
+
+    :global {
+        .chakra-drawer__header, .chakra-drawer__body, chakra-drawer__footer {
+            padding: 16px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            padding: .5rem 16px;
+
+            .slider {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+
+                .chakra-slider__root {
+                    flex-grow: 1;
+                }
+            }
+        }
+
+        .show-results {
+            width: 100%;
+        }
+    }
+}
+
+.filters {   
+    
+    :global {
+
+        h2 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter {
+            border-top: 1px solid var(--chakra-colors-gray-300);
+            margin: 0 -16px;
+            width: 100vw;
+
+            [data-part=item-trigger] {
+                justify-content: space-between;
+                padding: 1rem 16px;
+        
+                &[data-state=open] {
+                    background-color: var(--chakra-colors-gray-100);
+                }
+            }
+
+            ol {
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: .5rem 16px;
+        
+                a, label {
+                    width: 100%;
+
+                    span.count {
+                        color: var(--chakra-colors-gray-600);
+                    }
+                }
+
+                label {
+                    [data-part=item-text] {
+                        display: flex;
+                        gap: 0.5rem;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

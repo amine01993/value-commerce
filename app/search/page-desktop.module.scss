@@ -1,0 +1,14 @@
+
+.page {
+    max-width: 1340px;
+    margin: 1rem auto 0;
+
+    :global {
+
+        .detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+    }
+}

@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface MainState {
     openMenu: boolean;
     isMobile: boolean;
+    query: string;
 }
 
 const initialState: MainState = {
     openMenu: false,
     isMobile: true,
+    query: "",
 }; 
 
 const mainSlice = createSlice({
@@ -25,8 +27,11 @@ const mainSlice = createSlice({
                 state.isMobile = action.payload === "mobile";
             }
         },
+        setSearchQuery(state: MainState, action: PayloadAction<string>) {
+            state.query = action.payload;
+        }
     },
 });
 
-export const {showMenu, hideMenu, setDeviceType} = mainSlice.actions;
+export const {showMenu, hideMenu, setDeviceType, setSearchQuery} = mainSlice.actions;
 export default mainSlice.reducer;

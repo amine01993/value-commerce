@@ -5,8 +5,8 @@ import style from "./style.module.scss";
 import logo from "@/public/Logo.png";
 import profileIcon from "@/public/user-profile.svg";
 import cartIcon from "@/public/cart.svg";
-import searchIcon from "@/public/search.svg";
 import MenuButton from "./menu-btn";
+import SearchNav from "./search-nav";
 
 export default function Header() {
     
@@ -38,12 +38,7 @@ export default function Header() {
                 </ol>
             </nav>
 
-            <div className={style.search}>
-                <Input placeholder="Search for anything" size="lg" />
-                <Button colorPalette={'orange'} variant="solid" size="lg" aria-label="Search for anything">
-                    <Image src={searchIcon} alt="Search Icon" height={25} priority />
-                </Button>
-            </div>
+            <SearchNav />
         </header>
     );
 }

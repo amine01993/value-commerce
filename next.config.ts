@@ -10,3 +10,4 @@ const nextConfig: NextConfig = {
 };
 
 export default MillionLint.next({ rsc: true })(nextConfig);
+// export default nextConfig;
