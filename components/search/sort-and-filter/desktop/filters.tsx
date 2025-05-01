@@ -140,7 +140,7 @@ export default function Filters() {
 
     const compareRanges = useCallback(() => {
         const pr = filterData["pr"];
-        let min = null, max = null;
+        let min = defaultPriceRange.current[0], max = defaultPriceRange.current[1];
         if(pr !== undefined) {
             const nbrs: number[] = pr as number[];
             min = Math.min(...nbrs);

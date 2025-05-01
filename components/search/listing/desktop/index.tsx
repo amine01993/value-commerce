@@ -144,7 +144,7 @@ export default function Listing() {
                 <Select.Root defaultValue={["1"]} onValueChange={e => handleSortTypeChange(e.value)}
                     collection={sortTypesData.current} size="md" width="320px" className="sort-by">
                     <Select.HiddenSelect />
-                    <Select.Label>Sort</Select.Label>
+                    <Select.Label>Sort by</Select.Label>
                     <Select.Control>
                         <Select.Trigger>
                             <Select.ValueText placeholder="Select a Sort Type" />

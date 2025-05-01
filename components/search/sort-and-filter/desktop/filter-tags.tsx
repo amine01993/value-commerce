@@ -53,7 +53,6 @@ export default function FilterTags() {
                     </Tag.Root>
                 )}
                 </>
-
             ))}
 
             {filterArray.length > 0 && (

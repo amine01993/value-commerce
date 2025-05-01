@@ -1,120 +1,73 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useRef } from "react";
-import { useAppSelector } from "@/lib/hooks";
-import { Accordion, Text, Link as LinkUI, Heading, Slider, Button, Checkbox, RadioGroup, RatingGroup } from "@chakra-ui/react";
+import { RefObject, useCallback, useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { removeFilter, setFilter, setPriceRange } from "@/lib/slices/search";
+import { Accordion, Text, Link as LinkUI, Heading, Slider, Button, Checkbox, RadioGroup, RatingGroup, CheckboxGroup } from "@chakra-ui/react";
+import { queryParamsString, valueToFilterItem } from "@/utils/helpers";
 import style from "./style.module.scss";
 
-export default function Filters() {
+interface FiltersType {
+    defaultPriceRange: RefObject<number[]>;
+    categoriesData: RefObject<{ label: string; count: string; value: string;}[]>;
+    brandsData: RefObject<{ label: string; count: string; value: string;}[]>;
+    ratingsData: RefObject<{ label: string; count: string; value: string;}[]>;
+    availabilitiesData: RefObject<{ label: string; count: string; value: string;}[]>;
+}
+
+export default function Filters({defaultPriceRange, categoriesData, brandsData, ratingsData, availabilitiesData}: FiltersType) {
 
     const searchParams = useSearchParams();
-    const category = searchParams.get('c');
-  
-    const query = useAppSelector(state => state.mainSlice.query);
-    const categories = useRef([
-        {
-            label: "Windows Laptop",
-            count: "8,327",
-            value: "windows-laptop",
-        },
-        {
-            label: "MacBook",
-            count: "1,245",
-            value: "macbook",
-        },
-        {
-            label: "Gaming Laptops",
-            count: "786",
-            value: "gaming-laptops",
-        },
-        {
-            label: "2 in 1 Laptops",
-            count: "451",
-            value: "2-in-1-laptops",
-        },
-        {
-            label: "Chromebooks",
-            count: "123",
-            value: "chromebooks",
-        },
-    ]);
-    const brands = useRef([
-        {
-            label: "ACER",
-            count: "43",
-            value: "acer",
-        },
-        {
-            label: "ASUS",
-            count: "140",
-            value: "asus",
-        },
-        {
-            label: "DELL",
-            count: "284",
-            value: "dell",
-        },
-        {
-            label: "HP",
-            count: "139",
-            value: "hp",
-        },
-        {
-            label: "LENOVO",
-            count: "225",
-            value: "lenovo",
-        },
-        {
-            label: "PANASONIC",
-            count: "1",
-            value: "panasonic",
-        },
-        {
-            label: "SAMSUNG",
-            count: "4",
-            value: "samsung",
-        },
-        {
-            label: "TOSHIBA",
-            count: "54",
-            value: "toshiba",
-        },
-        {
-            label: "VIEWSONIC",
-            count: "1",
-            value: "viewsonic",
-        },
-    ]);
-    const ratings = useRef([
-        {
-            label: "5 Stars",
-            count: "7",
-            value: "5",
-        },
-        {
-            label: "4 Stars & Up",
-            count: "9",
-            value: "4",
-        },
-        {
-            label: "3 Stars & Up",
-            count: "11",
-            value: "3",
-        },
-    ]);
-    const availabilities = useRef([
-        {
-            label: "New",
-            count: "17",
-            value: "new",
-        },
-        {
-            label: "Used",
-            count: "19",
-            value: "used",
-        },
-    ]);
+    const dispatch = useAppDispatch();
+
+    const category = useMemo(() => searchParams.get('c'), [searchParams]);
+    
+    const priceRange = useAppSelector(state => state.searchSlice.priceRange);
+    const brands = useAppSelector(state => state.searchSlice.brands);
+    const availabilities = useAppSelector(state => state.searchSlice.availabilities);
+    const rating = useAppSelector(state => state.searchSlice.rating);
+    const filterData = useAppSelector(state => state.searchSlice.filterData);
+
+    const handlePriceRangeChange = useCallback(() => {
+
+        if(priceRange[0] === defaultPriceRange.current[0] && priceRange[1] === defaultPriceRange.current[1]) {
+            dispatch(removeFilter(["pr"]));
+        }
+        else {
+            dispatch(setFilter(["pr", priceRange]));
+        }
+    }, [priceRange]);
+    
+    const compareRanges = useCallback(() => {
+        const pr = filterData["pr"];
+        let min = defaultPriceRange.current[0], max = defaultPriceRange.current[1];
+        if(pr !== undefined) {
+            const nbrs: number[] = pr as number[];
+            min = Math.min(...nbrs);
+            max = Math.max(...nbrs);
+        }
+        return min === defaultPriceRange.current[0] && max === defaultPriceRange.current[1];
+
+    }, [filterData]);
+
+    const handleBrandsChange = useCallback((val: string[]) => {
+
+        if(val.length === 0) dispatch(removeFilter(["br"]));
+        else dispatch(setFilter(["br", valueToFilterItem(val, brandsData.current)]));
+    }, []);
+
+    const handleAvailabilitiesChange = useCallback((val: string[]) => {
+
+        if(val.length === 0) dispatch(removeFilter(["av"]));
+        else dispatch(setFilter(["av", valueToFilterItem(val, availabilitiesData.current)]));
+    }, []);
+
+    const handleRatingChange = useCallback((val: string) => {
+
+        if(val === "") dispatch(removeFilter(["ra"]));
+        else dispatch(setFilter(["ra", valueToFilterItem(val, ratingsData.current)]));
+    }, []);
 
     return (
         <div className={style.filters}>
@@ -129,9 +82,9 @@ export default function Filters() {
                     <Accordion.ItemContent>
                         <Accordion.ItemBody className="content">
                             <ol>
-                                {categories.current.map((item) => (
+                                {categoriesData.current.map((item) => (
                                 <li key={"value-" + item.value}>
-                                    <Link href={"/search?q=" + encodeURIComponent(query) + "&c=" + encodeURIComponent(item.value)} passHref legacyBehavior>
+                                    <Link href={"/search?" + queryParamsString(searchParams, {c: item.value})} passHref legacyBehavior>
                                         <LinkUI fontWeight={category === item.value ? "bold" : undefined}>{item.label} <span className="count">({item.count})</span></LinkUI>
                                     </Link>
                                 </li>
@@ -145,17 +98,22 @@ export default function Filters() {
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
                 <Accordion.Item value="filter-price-range">
                     <Accordion.ItemTrigger>
-                        <Text fontWeight="semibold">Price Range</Text>
+                        <Text fontWeight="semibold">
+                            Price Range
+                            {!compareRanges() && (<> (1)</>)}
+                        </Text>
                         <Accordion.ItemIndicator />
                     </Accordion.ItemTrigger>
                     <Accordion.ItemContent>
                         <Accordion.ItemBody className="content">
 
                             <div className="slider-wrapper">
-                                <Text fontWeight="semibold">$0 - $9,800+</Text>
+                                <Text fontWeight="semibold">${priceRange[0]} - ${priceRange[1]}</Text>
 
                                 <div className="slider">
-                                    <Slider.Root maxW="md" min={0} max={9800} defaultValue={[0, 9800]} colorPalette="orange">
+                                    <Slider.Root maxW="md" colorPalette="orange"
+                                        min={defaultPriceRange.current[0]} max={defaultPriceRange.current[1]} value={priceRange} 
+                                        onValueChange={e => dispatch(setPriceRange(e.value))}>
                                         <Slider.Control>
                                             <Slider.Track>
                                                 <Slider.Range />
@@ -164,7 +122,7 @@ export default function Filters() {
                                         </Slider.Control>
                                     </Slider.Root>
 
-                                    <Button variant="outline">Go</Button>
+                                    <Button variant="outline" onClick={() => handlePriceRangeChange()}>Go</Button>
                                 </div>
                             </div>
 
@@ -176,22 +134,27 @@ export default function Filters() {
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
                 <Accordion.Item value="filter-brand">
                     <Accordion.ItemTrigger>
-                        <Text fontWeight="semibold">Brand (1)</Text>
+                        <Text fontWeight="semibold">
+                            Brand
+                            {brands.length > 0 && (<> ({brands.length})</>)}
+                        </Text>
                         <Accordion.ItemIndicator />
                     </Accordion.ItemTrigger>
                     <Accordion.ItemContent>
                         <Accordion.ItemBody className="content">
-                            <ol>
-                                {brands.current.map((item) => (
-                                <li key={"value-" + item.value}>
-                                    <Checkbox.Root colorPalette="blue">
-                                        <Checkbox.HiddenInput />
-                                        <Checkbox.Control />
-                                        <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
-                                    </Checkbox.Root>
-                                </li>
-                                ))}
-                            </ol>
+                            <CheckboxGroup value={brands} onValueChange={val => handleBrandsChange(val)} name="brands" colorPalette="blue">
+                                <ol>
+                                    {brandsData.current.map((item) => (
+                                    <li key={"value-" + item.value}>
+                                        <Checkbox.Root value={item.value}>
+                                            <Checkbox.HiddenInput />
+                                            <Checkbox.Control />
+                                            <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
+                                        </Checkbox.Root>
+                                    </li>
+                                    ))}
+                                </ol>
+                            </CheckboxGroup>
                         </Accordion.ItemBody>
                     </Accordion.ItemContent>
                 </Accordion.Item>
@@ -200,16 +163,19 @@ export default function Filters() {
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
                 <Accordion.Item value="filter-rating">
                     <Accordion.ItemTrigger>
-                        <Text fontWeight="semibold">Customer Rating (1)</Text>
+                        <Text fontWeight="semibold">
+                            Customer Rating
+                            {rating !== "" && (<> (1)</>)}
+                        </Text>
                         <Accordion.ItemIndicator />
                     </Accordion.ItemTrigger>
                     <Accordion.ItemContent>
                         <Accordion.ItemBody className="content">
-                            <RadioGroup.Root defaultValue="3" colorPalette="blue">
+                            <RadioGroup.Root value={rating} onValueChange={e => handleRatingChange(e.value!)} name="rating" colorPalette="blue">
                                 <ol>
-                                    {ratings.current.map((item) => (
+                                    {ratingsData.current.map((item) => (
                                     <li key={"value-" + item.value}>
-                                        <RadioGroup.Item key={item.value} value={item.value}>
+                                        <RadioGroup.Item value={item.value}>
                                             <RadioGroup.ItemHiddenInput />
                                             <RadioGroup.ItemIndicator />
                                             <RadioGroup.ItemText>
@@ -232,22 +198,27 @@ export default function Filters() {
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
                 <Accordion.Item value="filter-availability">
                     <Accordion.ItemTrigger>
-                        <Text fontWeight="semibold">Availability</Text>
+                        <Text fontWeight="semibold">
+                            Availability
+                            {availabilities.length > 0 && (<> ({availabilities.length})</>)}
+                        </Text>
                         <Accordion.ItemIndicator />
                     </Accordion.ItemTrigger>
                     <Accordion.ItemContent>
                         <Accordion.ItemBody className="content">
-                            <ol>
-                                {availabilities.current.map((item) => (
-                                <li key={"value-" + item.value}>
-                                    <Checkbox.Root colorPalette="blue">
-                                        <Checkbox.HiddenInput />
-                                        <Checkbox.Control />
-                                        <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
-                                    </Checkbox.Root>
-                                </li>
-                                ))}
-                            </ol>
+                            <CheckboxGroup value={availabilities} onValueChange={val => handleAvailabilitiesChange(val)} name="availabilities" colorPalette="blue">
+                                <ol>
+                                    {availabilitiesData.current.map((item) => (
+                                    <li key={"value-" + item.value}>
+                                        <Checkbox.Root value={item.value}>
+                                            <Checkbox.HiddenInput />
+                                            <Checkbox.Control />
+                                            <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
+                                        </Checkbox.Root>
+                                    </li>
+                                    ))}
+                                </ol>
+                            </CheckboxGroup>
                         </Accordion.ItemBody>
                     </Accordion.ItemContent>
                 </Accordion.Item>
