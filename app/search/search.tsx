@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "@/lib/hooks";
 import { setSearchQuery } from "@/lib/slices/main";
-import style from "./page.module.scss";
+import style from "./search.module.scss";
 import SortAndFilter from "@/components/search/sort-and-filter";
 import Listing from "@/components/search/listing";
 import Related from "@/components/search/related";

@@ -1,6 +1,6 @@
 
 import { Heading } from "@chakra-ui/react";
-import style from "./page-desktop.module.scss";
+import style from "./product-desktop.module.scss";
 import ProductSlider from "@/components/product-slider/desktop";
 import ProductRating from "@/components/product-rating/desktop";
 import ProductDetail from "@/components/product-detail/desktop";

@@ -6,8 +6,8 @@ import {montserrat, open_sans} from "./fonts";
 import "./globals.scss";
 import { Provider } from "@/components/ui/provider";
 import Header from "@/components/header";
+import HeaderDesktop from "@/components/header/desktop";
 import Menu from "@/components/menu";
-import HeaderDesktop from "@/components/header-desktop";
 import Footer from "@/components/footer";
 import FooterDesktop from "@/components/footer/desktop";
 

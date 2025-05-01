@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRef } from "react";
-import { Accordion, Text, Link as LinkUI, Heading, Slider, Button, Checkbox, RadioGroup, RatingGroup } from "@chakra-ui/react";
 import { useAppSelector } from "@/lib/hooks";
+import { Accordion, Text, Link as LinkUI, Heading, Slider, Button, Checkbox, RadioGroup, RatingGroup } from "@chakra-ui/react";
 import style from "./style.module.scss";
 
 export default function Filters() {
@@ -174,7 +174,7 @@ export default function Filters() {
             </Accordion.Root>
 
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
-                <Accordion.Item value="filter-category">
+                <Accordion.Item value="filter-brand">
                     <Accordion.ItemTrigger>
                         <Text fontWeight="semibold">Brand (1)</Text>
                         <Accordion.ItemIndicator />
@@ -198,7 +198,7 @@ export default function Filters() {
             </Accordion.Root>
 
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
-                <Accordion.Item value="filter-category">
+                <Accordion.Item value="filter-rating">
                     <Accordion.ItemTrigger>
                         <Text fontWeight="semibold">Customer Rating (1)</Text>
                         <Accordion.ItemIndicator />
@@ -230,7 +230,7 @@ export default function Filters() {
             </Accordion.Root>
 
             <Accordion.Root collapsible defaultValue={[]} variant="plain" className="filter">
-                <Accordion.Item value="filter-category">
+                <Accordion.Item value="filter-availability">
                     <Accordion.ItemTrigger>
                         <Text fontWeight="semibold">Availability</Text>
                         <Accordion.ItemIndicator />

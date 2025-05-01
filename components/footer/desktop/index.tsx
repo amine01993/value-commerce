@@ -54,7 +54,7 @@ export default function FooterDesktop() {
             <ul className={style.bottom}>
                 <li>
                     <Button variant="plain">
-                        <Image src={globeIcon} alt="Globe Icon" height={25} /> English
+                        <Image src={logo} alt="Website official logo" height={50} />  &copy; 2025 Value Commerce, Inc.
                     </Button>
                 </li>
                 <li>
@@ -64,7 +64,7 @@ export default function FooterDesktop() {
                 </li>
                 <li>
                     <Button variant="plain">
-                        <Image src={logo} alt="Website official logo" height={50} />  &copy; 2025 Value Commerce, Inc.
+                        <Image src={globeIcon} alt="Globe Icon" height={25} /> English
                     </Button>
                 </li>
             </ul>

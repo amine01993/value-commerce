@@ -1,0 +1,91 @@
+
+.filter-tags {
+    display: flex;
+    margin: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    [role=separator] {
+        border-color: var(--chakra-colors-blue-700);
+        height: 100%;
+        margin: 0 0.3rem;
+    }
+
+    button {
+        margin: -.5rem;
+        padding: .5rem;
+    }
+
+    .clear-all {
+        white-space: nowrap;
+    }
+}
+
+.filters {   
+    
+    :global {
+
+        .filter {
+
+            [data-part=item-trigger] {
+                justify-content: space-between;
+                padding: 1rem 16px;
+                background-color: var(--chakra-colors-gray-100);
+            }
+
+            ol {
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: .5rem 16px;
+        
+                a, label {
+                    width: 100%;
+
+                    span.count {
+                        color: var(--chakra-colors-gray-600);
+                    }
+                }
+
+                label {
+                    [data-part=item-text] {
+                        display: flex;
+                        gap: 0.5rem;
+                        align-items: center;
+                    }
+                }
+            }
+
+            .slider-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: .5rem 16px;
+    
+                .slider {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+    
+                    .chakra-slider__root {
+                        flex-grow: 1;
+                    }
+                }
+            }
+
+            input[name=brands][checked] ~ [data-part=label] {
+                font-weight: bold;
+            }
+
+            input[name=availabilities][checked] ~ [data-part=label] {
+                font-weight: bold;
+            }
+
+            input[name=rating][checked] ~ [data-part=item-text] {
+                font-weight: bold;
+            }
+        }
+    }
+
+
+}

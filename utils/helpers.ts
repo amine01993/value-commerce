@@ -1,3 +1,5 @@
+import { FilterData, FilterItem } from "@/lib/slices/search";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
 export function roundToHalf(nbr: number) {
     const dig = Math.floor(nbr);
@@ -7,4 +9,38 @@ export function roundToHalf(nbr: number) {
     if(flo > 2) return dig + .5;
     
     return dig;
+}
+
+export function queryParamsString(
+    searchParams: ReadonlyURLSearchParams, 
+    params: {[key: string]: string} = {},
+    deleteParams: string[] = [],
+): string {
+    const urlSearchParams: URLSearchParams = new URLSearchParams;
+
+    for(const [key, val] of searchParams.entries()) {
+        urlSearchParams.set(key, val);
+    }
+
+    for(const key in params) {
+        urlSearchParams.set(key, params[key]);
+    }
+
+    for(const key of deleteParams) {
+        urlSearchParams.delete(key);
+    }
+
+    return urlSearchParams.toString();
+}
+
+export function valueToFilterItem(values: string|string[], data: FilterItem[]): FilterData {
+    if(typeof values === "string") {
+        const t = data.find(item => item.value === values);
+        return t!;
+    }
+
+    return values.map(val => {
+        const t = data.find(item => item.value === val);
+        return t!;
+    });
 }

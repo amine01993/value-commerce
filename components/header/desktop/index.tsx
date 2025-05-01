@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Input, InputGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import logo from "@/public/Logo - Desktop.png";
-import searchIcon from "@/public/search-black.svg";
 import heartIcon from "@/public/heart.svg";
 import cartIcon from "@/public/cart.svg";
 import globeIcon from "@/public/globe.svg";
 import profileIcon from "@/public/user-profile.svg";
 import bellIcon from "@/public/bell.svg";
 import SubMenu from "./submenu";
+import SearchNav from "./search-nav";
 
 export default function HeaderDesktop() {
 
@@ -26,12 +26,7 @@ export default function HeaderDesktop() {
                     <Button colorPalette="orange" variant="ghost">
                         Explore
                     </Button>
-                    <InputGroup startElement={<Image src={searchIcon} alt="Search Icon" height={20} />}>
-                        <Input placeholder="Search for anything" />
-                    </InputGroup>
-                    <Button colorPalette={'orange'} variant="solid" className={style['search-btn']}>
-                        Search
-                    </Button>
+                    <SearchNav />
                 </div>
 
                 <nav className={style.menu + ' ' + (loggedIn ? '' : style['logged-out'])}>
