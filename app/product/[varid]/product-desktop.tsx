@@ -1,12 +1,12 @@
 
 import { Heading } from "@chakra-ui/react";
 import style from "./product-desktop.module.scss";
-import ProductSlider from "@/components/product-slider/desktop";
-import ProductRating from "@/components/product-rating/desktop";
-import ProductDetail from "@/components/product-detail/desktop";
-import ProductSpecifications from "@/components/product-specifications/desktop";
-import ProductDescription from "@/components/product-description/desktop";
-import ProductReviews from "@/components/product-reviews/desktop";
+import ProductSlider from "@/components/product/slider/desktop";
+import ProductRating from "@/components/product/rating/desktop";
+import ProductDetail from "@/components/product/detail/desktop";
+import ProductSpecifications from "@/components/product/specifications/desktop";
+import ProductDescription from "@/components/product/description/desktop";
+import ProductReviews from "@/components/product/reviews/desktop";
 
 interface ProductParams {
     varid: string;
