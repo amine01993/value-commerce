@@ -1,14 +1,20 @@
+"use client";
 
 import Image from "next/image";
-import { Button, Heading, Separator } from "@chakra-ui/react";
+import { useAppSelector } from "@/lib/hooks";
+import { Button, CloseButton, Drawer, Heading, Portal, Separator } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import instagram from "@/public/instagram.svg";
 import facebook from "@/public/facebook.svg";
 import twitter from "@/public/x-twitter.svg";
 import globeIcon from "@/public/globe-black.svg";
 import logo from "@/public/Logo.png";
+import Languages from "../languages";
 
 export default function Footer() {
+    
+    const language = useAppSelector(state => state.userSlice.language);
+    
     return (
         <footer className={style.footer}>
             <nav>
@@ -53,9 +59,26 @@ export default function Footer() {
 
             <ul className={style.bottom}>
                 <li>
-                    <Button variant="plain">
-                        <Image src={globeIcon} alt="Globe Icon" height={25} /> English
-                    </Button>
+                    <Drawer.Root size="full" placement="bottom">
+                        <Drawer.Trigger asChild>
+                            <Button variant="plain">
+                                <Image src={globeIcon} alt="Globe Icon" height={25} /> {language.label}
+                            </Button>
+                        </Drawer.Trigger>
+                        <Portal>
+                            <Drawer.Backdrop />
+                            <Drawer.Positioner>
+                            <Drawer.Content>
+                                <Drawer.Body>
+                                    <Languages />
+                                </Drawer.Body>
+                                <Drawer.CloseTrigger asChild>
+                                    <CloseButton size="md" />
+                                </Drawer.CloseTrigger>
+                            </Drawer.Content>
+                            </Drawer.Positioner>
+                        </Portal>
+                    </Drawer.Root>
                 </li>
                 <li>
                     <Button variant="plain">

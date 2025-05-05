@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Input } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import logo from "@/public/Logo.png";
 import profileIcon from "@/public/user-profile.svg";

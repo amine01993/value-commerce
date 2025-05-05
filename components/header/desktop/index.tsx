@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@chakra-ui/react";
+import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import logo from "@/public/Logo - Desktop.png";
 import heartIcon from "@/public/heart.svg";
@@ -10,6 +10,7 @@ import profileIcon from "@/public/user-profile.svg";
 import bellIcon from "@/public/bell.svg";
 import SubMenu from "./submenu";
 import SearchNav from "./search-nav";
+import LanguagesDesktop from "@/components/languages/desktop";
 
 export default function HeaderDesktop() {
 
@@ -49,9 +50,26 @@ export default function HeaderDesktop() {
                                 </Button>
                             </li>
                             <li>
-                                <Button colorPalette="orange" variant="outline" aria-label="Click to select a langage">
-                                    <Image src={globeIcon} alt="Globe Icon" height={25} />
-                                </Button>
+                                <Dialog.Root placement="center">
+                                    <Dialog.Trigger asChild>
+                                        <Button colorPalette="orange" variant="outline" aria-label="Click to select a langage">
+                                            <Image src={globeIcon} alt="Globe Icon" height={25} />
+                                        </Button>
+                                    </Dialog.Trigger>
+                                    <Portal>
+                                        <Dialog.Backdrop />
+                                        <Dialog.Positioner>
+                                            <Dialog.Content>
+                                                <Dialog.Body>
+                                                    <LanguagesDesktop />
+                                                </Dialog.Body>
+                                                <Dialog.CloseTrigger asChild>
+                                                    <CloseButton size="md" />
+                                                </Dialog.CloseTrigger>
+                                            </Dialog.Content>
+                                        </Dialog.Positioner>
+                                    </Portal>
+                                </Dialog.Root>
                             </li>
                             </>
                         )}

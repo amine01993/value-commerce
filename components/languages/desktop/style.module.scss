@@ -1,0 +1,23 @@
+
+.langs {
+    
+    :global {
+        h2 {
+            margin-top: 0.6rem;
+        }
+    
+        ul {
+            margin-top: 1rem;
+    
+            button {
+                width: 100%;
+                justify-content: flex-start;
+                color: var(--chakra-colors-gray-900);
+    
+                &.active {
+                    border: 1px solid var(--chakra-colors-gray-800);
+                }
+            }
+        }
+    }
+}

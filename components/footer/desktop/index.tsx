@@ -1,14 +1,20 @@
+"use client";
 
 import Image from "next/image";
-import { Button, Heading, Separator } from "@chakra-ui/react";
+import { useAppSelector } from "@/lib/hooks";
+import { Button, CloseButton, Dialog, Heading, Portal, Separator } from "@chakra-ui/react";
 import style from "./style.module.scss";
 import instagram from "@/public/instagram.svg";
 import facebook from "@/public/facebook.svg";
 import twitter from "@/public/x-twitter.svg";
 import globeIcon from "@/public/globe-black.svg";
 import logo from "@/public/Logo - Desktop.png";
+import LanguagesDesktop from "@/components/languages/desktop";
 
 export default function FooterDesktop() {
+
+    const language = useAppSelector(state => state.userSlice.language);
+    
     return (
         <footer className={style.footer}>
             <nav>
@@ -63,9 +69,26 @@ export default function FooterDesktop() {
                     </Button>
                 </li>
                 <li>
-                    <Button variant="plain">
-                        <Image src={globeIcon} alt="Globe Icon" height={25} /> English
-                    </Button>
+                    <Dialog.Root placement="center">
+                        <Dialog.Trigger asChild>
+                            <Button variant="plain">
+                                <Image src={globeIcon} alt="Globe Icon" height={25} /> {language.label}
+                            </Button>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content>
+                                    <Dialog.Body>
+                                        <LanguagesDesktop />
+                                    </Dialog.Body>
+                                    <Dialog.CloseTrigger asChild>
+                                        <CloseButton size="md" />
+                                    </Dialog.CloseTrigger>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
                 </li>
             </ul>
         </footer>
