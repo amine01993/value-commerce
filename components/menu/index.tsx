@@ -12,7 +12,7 @@ export default function Menu() {
 
     const dispatch = useAppDispatch();
     const isMenuOpen = useAppSelector(state => state.mainSlice.openMenu);
-    const loggedIn = true;
+    const loggedIn = false;
 
     useEffect(() => {
         if(isMenuOpen) document.documentElement.style.overflow = "hidden";

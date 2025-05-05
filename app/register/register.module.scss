@@ -1,0 +1,100 @@
+
+.page {
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    :global {
+
+        .auth-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2.1rem;
+        }
+
+        h1 {
+            color: var(--chakra-colors-orange-600);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .password-requirements {
+                font-size: .8em;
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .3rem;
+                    margin-top: .5rem;                    
+                }
+
+                li {
+                    display: flex;
+                    gap: .7rem;
+
+                    &.valid {
+                        color: var(--chakra-colors-green-600);
+                    }
+
+                    &.invalid {
+                        color: var(--chakra-colors-red-600);
+                    }
+                }
+            }
+
+            .actions {
+                display: contents;
+
+                button {
+                    padding: 1.5rem 0;
+                }
+            }
+        }
+
+        .other {
+            [role=separator] {
+                background-color: var(--chakra-colors-gray-300);
+            }
+
+            p {
+                color: var(--chakra-colors-gray-700);
+            }
+        }
+
+        .options {
+            .social-auth {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+
+                button {
+                    padding: 1.7rem 0.8rem;
+                }
+            }
+
+            .signup, .terms {
+                padding: 1rem 0;
+                margin-top: 2.1rem;
+                text-align: center;
+                
+                a {
+                    color: var(--chakra-colors-orange-600);
+                }
+            }
+
+            .signup {
+                margin-top: 1rem;
+                background-color: var(--chakra-colors-gray-100);
+                
+                a {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

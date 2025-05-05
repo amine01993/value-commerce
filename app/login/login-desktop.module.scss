@@ -1,0 +1,82 @@
+
+.page {
+    max-width: 1340px;
+    margin: 5rem auto 1rem;
+
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+
+    :global {
+
+        .auth-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2.1rem;
+            width: 440px;
+        }
+
+        .title {
+            line-height: 2.5rem;
+
+            h1 {
+                color: var(--chakra-colors-orange-600);
+            }
+    
+            p {
+                color: var(--chakra-colors-gray-700);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .actions {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+
+                button, a {
+                    width: 170px;
+                }
+            }
+        }
+
+        .other {
+            [role=separator] {
+                background-color: var(--chakra-colors-gray-300);
+            }
+
+            p {
+                color: var(--chakra-colors-gray-700);
+            }
+        }
+
+        .options {
+            .social-auth {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+
+                button {
+                    padding: 1.4rem .7rem;
+                }
+            }
+
+            .signup {
+                padding: 1rem 0;
+                background-color: var(--chakra-colors-gray-100);
+                margin-top: 2.1rem;
+                text-align: center;
+
+                a {
+                    color: var(--chakra-colors-orange-600);
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
