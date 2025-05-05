@@ -38,14 +38,14 @@ export default function LoginDesktop() {
                         <Field.Label>
                             Email Address <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input value={email} onChange={e => setEmail(e.target.value)} size="xl" />
+                        <Input value={email} onChange={e => setEmail(e.target.value)} />
                     </Field.Root>
 
                     <Field.Root required>
                         <Field.Label>
                             Password <Field.RequiredIndicator />
                         </Field.Label>
-                        <PasswordInput value={password} onChange={e => setPassword(e.target.value)} size="xl" />
+                        <PasswordInput value={password} onChange={e => setPassword(e.target.value)} />
                     </Field.Root>
 
                     <div className="actions">

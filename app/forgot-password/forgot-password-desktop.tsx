@@ -32,7 +32,7 @@ export default function LoginDesktop() {
                         <Field.Label>
                             Email Address <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input value={email} onChange={e => setEmail(e.target.value)} size="xl" />
+                        <Input value={email} onChange={e => setEmail(e.target.value)} />
                     </Field.Root>
 
                     <div className="actions">

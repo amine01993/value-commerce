@@ -67,28 +67,28 @@ export default function RegisterDesktop() {
                         <Field.Label>
                             First Name <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input value={firstName} onChange={e => setFirstName(e.target.value)} size="xl" />
+                        <Input value={firstName} onChange={e => setFirstName(e.target.value)} />
                     </Field.Root>
 
                     <Field.Root required>
                         <Field.Label>
                             Last Name <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input value={lastName} onChange={e => setLastName(e.target.value)} size="xl" />
+                        <Input value={lastName} onChange={e => setLastName(e.target.value)} />
                     </Field.Root>
 
                     <Field.Root required>
                         <Field.Label>
                             Email Address <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input value={email} onChange={e => setEmail(e.target.value)} size="xl" />
+                        <Input value={email} onChange={e => setEmail(e.target.value)} />
                     </Field.Root>
 
                     <Field.Root required invalid={blurPass && invalidPassword}>
                         <Field.Label>
                             Password <Field.RequiredIndicator />
                         </Field.Label>
-                        <PasswordInput value={password} onChange={e => handlePasswordChange(e)} size="xl"
+                        <PasswordInput value={password} onChange={e => handlePasswordChange(e)}
                             onFocus={() => handleFocusPassword()} onBlur={() => handleBlurPassword()} />
                         <Field.ErrorText>Please review the password requirements.</Field.ErrorText>
                     </Field.Root>
