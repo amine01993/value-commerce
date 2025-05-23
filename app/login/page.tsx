@@ -1,14 +1,9 @@
 
-import { Metadata } from "next";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import Login from "./login";
 import LoginDesktop from "./login-desktop";
-
-export const metadata: Metadata = {
-	title: "Welcome to Value Commerce",
-	description: "Welcome to Value Commerce, where you will have an incredible experience selling your products and also be able to buy fantastic products at great prices.",
-};
+import {metadata} from "@/app/layout"
 
 interface LoginPageParams {
     searchParams: Promise<{q: string}>;

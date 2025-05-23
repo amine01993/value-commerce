@@ -1,26 +1,28 @@
 
+
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import ForgotPassword from "./forgot-password";
-import ForgotPasswordDesktop from "./forgot-password-desktop";
+import Dashboard from "./dashboard";
+import DashboardDesktop from "./dashboard-desktop";
 import {metadata} from "@/app/layout"
 
 
-export default async function ForgotPasswordPage() {
+export default async function DashboardPage() {
 
     const { device } = userAgent({ headers: await headers() });
     const isMobile = device?.type === "mobile";
   
-    metadata.title = `Forgot Password? | Value Commerce`;
+    metadata.title = `Account Dashboard`;
 
     return (
         <>
         {isMobile && (
-            <ForgotPassword />
+            <Dashboard />
         )}
         {!isMobile && (
-            <ForgotPasswordDesktop />
+            <DashboardDesktop />
         )}
         </>
     );
 }
+
