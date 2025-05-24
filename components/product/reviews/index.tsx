@@ -101,7 +101,7 @@ export default function ProductReviews() {
                         <Text fontWeight="semibold" className="breakdown">Rating Breakdown</Text>
 
                         <ol className="breakdown-list">
-                            {stars.current.map((item, index) => (
+                            {stars.current.map((item, ) => (
                                 <li key={"rating-" + item.nbr}>
                                     <Text>{item.nbr} star</Text>
                                     <Progress.Root size="lg" colorPalette="yellow" defaultValue={item.percentage}>
@@ -146,7 +146,7 @@ export default function ProductReviews() {
                                 <Portal>
                                     <Select.Positioner>
                                     <Select.Content>
-                                        {sortTypes.current.items.map((type, index) => (
+                                        {sortTypes.current.items.map((type, ) => (
                                         <Select.Item item={type} key={"sorttype-" + type.value}>
                                             {type.label}
                                             <Select.ItemIndicator />

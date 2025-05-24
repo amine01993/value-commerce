@@ -27,10 +27,6 @@ export default function Photo() {
         if(files.length > 0) {
             const reader = new FileReader();
 
-            if(imageRef.current) {
-                imageRef.current.onload
-            }
-
             reader.onloadend = function () {
                 setImage(String(reader.result));
             };
