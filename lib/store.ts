@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "@/lib/slices/user";
 import mainSlice from "@/lib/slices/main";
 import searchSlice from "@/lib/slices/search";
+import accountSlice from "@/lib/slices/account";
 
 export const makeStore = () => {
     return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
             userSlice,
             mainSlice,
             searchSlice,
+            accountSlice,
         },
     });
 }

@@ -121,11 +121,11 @@ export default function Photo() {
             const hDiff = parseInt(handleRef.current.style.left) - prevScrollLeft.current;
             const vDiff = parseInt(handleRef.current.style.top) - prevScrollTop.current;
 
-            handleRef.current.style.left = hDiff + 1 + wrapperRef.current.scrollLeft + 'px';
-            handleRef.current.style.top = vDiff + 1 + wrapperRef.current.scrollTop + 'px';
+            handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + 'px';
+            handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + 'px';
 
-            prevScrollLeft.current = wrapperRef.current.scrollLeft + 1;
-            prevScrollTop.current = wrapperRef.current.scrollTop + 1;
+            prevScrollLeft.current = wrapperRef.current.scrollLeft;
+            prevScrollTop.current = wrapperRef.current.scrollTop;
         }
     }, []);
 
@@ -191,8 +191,8 @@ export default function Photo() {
 
     //     if(wrapperRef.current && imageRef.current) {
     //         const rect = wrapperRef.current.getBoundingClientRect();
-    //         newX = event.x - rect.x - 1;
-    //         newY = event.y - rect.y - 1;
+    //         newX = event.x - rect.x;
+    //         newY = event.y - rect.y;
 
     //         if (newX < circleRadius.current) newX = circleRadius.current;
     //         else if (newX > imageRef.current.width - circleRadius.current) newX = imageRef.current.width - circleRadius.current;
@@ -213,8 +213,8 @@ export default function Photo() {
         if(wrapperRef.current && imageRef.current) {
             const rect = wrapperRef.current.getBoundingClientRect();
             const touch = event.touches[0];
-            newX = touch.clientX - rect.x - 1;
-            newY = touch.clientY - rect.y - 1;
+            newX = touch.clientX - rect.x;
+            newY = touch.clientY - rect.y;
 
             if (newX < circleRadius.current) newX = circleRadius.current;
             else if (newX > rect.width - circleRadius.current) newX = rect.width - circleRadius.current;
@@ -260,13 +260,13 @@ export default function Photo() {
             if(handleRef.current && maskRef.current && wrapperRef.current) {
                 const rect = wrapperRef.current.getBoundingClientRect();
                 
-                maskRef.current.style.setProperty('--mask-x', (rect.width - 2) / 2 + 'px');
-                maskRef.current.style.setProperty('--mask-y', (rect.height - 2) / 2 + 'px');
-                maskRef.current.style.width = rect.width - 2 + 'px';
-                maskRef.current.style.height = rect.height - 2 + 'px';
+                maskRef.current.style.setProperty('--mask-x', rect.width / 2 + 'px');
+                maskRef.current.style.setProperty('--mask-y', rect.height / 2 + 'px');
+                maskRef.current.style.width = rect.width + 'px';
+                maskRef.current.style.height = rect.height + 'px';
                 
-                handleRef.current.style.top = (rect.height - 2) / 2 - circleRadius.current + 'px';
-                handleRef.current.style.left = (rect.width - 2) / 2 - circleRadius.current + 'px';
+                handleRef.current.style.top = rect.height / 2 - circleRadius.current + 'px';
+                handleRef.current.style.left = rect.width / 2 - circleRadius.current + 'px';
                 // handleRef.current.addEventListener('drag', handleDrag);
                 // handleRef.current.addEventListener('dragend', handleDragEnd);
 

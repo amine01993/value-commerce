@@ -1,0 +1,105 @@
+
+import Image from "next/image";
+import { ChangeEvent, Dispatch, FormEvent, memo, SetStateAction, useCallback, useRef, useState } from "react";
+import { Button, Field, Heading, Input, InputGroup, Text } from "@chakra-ui/react";
+import { usePaymentInputs } from "react-payment-inputs"
+import cardImages, { type CardImages } from "react-payment-inputs/images"
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import mastercardIcon from "@/public/logo_mastercard.svg";
+import visaIcon from "@/public/logo_visa.svg";
+import paymentIcon from "@/public/payment.svg";
+import { randomString } from "@/utils/helpers";
+import { addCard } from "@/lib/slices/account";
+
+interface AddPaymentForm {
+    setAddPayment: Dispatch<SetStateAction<boolean>>;
+}
+
+export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
+
+    const dispatch = useAppDispatch();
+    const cardList = useAppSelector(state => state.accountSlice.cardList)
+    const images = useRef(cardImages as unknown as CardImages);
+    const { meta, wrapperProps, getCardNumberProps, getExpiryDateProps, getCVCProps, getCardImageProps } = usePaymentInputs()
+    const [cardNumber, setCardNumber] = useState("")
+    const [expiry, setExpiry] = useState("")
+    const [cvc, setCvc] = useState("")
+
+    const handleCardChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setCardNumber(event.target.value);
+    }, []);
+
+    const handleExpiryChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setExpiry(event.target.value);
+    }, []);
+
+    const handleCvcChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setCvc(event.target.value);
+    }, []);
+
+    const saveCard = useCallback((event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        // validation
+        // post request
+        
+        const number = cardNumber.slice(0, cardNumber.length - 4).replace(/[0-9]/g, "*") + cardNumber.slice(cardNumber.length - 4);
+        dispatch(addCard({
+            id: randomString(10),
+            number,
+            expiry,
+            type: String(meta.cardType.type),
+        }))
+
+        setAddPayment(false);
+    }, [cardNumber, expiry, cvc, cardList]);
+
+    const cancelForm = useCallback(() => {
+        setAddPayment(false);
+    }, []);
+
+    return (
+        <form className="payment-form" onSubmit={saveCard}>
+            <Heading as="h2" fontSize="md" className="title">Add a new credit card</Heading>
+            
+            <Text>We accept the following:</Text>
+            <div className="payment-methods">
+                <span><Image src={mastercardIcon} alt="Master Card" height={25} width={39} /></span>
+                <span><Image src={visaIcon} alt="Visa Card" height={25} width={63} /></span>
+            </div>
+
+            <Field.Root>
+                <Field.Label fontSize="md">Card Number</Field.Label>
+                <InputGroup {...wrapperProps} endElement={(
+                    <>
+                    {meta.cardType && (
+                        <svg {...getCardImageProps({ images: images.current })} />
+                    )}
+                    {!meta.cardType && (
+                        <Image src={paymentIcon} alt="Account Payment Methods" width={20} />
+                    )}
+                    </>
+                )}>
+                    <Input {...getCardNumberProps({ onChange: handleCardChange })} size="lg" />
+                </InputGroup>
+            </Field.Root>
+
+            <div className="expiry">
+                <Field.Root>
+                    <Field.Label fontSize="md">Expiry</Field.Label>
+                    <Input {...getExpiryDateProps({ onChange: handleExpiryChange })} size="lg" />
+                </Field.Root>
+
+                <Field.Root>
+                    <Field.Label fontSize="md">CVC</Field.Label>
+                    <Input {...getCVCProps({ onChange: handleCvcChange })} size="lg" />
+                </Field.Root>
+            </div>
+
+            <div className="actions">
+                <Button colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
+                <Button colorPalette="orange" variant="plain" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelForm}>Cancel</Button>
+            </div>
+        </form>
+    );
+})
+
