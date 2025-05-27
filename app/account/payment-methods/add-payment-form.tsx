@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import { ChangeEvent, Dispatch, FormEvent, memo, SetStateAction, useCallback, useRef, useState } from "react";
-import { Button, Field, Heading, Input, InputGroup, Text } from "@chakra-ui/react";
+import { Button, Checkbox, CheckboxCheckedChangeDetails, Field, Heading, Input, InputGroup, Separator, Text } from "@chakra-ui/react";
 import { usePaymentInputs } from "react-payment-inputs"
 import cardImages, { type CardImages } from "react-payment-inputs/images"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -11,11 +11,11 @@ import paymentIcon from "@/public/payment.svg";
 import { randomString } from "@/utils/helpers";
 import { addCard } from "@/lib/slices/account";
 
-interface AddPaymentForm {
+interface AddPaymentFormType {
     setAddPayment: Dispatch<SetStateAction<boolean>>;
 }
 
-export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
+export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormType) {
 
     const dispatch = useAppDispatch();
     const cardList = useAppSelector(state => state.accountSlice.cardList)
@@ -24,6 +24,7 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
     const [cardNumber, setCardNumber] = useState("")
     const [expiry, setExpiry] = useState("")
     const [cvc, setCvc] = useState("")
+    const [isDefault, setIsDefault] = useState(false)
 
     const handleCardChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setCardNumber(event.target.value);
@@ -37,6 +38,10 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
         setCvc(event.target.value);
     }, []);
 
+    const handleDefaultChange = useCallback((details: CheckboxCheckedChangeDetails) => {
+        setIsDefault(Boolean(details.checked))
+    }, []);
+
     const saveCard = useCallback((event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // validation
@@ -47,11 +52,12 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
             id: randomString(10),
             number,
             expiry,
-            type: String(meta.cardType.type),
+            type: meta.cardType.type,
+            isDefault,
         }))
 
         setAddPayment(false);
-    }, [cardNumber, expiry, cvc, cardList]);
+    }, [cardNumber, expiry, cvc, isDefault, cardList]);
 
     const cancelForm = useCallback(() => {
         setAddPayment(false);
@@ -94,6 +100,14 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentForm) {
                     <Input {...getCVCProps({ onChange: handleCvcChange })} size="lg" />
                 </Field.Root>
             </div>
+
+            <Separator />
+            <Checkbox.Root colorPalette="orange" checked={isDefault} onCheckedChange={handleDefaultChange}>
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+                <Checkbox.Label fontSize="md">Set as default credit card</Checkbox.Label>
+            </Checkbox.Root>
+            <Separator />
 
             <div className="actions">
                 <Button colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>

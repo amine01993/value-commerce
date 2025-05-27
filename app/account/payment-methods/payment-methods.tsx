@@ -28,15 +28,19 @@ export default function PaymentMethods() {
                 {cardList.length === 0 && (
                     <Heading as="h2" fontSize="md" className="subtitle">You have no saved credit cards.</Heading>
                 )}
+                {cardList.length > 0 && (
+                    <Heading as="h2" fontSize="md" className="subtitle">You have {cardList.length} saved credit card.</Heading>
+                )}
+
+                {cardList.length > 0 && cardList.map(card => (
+                    <CardItem key={card.id} card={card} />
+                ))}
 
                 <Button colorPalette="orange" variant="plain" className="add-payment-method" fontSize="md" onClick={handleNewPayment}>
                     <Image src={addIcon} alt="Plus Icon" height={20} />
                     Add a new credit card
                 </Button>
 
-                {cardList.length > 0 && cardList.map(card => (
-                    <CardItem key={card.id} card={card} />
-                ))}
                 </>
             )}
 

@@ -1,5 +1,6 @@
+
 import Image from "next/image";
-import { useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { Button, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { CardType, removeCard } from "@/lib/slices/account"
@@ -7,12 +8,11 @@ import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
 import deleteIcon from "@/public/delete.svg";
 
-
 interface CardItemType {
     card: CardType;
 }
 
-export default function CardItem({card}: CardItemType) {
+export default memo(function CardItem({card}: CardItemType) {
 
     const dispatch = useAppDispatch();
     const cardList = useAppSelector(state => state.accountSlice.cardList)
@@ -37,9 +37,9 @@ export default function CardItem({card}: CardItemType) {
             <Text>Expires on {expiry}</Text>
 
             <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleCardDeletion}>
-                <Image src={deleteIcon} alt="Delete Card" height={25} />
+                <Image src={deleteIcon} alt="Delete Card" height={20} />
                 Remove
             </Button>
         </div>
     )
-}
+})

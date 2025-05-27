@@ -11,7 +11,7 @@
             margin-top: 2rem;
         }
 
-        .add-payment-method {
+        .add-address {
             width: 100%;
             justify-content: flex-start;
             border: 1px dashed;
@@ -21,7 +21,7 @@
             margin-bottom: 1rem;
         }
 
-        .payment-form {
+        .address-form {
             border: 1px solid black;
             padding: 1.5rem;
             margin: 2rem 0;
@@ -30,10 +30,17 @@
                 margin-bottom: 1rem;
             }
 
-            .expiry {
+            .fields {
+                display: flex;
+                flex-direction: column;
+                gap: 1.3rem;
+                margin-bottom: 1.3rem;
+            }
+
+            .province {
                 display: flex;
                 gap: 2rem;
-                margin: 2rem 0;
+                // margin: 2rem 0;
             }
 
             .actions {
@@ -42,42 +49,31 @@
                 gap: 1rem;
             }
 
-            [role=separator], .chakra-checkbox__root {
-                margin-bottom: 1.3rem;
-            }
-
             [role=separator] {
                 background-color: var(--chakra-colors-gray-300);
             }
         }
 
-        .payment-methods {
-            margin: .7rem 0 2rem;
-            display: flex;
-            gap: 1rem;
-
-            span {
-                border: var(--chakra-colors-gray-800) solid 1px;
-                border-radius: .5rem;
-                width: 70px;
-                padding: 0.3rem .5rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-
-        .card {
-            display: grid;
-            grid-template-columns: 0.3fr 1fr 0.8fr;
-            justify-items: center;
+        .address {
             border: 1px solid black;
             padding: 1.1rem 0.7rem 0.5rem;
-            gap: .5rem;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
+            
+            h3 {
+                span {
+                    color: var(--chakra-colors-gray-600);
+                    margin-left: 1rem;
+                }
+            }
+            
+            .content {
 
-            button {
-                grid-column: span 3;
+            }
+
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 1rem;
             }
         }
     }
