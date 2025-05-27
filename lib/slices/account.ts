@@ -7,10 +7,11 @@ export interface CardType {
     number: string;
     expiry: string;
     isDefault: boolean;
+    address: AddressType;
 }
 
 export interface AddressType {
-    id: string;
+    id?: string;
     firstName: string;
     lastName: string;
     phoneNumber: string;

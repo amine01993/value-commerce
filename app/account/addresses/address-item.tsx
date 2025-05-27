@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { AddressType, removeAddress } from "@/lib/slices/account"
 import deleteIcon from "@/public/delete.svg";
 import editIcon from "@/public/edit.svg";
+import style from "./addresses.module.scss";
 
 interface AddressItemType {
     address: AddressType;
@@ -23,16 +24,20 @@ export default memo(function AddressItem({address, setAddAddress, setEditAddress
     }, []);
 
     const handleAddressDeletion = useCallback(() => {
-        dispatch(removeAddress(address.id));
+        if(address.id) {
+            dispatch(removeAddress(address.id));
+        }
     }, [addressList]);
 
     const handleAddressEdition = useCallback(() => {
         setAddAddress(true);
-        setEditAddress(address.id);
+        if(address.id) {
+            setEditAddress(address.id);
+        }
     }, [address]);
 
     return (
-        <div className="address">
+        <div className={style.address}>
             <Heading as="h3" fontSize="md">
                 {header}
                 {address.isDefault && (

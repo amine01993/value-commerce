@@ -23,15 +23,15 @@ export default function PaymentMethods() {
             <Heading as="h1">Payment Methods</Heading>
             <Text>Save and manage your payment details for a fast checkout.</Text>
             
+            {cardList.length === 0 && (
+                <Heading as="h2" fontSize="md" className="subtitle">You have no saved credit cards.</Heading>
+            )}
+            {cardList.length > 0 && (
+                <Heading as="h2" fontSize="md" className="subtitle">You have {cardList.length} saved credit card.</Heading>
+            )}
+
             {!addPayment && (
                 <>
-                {cardList.length === 0 && (
-                    <Heading as="h2" fontSize="md" className="subtitle">You have no saved credit cards.</Heading>
-                )}
-                {cardList.length > 0 && (
-                    <Heading as="h2" fontSize="md" className="subtitle">You have {cardList.length} saved credit card.</Heading>
-                )}
-
                 {cardList.length > 0 && cardList.map(card => (
                     <CardItem key={card.id} card={card} />
                 ))}
@@ -40,7 +40,6 @@ export default function PaymentMethods() {
                     <Image src={addIcon} alt="Plus Icon" height={20} />
                     Add a new credit card
                 </Button>
-
                 </>
             )}
 

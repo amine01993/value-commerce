@@ -1,9 +1,10 @@
 
 import Image from "next/image";
 import { memo, useCallback, useMemo } from "react";
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Separator, Tag, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { CardType, removeCard } from "@/lib/slices/account"
+import AddressItem from "./address-item";
 import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
 import deleteIcon from "@/public/delete.svg";
@@ -27,19 +28,34 @@ export default memo(function CardItem({card}: CardItemType) {
 
     return (
         <div className="card">
-            {card.type === "visa" && (
-                <Image src={visaIcon} alt="Visa Card" height={25} width={63} />
-            )}
-            {card.type === "mastercard" && (
-                <Image src={mastercardIcon} alt="Master Card" height={25} width={39} />
-            )}
-            <Text>{card.number}</Text>
-            <Text>Expires on {expiry}</Text>
+            <div className="title">
+                {card.type === "visa" && (
+                    <Image src={visaIcon} alt="Visa Card" height={20} />
+                )}
+                {card.type === "mastercard" && (
+                    <Image src={mastercardIcon} alt="Master Card" height={20} />
+                )}
+                {card.isDefault && (
+                    <Tag.Root size="sm" colorPalette="orange">
+                        <Tag.Label>Default</Tag.Label>
+                    </Tag.Root>
+                )}
+            </div>
+            <Text className="info">{card.number}</Text>
+            <Text className="info">Expires on {expiry}</Text>
 
-            <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleCardDeletion}>
-                <Image src={deleteIcon} alt="Delete Card" height={20} />
-                Remove
-            </Button>
+            <Separator />
+
+            <Text fontSize="sm" fontWeight="semibold">Billing Address</Text>
+
+            <AddressItem address={card.address} />
+
+            <div className="actions">
+                <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleCardDeletion}>
+                    <Image src={deleteIcon} alt="Delete Address" height={20} />
+                    Remove
+                </Button>
+            </div>
         </div>
     )
 })

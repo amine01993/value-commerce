@@ -37,7 +37,7 @@ export default function Addresses() {
                     <AddressItem key={addr.id} address={addr} setAddAddress={setAddAddress} setEditAddress={setEditAddress} />
                 ))}
 
-                <Button colorPalette="orange" variant="plain" className="add-address" fontSize="md" onClick={handleNewAddress}>
+                <Button colorPalette="orange" variant="plain" className={style['add-address']} fontSize="md" onClick={handleNewAddress}>
                     <Image src={addIcon} alt="Plus Icon" height={20} />
                     Add a new address
                 </Button>

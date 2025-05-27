@@ -1,26 +1,15 @@
 
-import { ChangeEvent, Dispatch, FormEvent, memo, SetStateAction, useCallback, useMemo, useRef, useState } from "react";
-import { Button, Checkbox, CheckboxCheckedChangeDetails, Field, Heading, Input, NativeSelect, Separator } from "@chakra-ui/react";
+import { ChangeEvent, Dispatch, memo, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
+import { Field, Heading, Input, NativeSelect } from "@chakra-ui/react";
 import { withMask } from "use-mask-input";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { randomString } from "@/utils/helpers";
-import { saveAddress as saveAddr } from "@/lib/slices/account";
-import style from "./addresses.module.scss";
+import { AddressType } from "@/lib/slices/account";
+import style from "./payment-methods.module.scss";
 
 interface AddAddressFormType {
-    editAddress: string;
-    setEditAddress: Dispatch<SetStateAction<string>>;
-    setAddAddress: Dispatch<SetStateAction<boolean>>;
+    setCardAddress: Dispatch<SetStateAction<AddressType | undefined>>;
 }
 
-export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress, setEditAddress }: AddAddressFormType) {
-
-    const dispatch = useAppDispatch();
-    const addressList = useAppSelector(state => state.accountSlice.addressList)
-    const addr = useMemo(() => {
-        const tmp = addressList.find(a => a.id === addrId);
-        return tmp;
-    }, [addrId, addressList]);
+export default memo(function AddAddressForm({ setCardAddress }: AddAddressFormType) {
 
     const phoneMask = useRef(withMask("(999) 999-9999"));
     const provinceList = useRef([
@@ -39,14 +28,13 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
         {label: "Yukon", value: "YT"},
     ]);
 
-    const [firstName, setFirstName] = useState(addr?.firstName ?? "")
-    const [lastName, setLastName] = useState(addr?.lastName ?? "")
-    const [phoneNumber, setPhoneNumber] = useState(addr?.phoneNumber ?? "")
-    const [address, setAddress] = useState(addr?.address ?? "")
-    const [city, setCity] = useState(addr?.city ?? "")
-    const [province, setProvince] = useState(addr?.province ?? "")
-    const [postalCode, setPostalCode] = useState(addr?.postalCode ?? "")
-    const [isDefault, setIsDefault] = useState(addr?.isDefault ?? false)
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [address, setAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [province, setProvince] = useState("")
+    const [postalCode, setPostalCode] = useState("")
 
     const handleFirstNameChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setFirstName(event.target.value);
@@ -76,18 +64,8 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
         setPostalCode(event.target.value);
     }, []);
 
-    const handleDefaultChange = useCallback((details: CheckboxCheckedChangeDetails) => {
-        setIsDefault(Boolean(details.checked));
-    }, []);
-
-    const saveAddress = useCallback((event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // validation
-        // post request
-        
-        const id = !addrId ? randomString(10) : addrId;
-        dispatch(saveAddr({
-            id,
+    useEffect(() => {
+        setCardAddress({
             firstName,
             lastName,
             phoneNumber,
@@ -95,21 +73,12 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
             city,
             province,
             postalCode,
-            isDefault,
-        }))
-
-        setAddAddress(false);
-        setEditAddress("")
-        
-    }, [firstName, lastName, phoneNumber, address, city, province, postalCode, isDefault, addressList]);
-
-    const cancelForm = useCallback(() => {
-        setAddAddress(false);
-        setEditAddress("")
-    }, []);
+            isDefault: false,
+        });
+    }, [firstName, lastName, phoneNumber, address, city, province, postalCode]);
 
     return (
-        <form className={style['address-form']} onSubmit={saveAddress}>
+        <div className={style['address-form']}>
             <Heading as="h2" fontSize="md" className="title">Add a new address</Heading>
 
             <div className="fields">
@@ -167,21 +136,8 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
                         <NativeSelect.Indicator />
                     </NativeSelect.Root>
                 </Field.Root>
-
-                <Separator />
-                <Checkbox.Root colorPalette="orange" checked={isDefault} onCheckedChange={handleDefaultChange}>
-                    <Checkbox.HiddenInput />
-                    <Checkbox.Control />
-                    <Checkbox.Label fontSize="md">Set as default shipping address</Checkbox.Label>
-                </Checkbox.Root>
-                <Separator />
             </div>
-
-            <div className="actions">
-                <Button colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
-                <Button colorPalette="orange" variant="plain" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelForm}>Cancel</Button>
-            </div>
-        </form>
+        </div>
     );
 })
 
