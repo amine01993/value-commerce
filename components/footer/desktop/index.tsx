@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useAppSelector } from "@/lib/hooks";
 import { Button, CloseButton, Dialog, Heading, Portal, Separator } from "@chakra-ui/react";
 import style from "./style.module.scss";
+import LanguagesDesktop from "@/components/languages/desktop";
 import instagram from "@/public/instagram.svg";
 import facebook from "@/public/facebook.svg";
 import twitter from "@/public/x-twitter.svg";
 import globeIcon from "@/public/globe-black.svg";
 import logo from "@/public/Logo - Desktop.png";
-import LanguagesDesktop from "@/components/languages/desktop";
 
 export default function FooterDesktop() {
 
@@ -64,7 +64,7 @@ export default function FooterDesktop() {
                     </Button>
                 </li>
                 <li>
-                    <Button variant="plain">
+                    <Button variant="subtle">
                         Cookie settings
                     </Button>
                 </li>

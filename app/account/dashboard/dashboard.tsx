@@ -3,11 +3,11 @@
 import { useRef } from "react";
 import { Heading, Tabs, Text } from "@chakra-ui/react";
 import style from "./dashboard.module.scss";
+import PurchasedItem from "@/components/account/dashboard/purchased-item";
 import p1 from "@/public/products/swim-cap.webp";
 import p2 from "@/public/products/swimming-goggles-1.webp";
 import p3 from "@/public/products/swimming-goggles-2.webp";
 import p4 from "@/public/products/laptop-hp.png";
-import PurchasedItem from "./purchased-item";
 
 export default function Dashboard() {
 

@@ -88,7 +88,7 @@ export default function PurchasedItem({purchase}: PurchasedItemType) {
                 )}
             </div>
 
-            <Separator />
+            <Separator bgColor="gray.300" />
         </div>
     );
 }

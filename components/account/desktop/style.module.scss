@@ -1,0 +1,65 @@
+
+.layout {
+
+    max-width: 1340px;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 2rem;
+
+    :global {
+        .menu {
+            padding: 2rem 0;
+            background-color: var(--chakra-colors-gray-100);
+
+            .menu-header {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                justify-self: center;
+
+                .chakra-avatar__root {
+                    width: 7rem;
+                    height: 7rem;
+                }
+
+                .chakra-avatar__fallback {
+                    font-size: 2rem;
+                }
+            }
+
+            .menu-nav {
+                margin-top: 1.2rem;
+
+                ul {
+                    li {
+                        margin: 0 1.2rem;
+
+                        &.active {
+                            background-color: var(--chakra-colors-orange-600);
+
+                            a {
+                                color: white;
+                                font-weight: var(--chakra-font-weights-semibold);
+
+                                img {
+                                    filter: invert(1);
+                                }
+                            }
+                        }
+
+                        a {
+                            padding: .7rem 1.5rem;
+                            display: flex;
+                            gap: 1rem;
+                            width: 100%;
+                            align-items: center;
+                            font-size: var(--chakra-font-sizes-sm);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
