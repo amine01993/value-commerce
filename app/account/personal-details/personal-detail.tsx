@@ -4,10 +4,10 @@ import { useCallback, useMemo, useState } from "react";
 import { Button, Heading, RadioGroup, RadioGroupValueChangeDetails, Separator, Text } from "@chakra-ui/react";
 import { useAppSelector } from "@/lib/hooks";
 import style from "./personal-detail.module.scss";
-import NameForm from "./name-form";
-import PhoneForm from "./phone-form";
-import EmailForm from "./email-form";
-import PasswordForm from "./password-form";
+import NameForm from "@/components/account/personal-details/name-form";
+import PhoneForm from "@/components/account/personal-details/phone-form";
+import EmailForm from "@/components/account/personal-details/email-form";
+import PasswordForm from "@/components/account/personal-details/password-form";
 
 export default function PersonalDetail() {
 

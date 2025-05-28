@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { Heading, Text, Link as LinkUI, Switch, Separator, Button, SwitchCheckedChangeDetails, Drawer, Portal, DrawerOpenChangeDetails } from "@chakra-ui/react";
 import style from "./preference-center.module.scss";
-import CookiePreference from "./cookie-preference";
+import CookiePreference from "@/components/account/preference-center/cookie-preference";
 
 export default function PreferenceCenter() {
 

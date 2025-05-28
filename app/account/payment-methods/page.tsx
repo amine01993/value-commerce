@@ -1,9 +1,8 @@
 
+import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import { metadata } from "@/app/layout"
-import PaymentMethods from "./payment-methods";
-import PaymentMethodsDesktop from "./payment-methods-desktop";
 
 
 export default async function PaymentMethodsPage() {
@@ -12,6 +11,14 @@ export default async function PaymentMethodsPage() {
     const isMobile = device?.type === "mobile";
   
     metadata.title = `Account Payment Methods`;
+
+    const PaymentMethods = dynamic(() => import("./payment-methods"), {
+        loading: () => <p>Loading...</p>,
+    })
+
+    const PaymentMethodsDesktop = dynamic(() => import("./payment-methods-desktop"), {
+        loading: () => <p>Loading...</p>,
+    })
 
     return (
         <>

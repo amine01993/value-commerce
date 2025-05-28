@@ -1,9 +1,8 @@
 
+import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import { metadata } from "@/app/layout"
-import PreferenceCenter from "./preference-center";
-import PreferenceCenterDesktop from "./preference-center-desktop";
 
 export default async function PreferenceCenterPage() {
 
@@ -11,6 +10,14 @@ export default async function PreferenceCenterPage() {
     const isMobile = device?.type === "mobile";
   
     metadata.title = `Account Preference Center`;
+
+    const PreferenceCenter = dynamic(() => import("./preference-center"), {
+        loading: () => <p>Loading...</p>,
+    })
+
+    const PreferenceCenterDesktop = dynamic(() => import("./preference-center-desktop"), {
+        loading: () => <p>Loading...</p>,
+    })
 
     return (
         <>

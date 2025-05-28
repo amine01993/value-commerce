@@ -5,9 +5,9 @@ import { useCallback, useState } from "react";
 import { Button, Heading, Text } from "@chakra-ui/react";
 import { useAppSelector } from "@/lib/hooks";
 import style from "./payment-methods.module.scss";
+import CardItem from "@/components/account/payment-methods/card-item";
+import AddPaymentForm from "@/components/account/payment-methods/add-payment-form";
 import addIcon from "@/public/plus.svg";
-import AddPaymentForm from "./add-payment-form";
-import CardItem from "./card-item";
 
 export default function PaymentMethods() {
 

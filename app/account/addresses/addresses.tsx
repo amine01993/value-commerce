@@ -5,8 +5,8 @@ import { useCallback, useState } from "react";
 import { Button, Heading, Text } from "@chakra-ui/react";
 import { useAppSelector } from "@/lib/hooks";
 import style from "./addresses.module.scss";
-import AddressItem from "./address-item";
-import AddAddressForm from "./add-address-form";
+import AddressItem from "@/components/account/addresses/address-item";
+import AddAddressForm from "@/components/account/addresses/add-address-form";
 import addIcon from "@/public/plus.svg";
 
 export default function Addresses() {

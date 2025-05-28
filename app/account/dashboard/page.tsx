@@ -1,9 +1,7 @@
 
-
+import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import Dashboard from "./dashboard";
-import DashboardDesktop from "./dashboard-desktop";
 import {metadata} from "@/app/layout"
 
 
@@ -13,6 +11,14 @@ export default async function DashboardPage() {
     const isMobile = device?.type === "mobile";
   
     metadata.title = `Account Dashboard`;
+
+    const Dashboard = dynamic(() => import("./dashboard"), {
+        loading: () => <p>Loading...</p>,
+    })
+
+    const DashboardDesktop = dynamic(() => import("./dashboard-desktop"), {
+        loading: () => <p>Loading...</p>,
+    })
 
     return (
         <>

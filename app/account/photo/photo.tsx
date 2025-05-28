@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, CloseButton, FileUpload, FileUploadFileChangeDetails, Heading, Input, InputGroup, Text } from "@chakra-ui/react";
 import style from "./photo.module.scss";
-import HiddenCanvas from "./hidden-canvas";
+import HiddenCanvas from "@/components/account/photo/hidden-canvas";
 import placeholder from "@/public/photo-placeholder.jpg";
 
 export default function Photo() {
