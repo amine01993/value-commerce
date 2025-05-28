@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, CloseButton, FileUpload, FileUploadFileChangeDetails, Heading, Input, InputGroup, Text } from "@chakra-ui/react";
 import style from "./photo.module.scss";
-import placeholder from "@/public/photo-placeholder.jpg";
 import HiddenCanvas from "./hidden-canvas";
+import placeholder from "@/public/photo-placeholder.jpg";
 
 export default function Photo() {
 
@@ -83,9 +83,9 @@ export default function Photo() {
 
         const { x, y } = getTouchCoords(event);
 
-        if(maskRef.current) {
-            maskRef.current.style.setProperty('--mask-x', x + 'px');
-            maskRef.current.style.setProperty('--mask-y', y + 'px');
+        if(wrapperRef.current && maskRef.current) {
+            maskRef.current.style.setProperty('--mask-x', wrapperRef.current.scrollLeft + x + 'px');
+            maskRef.current.style.setProperty('--mask-y', wrapperRef.current.scrollTop + y + 'px');
         }
 
         lastTouchX.current = x;
@@ -115,14 +115,14 @@ export default function Photo() {
     const handleScroll = useCallback(() => {
         if(wrapperRef.current && maskRef.current && handleRef.current) {
 
-            maskRef.current.style.left = wrapperRef.current.scrollLeft + 'px';
-            maskRef.current.style.top = wrapperRef.current.scrollTop + 'px';
-
             const hDiff = parseInt(handleRef.current.style.left) - prevScrollLeft.current;
             const vDiff = parseInt(handleRef.current.style.top) - prevScrollTop.current;
-
+            
             handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + 'px';
             handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + 'px';
+            
+            maskRef.current.style.setProperty('--mask-x', hDiff + wrapperRef.current.scrollLeft + circleRadius.current + 'px');
+            maskRef.current.style.setProperty('--mask-y', vDiff + wrapperRef.current.scrollTop + circleRadius.current + 'px');
 
             prevScrollLeft.current = wrapperRef.current.scrollLeft;
             prevScrollTop.current = wrapperRef.current.scrollTop;
@@ -262,8 +262,8 @@ export default function Photo() {
                 
                 maskRef.current.style.setProperty('--mask-x', rect.width / 2 + 'px');
                 maskRef.current.style.setProperty('--mask-y', rect.height / 2 + 'px');
-                maskRef.current.style.width = rect.width + 'px';
-                maskRef.current.style.height = rect.height + 'px';
+                maskRef.current.style.width = imageRef.current.width + 'px';
+                maskRef.current.style.height = imageRef.current.height + 'px';
                 
                 handleRef.current.style.top = rect.height / 2 - circleRadius.current + 'px';
                 handleRef.current.style.left = rect.width / 2 - circleRadius.current + 'px';
@@ -325,7 +325,7 @@ export default function Photo() {
                 </div>
                 <HiddenCanvas circleRadius={circleRadius.current} ref={canvasRef} />
 
-                <FileUpload.Root gap="1" onFileChange={handleFileChange}>
+                <FileUpload.Root gap="1" onFileChange={handleFileChange} accept={["image/*"]} maxFileSize={5242880}>
                     <FileUpload.HiddenInput />
                     <FileUpload.Label fontWeight="semibold" fontSize="md">Add / Change Image</FileUpload.Label>
                     <div className="input-group">

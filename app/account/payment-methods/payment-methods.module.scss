@@ -124,11 +124,13 @@
 
     &.selectable.selected {
         outline: 2px solid var(--chakra-colors-orange-600);
+        outline-offset: -2px;
     }
 
     &.selectable {
         position: relative;
         outline: 1px solid black;
+        outline-offset: -1px;
         padding: 0.6rem;
         margin-bottom: 1.1rem;
         border-radius: .3rem;
