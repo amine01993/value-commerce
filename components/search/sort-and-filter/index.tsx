@@ -1,16 +1,16 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Button, CloseButton, Drawer, DrawerOpenChangeDetails, Portal, Separator } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { FilterItem, setAvailabilities, setBrands, setFilter, setPriceRange, setRating } from "@/lib/slices/search";
-import { Button, CloseButton, Drawer, Portal, Separator } from "@chakra-ui/react";
 import { queryParamsString, valueToFilterItem } from "@/utils/helpers";
 import style from "./style.module.scss";
-import filterIcon from "@/public/filter.svg";
 import FilterTags from "./filter-tags";
 import SortBy from "./sort-by";
 import Filters from "./filters";
+import filterIcon from "@/public/filter.svg";
 
 export default function SortAndFilter() {
 
@@ -129,6 +129,14 @@ export default function SortAndFilter() {
         },
     ]);
 
+    const handleFilterDrawer = useCallback((details: DrawerOpenChangeDetails) => {
+        setOpen(details.open)
+    }, []);
+
+    const closeFilterDrawer = useCallback(() => {
+        setOpen(false)
+    }, []);
+
     useEffect(() => {
         if(open) document.documentElement.style.overflow = "hidden";
         else document.documentElement.style.overflow = "";
@@ -211,7 +219,7 @@ export default function SortAndFilter() {
         <section className={style["sort-and-filter"]}>
             <div className="actions">
 
-                <Drawer.Root placement="bottom" open={open} onOpenChange={(e) => setOpen(e.open)}>
+                <Drawer.Root placement="bottom" open={open} onOpenChange={handleFilterDrawer}>
                     <Drawer.Trigger asChild>
                         <Button variant="outline">
                             <Image src={filterIcon} alt="Sort and Filter Icon" height={20} width={20} />
@@ -239,7 +247,7 @@ export default function SortAndFilter() {
                                     />
                                 </Drawer.Body>
                                 <Drawer.Footer>
-                                    <Button colorPalette="orange" className="show-results" onClick={() => setOpen(false)}>Show Results (42)</Button>
+                                    <Button colorPalette="orange" className="show-results" onClick={closeFilterDrawer}>Show Results (42)</Button>
                                 </Drawer.Footer>
                                 <Drawer.CloseTrigger asChild>
                                     <CloseButton size="xl" top="5px" right="5px" />
