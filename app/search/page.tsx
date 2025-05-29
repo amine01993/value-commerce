@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import Search from "./search";
 import SearchDesktop from "./search-desktop";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 interface SearchPageParams {
     searchParams: Promise<{q: string}>;
@@ -22,12 +22,12 @@ export default async function SearchPage(
 
     return (
         <>
-        {isMobile && (
-            <Search query={String(q)} />
-        )}
-        {!isMobile && (
-            <SearchDesktop query={String(q)} />
-        )}
+            {isMobile && (
+                <Search query={String(q)} />
+            )}
+            {!isMobile && (
+                <SearchDesktop query={String(q)} />
+            )}
         </>
     );
 }

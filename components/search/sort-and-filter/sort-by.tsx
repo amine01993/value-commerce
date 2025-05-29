@@ -35,13 +35,13 @@ export default function SortBy() {
                         <RadioGroup.Root defaultValue="1" colorPalette="blue">
                             <ol>
                                 {items.current.map((item) => (
-                                <li key={"value-" + item.value}>
-                                    <RadioGroup.Item key={item.value} value={item.value}>
-                                        <RadioGroup.ItemHiddenInput />
-                                        <RadioGroup.ItemIndicator />
-                                        <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
-                                    </RadioGroup.Item>
-                                </li>
+                                    <li key={"value-" + item.value}>
+                                        <RadioGroup.Item key={item.value} value={item.value}>
+                                            <RadioGroup.ItemHiddenInput />
+                                            <RadioGroup.ItemIndicator />
+                                            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+                                        </RadioGroup.Item>
+                                    </li>
                                 ))}
                             </ol>
                         </RadioGroup.Root>
@@ -49,5 +49,5 @@ export default function SortBy() {
                 </Accordion.ItemContent>
             </Accordion.Item>
         </Accordion.Root>
-    )
+    );
 }

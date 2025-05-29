@@ -13,7 +13,7 @@ const initialState: MainState = {
 }; 
 
 const mainSlice = createSlice({
-    name: 'main',
+    name: "main",
     initialState,
     reducers: {
         showMenu(state: MainState) {

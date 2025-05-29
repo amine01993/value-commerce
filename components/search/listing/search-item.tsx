@@ -22,30 +22,30 @@ export default function SearchItem({src, name, rating, reviewCount, price, oldPr
 
     return (
         <>
-        <div className="search-item">
-            <div className="product-img">
-                <Image src={src} alt={name} width={150} height={150} />
-                <Button className="favorite-btn" variant="plain" aria-label="Add this product to favorites">
-                    <Image src={favoriteIcon} alt="Favorite Icon" height={16} width={16} priority />
-                </Button>
-            </div>
-            <div className="info">
-                <Heading as="h3" size="md" fontWeight="normal">{name}</Heading>
-                <div className="rating-container">
-                    <RatingGroup.Root allowHalf count={5} defaultValue={roundedRating} size="sm" colorPalette="yellow">
-                        <RatingGroup.HiddenInput />
-                        <RatingGroup.Control />
-                    </RatingGroup.Root>
-                    <Text color="var(--chakra-colors-gray-600)">({reviewCount}) Reviews</Text>
+            <div className="search-item">
+                <div className="product-img">
+                    <Image src={src} alt={name} width={150} height={150} />
+                    <Button className="favorite-btn" variant="plain" aria-label="Add this product to favorites">
+                        <Image src={favoriteIcon} alt="Favorite Icon" height={16} width={16} priority />
+                    </Button>
                 </div>
-                <div className="price-container">
-                    <Text fontWeight="semibold" textStyle="2xl">${price}</Text>
-                    {oldPrice && <Text color="var(--chakra-colors-gray-600)">Was <span className="old-price">${oldPrice}</span></Text>}
+                <div className="info">
+                    <Heading as="h3" size="md" fontWeight="normal">{name}</Heading>
+                    <div className="rating-container">
+                        <RatingGroup.Root allowHalf count={5} defaultValue={roundedRating} size="sm" colorPalette="yellow">
+                            <RatingGroup.HiddenInput />
+                            <RatingGroup.Control />
+                        </RatingGroup.Root>
+                        <Text color="gray.600">({reviewCount}) Reviews</Text>
+                    </div>
+                    <div className="price-container">
+                        <Text fontWeight="semibold" textStyle="2xl">${price}</Text>
+                        {oldPrice && <Text color="gray.600">Was <span className="old-price">${oldPrice}</span></Text>}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <Separator />
+            <Separator />
         </>
-    )
+    );
 }

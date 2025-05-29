@@ -26,11 +26,11 @@ export default function Related() {
             <Heading as="h2" size="lg">Related Searches</Heading>
             <ol>
                 {keywords.current.map((query, index) => (
-                <li key={"index-" + index}>
-                    <Link href={"/search?q=" + encodeURIComponent(query)} passHref legacyBehavior>
-                        <Button colorPalette="cyan" rounded="full" as="a">{query}</Button>
-                    </Link>
-                </li>
+                    <li key={"index-" + index}>
+                        <Link href={"/search?q=" + encodeURIComponent(query)} passHref legacyBehavior>
+                            <Button colorPalette="cyan" rounded="full" as="a">{query}</Button>
+                        </Link>
+                    </li>
                 ))}
             </ol>
         </div>

@@ -1,7 +1,7 @@
 
 import { Dispatch, memo, SetStateAction, useCallback, useMemo, useState } from "react";
 import { Accordion, Button, CloseButton, Drawer, Heading, Switch, SwitchCheckedChangeDetails, Text } from "@chakra-ui/react";
-import style from "./style.module.scss"
+import style from "./style.module.scss";
 
 interface CookiePreferenceType {
     setOpenCookies: Dispatch<SetStateAction<boolean>>;
@@ -147,5 +147,5 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
                 <CloseButton size="lg" />
             </Drawer.CloseTrigger>
         </Drawer.Content>
-    )
-})
+    );
+});

@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { Dispatch, memo, SetStateAction, useCallback, useMemo } from "react";
 import { Heading, Text } from "@chakra-ui/react";
-import { AddressType } from "@/lib/slices/account"
+import { AddressType } from "@/lib/slices/account";
 import style from "./style.module.scss";
-import checkmarkIcon from "@/public/checkmark.svg"
+import checkmarkIcon from "@/public/checkmark.svg";
 
 interface AddressItemType {
     address: AddressType;
@@ -16,7 +16,7 @@ interface AddressItemType {
 export default memo(function AddressItem({address, selected, setCardAddress, setAddAddress}: AddressItemType) {
 
     const header = useMemo(() => {
-        return address.firstName + ' ' + address.lastName.substring(0, 1) + " - " + address.address;
+        return address.firstName + " " + address.lastName.substring(0, 1) + " - " + address.address;
     }, []);
 
     const handleAddressChange = useCallback(() => {
@@ -27,7 +27,7 @@ export default memo(function AddressItem({address, selected, setCardAddress, set
     }, [address]);
 
     return (
-        <div className={style.address + ' ' + (selected !== undefined ? style.selectable : undefined) + ' ' + (selected ? style.selected : undefined)} 
+        <div className={style.address + " " + (selected !== undefined ? style.selectable : undefined) + " " + (selected ? style.selected : undefined)} 
             onClick={handleAddressChange}>
             <Heading as="h3" fontSize="md">
                 {header}
@@ -47,5 +47,5 @@ export default memo(function AddressItem({address, selected, setCardAddress, set
                 <Image className="checked" src={checkmarkIcon} alt="Selected Address" height={17} />
             )}
         </div>
-    )
-})
+    );
+});

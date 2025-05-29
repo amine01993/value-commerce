@@ -23,7 +23,7 @@ export default function PhotoDesktop() {
 
     const handleFileChange = useCallback((details: FileUploadFileChangeDetails) => {
 
-        const files = details.acceptedFiles
+        const files = details.acceptedFiles;
         if(files.length > 0) {
             const reader = new FileReader();
 
@@ -38,15 +38,15 @@ export default function PhotoDesktop() {
     }, []);
 
     const handleDragStart = useCallback(() => {
-        disableScroll()
+        disableScroll();
     }, []);
 
     const handleDrag = useCallback((event: DragEvent<HTMLDivElement>) => {
         const { x, y } = getCoords(event);
 
         if(maskRef.current) {
-            maskRef.current.style.setProperty('--mask-x', x + 'px');
-            maskRef.current.style.setProperty('--mask-y', y + 'px');
+            maskRef.current.style.setProperty("--mask-x", x + "px");
+            maskRef.current.style.setProperty("--mask-y", y + "px");
         }
     }, []);
 
@@ -54,16 +54,16 @@ export default function PhotoDesktop() {
                     
         const { x, y } = getCoords(event);
         if(maskRef.current) {
-            maskRef.current.style.setProperty('--mask-x', x + 'px');
-            maskRef.current.style.setProperty('--mask-y', y + 'px');
+            maskRef.current.style.setProperty("--mask-x", x + "px");
+            maskRef.current.style.setProperty("--mask-y", y + "px");
         }
 
         if(handleRef.current && wrapperRef.current) {
-            handleRef.current.style.top = y - circleRadius.current + 'px';
-            handleRef.current.style.left = x - circleRadius.current + 'px';
+            handleRef.current.style.top = y - circleRadius.current + "px";
+            handleRef.current.style.left = x - circleRadius.current + "px";
         }
 
-        enableScroll()
+        enableScroll();
         drawSelectedImage();
     }, []);
 
@@ -77,11 +77,11 @@ export default function PhotoDesktop() {
             const hDiff = parseInt(handleRef.current.style.left) - prevScrollLeft.current;
             const vDiff = parseInt(handleRef.current.style.top) - prevScrollTop.current;
             
-            handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + 'px';
-            handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + 'px';
+            handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + "px";
+            handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + "px";
             
-            maskRef.current.style.setProperty('--mask-x', hDiff + wrapperRef.current.scrollLeft + circleRadius.current + 'px');
-            maskRef.current.style.setProperty('--mask-y', vDiff + wrapperRef.current.scrollTop + circleRadius.current + 'px');
+            maskRef.current.style.setProperty("--mask-x", hDiff + wrapperRef.current.scrollLeft + circleRadius.current + "px");
+            maskRef.current.style.setProperty("--mask-y", vDiff + wrapperRef.current.scrollTop + circleRadius.current + "px");
 
             prevScrollLeft.current = wrapperRef.current.scrollLeft;
             prevScrollTop.current = wrapperRef.current.scrollTop;
@@ -126,7 +126,7 @@ export default function PhotoDesktop() {
     const drawSelectedImage = useCallback(() => {
 
         if(canvasRef.current && wrapperRef.current && imageRef.current && handleRef.current) {
-            const ctx = canvasRef.current.getContext('2d');
+            const ctx = canvasRef.current.getContext("2d");
     
             if(ctx) {
                 ctx.drawImage(
@@ -162,13 +162,13 @@ export default function PhotoDesktop() {
 
     const disableScroll = useCallback(() => {
         if(wrapperRef.current) {
-            wrapperRef.current.style.overflow = 'hidden'
+            wrapperRef.current.style.overflow = "hidden";
         }
     }, []);
 
     const enableScroll = useCallback(() => {
         if(wrapperRef.current) {
-            wrapperRef.current.style.removeProperty('overflow')
+            wrapperRef.current.style.removeProperty("overflow");
         }
     }, []);
 
@@ -180,8 +180,8 @@ export default function PhotoDesktop() {
             
             const styles = window.getComputedStyle(maskRef.current);
 
-            let x = parseFloat(styles.getPropertyValue('--mask-x'));
-            let y = parseFloat(styles.getPropertyValue('--mask-y'));
+            let x = parseFloat(styles.getPropertyValue("--mask-x"));
+            let y = parseFloat(styles.getPropertyValue("--mask-y"));
 
             if(event.key === "ArrowUp") {
                 if(event.shiftKey) {
@@ -236,38 +236,38 @@ export default function PhotoDesktop() {
             if(x < circleRadius.current + wrapperRef.current.scrollLeft) {
                 wrapperRef.current.scrollBy({
                     left: x - (circleRadius.current + wrapperRef.current.scrollLeft),
-                    behavior: 'instant',
-                })
+                    behavior: "instant",
+                });
                 prevScrollLeft.current = wrapperRef.current.scrollLeft;
             }
             else if(x > rect.width - circleRadius.current + wrapperRef.current.scrollLeft) {
                 wrapperRef.current.scrollBy({
                     left: x - (rect.width - circleRadius.current + wrapperRef.current.scrollLeft),
-                    behavior: 'instant',
-                })
+                    behavior: "instant",
+                });
                 prevScrollLeft.current = wrapperRef.current.scrollLeft;
             }
 
             if(y < circleRadius.current + wrapperRef.current.scrollTop) {
                 wrapperRef.current.scrollBy({
                     top: y - (circleRadius.current + wrapperRef.current.scrollTop),
-                    behavior: 'instant',
-                })
+                    behavior: "instant",
+                });
                 prevScrollTop.current = wrapperRef.current.scrollTop;
             }
             else if(y > rect.height - circleRadius.current + wrapperRef.current.scrollTop) {
                 wrapperRef.current.scrollBy({
                     top: y - (rect.height - circleRadius.current + wrapperRef.current.scrollTop),
-                    behavior: 'instant',
-                })
+                    behavior: "instant",
+                });
                 prevScrollTop.current = wrapperRef.current.scrollTop;
             }
 
-            maskRef.current.style.setProperty('--mask-x', x + 'px');
-            maskRef.current.style.setProperty('--mask-y', y + 'px');
+            maskRef.current.style.setProperty("--mask-x", x + "px");
+            maskRef.current.style.setProperty("--mask-y", y + "px");
 
-            handleRef.current.style.left = x - circleRadius.current + 'px';
-            handleRef.current.style.top = y - circleRadius.current + 'px';
+            handleRef.current.style.left = x - circleRadius.current + "px";
+            handleRef.current.style.top = y - circleRadius.current + "px";
 
             drawSelectedImage();
         }
@@ -275,7 +275,7 @@ export default function PhotoDesktop() {
 
     const onSave = useCallback(() => {
         if(canvasRef.current && imageRef.current) {
-            console.log('onSave', canvasRef.current.toDataURL())
+            console.log("onSave", canvasRef.current.toDataURL());
         }
     }, []);
 
@@ -287,19 +287,19 @@ export default function PhotoDesktop() {
                 updateImageDimensions();
                 imageRef.current.onload = () => {
                     updateImageDimensions();
-                }
+                };
             }
 
             if(handleRef.current && maskRef.current && wrapperRef.current) {
                 const rect = wrapperRef.current.getBoundingClientRect();
                 
-                maskRef.current.style.setProperty('--mask-x', rect.width / 2 + 'px');
-                maskRef.current.style.setProperty('--mask-y', rect.height / 2 + 'px');
-                maskRef.current.style.width = imageRef.current.width + 'px';
-                maskRef.current.style.height = imageRef.current.height + 'px';
+                maskRef.current.style.setProperty("--mask-x", rect.width / 2 + "px");
+                maskRef.current.style.setProperty("--mask-y", rect.height / 2 + "px");
+                maskRef.current.style.width = imageRef.current.width + "px";
+                maskRef.current.style.height = imageRef.current.height + "px";
                 
-                handleRef.current.style.top = rect.height / 2 - circleRadius.current + 'px';
-                handleRef.current.style.left = rect.width / 2 - circleRadius.current + 'px';
+                handleRef.current.style.top = rect.height / 2 - circleRadius.current + "px";
+                handleRef.current.style.left = rect.width / 2 - circleRadius.current + "px";
 
                 prevScrollLeft.current = 0;
                 prevScrollTop.current = 0;
@@ -309,7 +309,7 @@ export default function PhotoDesktop() {
         }
 
         return () => {
-        }
+        };
     }, [image]);
 
     return (
@@ -323,10 +323,10 @@ export default function PhotoDesktop() {
                     onDragOver={handleDragOver} onScroll={handleScroll} onScrollEnd={handleScrollEnd}>
                     {image && (
                         <>
-                        <img src={image} alt="Personal Photo" className="personal-img" ref={imageRef} />
-                        <div className="masked-element" ref={maskRef}></div>
-                        <div className="drag-handle" draggable="true" ref={handleRef}
-                            onDragStart={handleDragStart} onDrag={handleDrag} onDragEnd={handleDragEnd}></div>
+                            <img src={image} alt="Personal Photo" className="personal-img" ref={imageRef} />
+                            <div className="masked-element" ref={maskRef}></div>
+                            <div className="drag-handle" draggable="true" ref={handleRef}
+                                onDragStart={handleDragStart} onDrag={handleDrag} onDragEnd={handleDragEnd}></div>
                         </>
                     )}
                     {!image && (
@@ -341,16 +341,16 @@ export default function PhotoDesktop() {
                     <div className="input-group">
                         <InputGroup
                             endElement={
-                            <FileUpload.ClearTrigger asChild>
-                                <CloseButton
-                                    me="-1"
-                                    size="xs"
-                                    variant="plain"
-                                    focusVisibleRing="inside"
-                                    focusRingWidth="2px"
-                                    pointerEvents="auto"
-                                />
-                            </FileUpload.ClearTrigger>
+                                <FileUpload.ClearTrigger asChild>
+                                    <CloseButton
+                                        me="-1"
+                                        size="xs"
+                                        variant="plain"
+                                        focusVisibleRing="inside"
+                                        focusRingWidth="2px"
+                                        pointerEvents="auto"
+                                    />
+                                </FileUpload.ClearTrigger>
                             }
                         >
                             <Input placeholder="No file selected" asChild>

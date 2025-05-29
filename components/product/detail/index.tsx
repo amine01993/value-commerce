@@ -45,21 +45,21 @@ export default function ProductDetail() {
                 </div>
             </div>
 
-            <Separator bgColor="var(--chakra-colors-gray-300)" />
+            <Separator bgColor="gray.300" />
 
             <div className="price">
                 <Text fontWeight="semibold" textStyle="2xl">$33.49</Text>
                 <div className="price-detail">
-                    <Text color="var(--chakra-colors-gray-600)">Was <span className="old-price">$50.99</span></Text>
-                    <Text color="var(--chakra-colors-red-600)">(20% off)</Text>
+                    <Text color="gray.600">Was <span className="old-price">$50.99</span></Text>
+                    <Text color="red.600">(20% off)</Text>
                     <Image src={infoIcon} alt="Information Icon" height={16} width={16} />
-                    <LinkUI color="var(--chakra-colors-gray-600)" variant="underline" href="#">Price Details</LinkUI>
+                    <LinkUI color="gray.600" variant="underline" href="#">Price Details</LinkUI>
                 </div>
                 <Text>Free International Shipping</Text>
                 <Text>Est. delivery <b>Tue, Jun 3</b> and <b>Thu, Jun 26</b></Text>
             </div>
 
-            <Separator bgColor="var(--chakra-colors-gray-300)" />
+            <Separator bgColor="gray.300" />
 
             <div className="detail">
                 <div className="condition">
@@ -81,17 +81,17 @@ export default function ProductDetail() {
                         <Select.Positioner>
                             <Select.Content>
                                 {variations.current.items.map((option) => (
-                                <Select.Item item={option} key={option.value}>
-                                    <Stack gap="0">
-                                        <Select.ItemText>{option.label}</Select.ItemText>
-                                        {option.description && (
-                                            <Span color="fg.muted">
-                                                {option.description}
-                                            </Span>
-                                        )}
-                                    </Stack>
-                                    <Select.ItemIndicator />
-                                </Select.Item>
+                                    <Select.Item item={option} key={option.value}>
+                                        <Stack gap="0">
+                                            <Select.ItemText>{option.label}</Select.ItemText>
+                                            {option.description && (
+                                                <Span color="fg.muted">
+                                                    {option.description}
+                                                </Span>
+                                            )}
+                                        </Stack>
+                                        <Select.ItemIndicator />
+                                    </Select.Item>
                                 ))}
                             </Select.Content>
                         </Select.Positioner>

@@ -28,12 +28,12 @@ export default function PreferenceCenterDesktop() {
 
     useEffect(() => {
         if(openCookies) {
-            disableDocumentScroll()
+            disableDocumentScroll();
         }
         else {
-            resetDocumentScroll()
+            resetDocumentScroll();
         }
-    }, [openCookies])
+    }, [openCookies]);
 
     return (
         <main className={style.page}>

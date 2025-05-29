@@ -69,4 +69,4 @@ export default memo(function PasswordForm({ setEditPassword }: PasswordFormType)
             </div>
         </form>
     );
-})
+});

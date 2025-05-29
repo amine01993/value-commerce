@@ -6,17 +6,17 @@ import { headers } from "next/headers";
 
 export default async function HomePage() {
 
-	const { device } = userAgent({ headers: await headers() });
-	const isMobile = device?.type === "mobile";
+    const { device } = userAgent({ headers: await headers() });
+    const isMobile = device?.type === "mobile";
 
-	return (
-		<>
-		{isMobile && (
-			<Home />
-		)}
-		{!isMobile && (
-			<HomeDesktop />
-		)}
-		</>
-	);
+    return (
+        <>
+            {isMobile && (
+                <Home />
+            )}
+            {!isMobile && (
+                <HomeDesktop />
+            )}
+        </>
+    );
 }

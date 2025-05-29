@@ -73,4 +73,4 @@ export default memo(function EmailForm({ currentEmail, setEditEmail }: EmailForm
             </div>
         </form>
     );
-})
+});

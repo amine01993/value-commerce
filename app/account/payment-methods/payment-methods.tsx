@@ -11,11 +11,11 @@ import addIcon from "@/public/plus.svg";
 
 export default function PaymentMethods() {
 
-    const cardList = useAppSelector(state => state.accountSlice.cardList)
+    const cardList = useAppSelector(state => state.accountSlice.cardList);
     const [addPayment, setAddPayment] = useState(false);
 
     const handleNewPayment = useCallback(() => {
-        setAddPayment(true)
+        setAddPayment(true);
     }, []);
 
     return (
@@ -32,14 +32,14 @@ export default function PaymentMethods() {
 
             {!addPayment && (
                 <>
-                {cardList.length > 0 && cardList.map(card => (
-                    <CardItem key={card.id} card={card} />
-                ))}
+                    {cardList.length > 0 && cardList.map(card => (
+                        <CardItem key={card.id} card={card} />
+                    ))}
 
-                <Button colorPalette="orange" variant="plain" className="add-payment-method" fontSize="md" onClick={handleNewPayment}>
-                    <Image src={addIcon} alt="Plus Icon" height={20} />
+                    <Button colorPalette="orange" variant="plain" className="add-payment-method" fontSize="md" onClick={handleNewPayment}>
+                        <Image src={addIcon} alt="Plus Icon" height={20} />
                     Add a new credit card
-                </Button>
+                    </Button>
                 </>
             )}
 

@@ -15,7 +15,7 @@ export default function Header() {
     return (
         <header className={style.header}>
             <nav className={style.menu}>
-                <Link href={'/'} title="Go to home page">
+                <Link href={"/"} title="Go to home page">
                     <Image src={logo} alt="Website official logo" height={50} priority />
                 </Link>
 

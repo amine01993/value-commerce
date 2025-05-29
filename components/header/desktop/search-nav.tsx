@@ -12,12 +12,12 @@ export default function SearchNav() {
 
     return (
         <>
-        <InputGroup startElement={<Image src={searchIcon} alt="Search Icon" height={20} />}>
-            <Input placeholder="Search for anything" defaultValue={query} />
-        </InputGroup>
-        <Button colorPalette={'orange'} variant="solid" className={style['search-btn']}>
+            <InputGroup startElement={<Image src={searchIcon} alt="Search Icon" height={20} />}>
+                <Input placeholder="Search for anything" defaultValue={query} />
+            </InputGroup>
+            <Button colorPalette="orange" variant="solid" className={style["search-btn"]}>
             Search
-        </Button>
+            </Button>
         </>
     );
 }

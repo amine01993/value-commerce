@@ -55,7 +55,7 @@ export default function Footer() {
                 </div>
             </nav>
 
-            <Separator bgColor="var(--chakra-colors-gray-300)" />
+            <Separator bgColor="gray.300" />
 
             <ul className={style.bottom}>
                 <li>
@@ -68,14 +68,14 @@ export default function Footer() {
                         <Portal>
                             <Drawer.Backdrop />
                             <Drawer.Positioner>
-                            <Drawer.Content>
-                                <Drawer.Body>
-                                    <Languages />
-                                </Drawer.Body>
-                                <Drawer.CloseTrigger asChild>
-                                    <CloseButton size="md" />
-                                </Drawer.CloseTrigger>
-                            </Drawer.Content>
+                                <Drawer.Content>
+                                    <Drawer.Body>
+                                        <Languages />
+                                    </Drawer.Body>
+                                    <Drawer.CloseTrigger asChild>
+                                        <CloseButton size="md" />
+                                    </Drawer.CloseTrigger>
+                                </Drawer.Content>
                             </Drawer.Positioner>
                         </Portal>
                     </Drawer.Root>

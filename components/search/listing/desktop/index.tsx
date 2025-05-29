@@ -128,7 +128,7 @@ export default function Listing() {
     }, [searchParams]);
 
     useEffect(() => {
-        const type = searchParams.get('sort'); // sort type
+        const type = searchParams.get("sort"); // sort type
 
         if(type !== null) {
             setSortType(type);
@@ -157,10 +157,10 @@ export default function Listing() {
                         <Select.Positioner>
                             <Select.Content>
                                 {sortTypesData.current.items.map((type) => (
-                                <Select.Item item={type} key={type.value}>
-                                    {type.label}
-                                    <Select.ItemIndicator />
-                                </Select.Item>
+                                    <Select.Item item={type} key={type.value}>
+                                        {type.label}
+                                        <Select.ItemIndicator />
+                                    </Select.Item>
                                 ))}
                             </Select.Content>
                         </Select.Positioner>
@@ -173,14 +173,14 @@ export default function Listing() {
             <Separator />
 
             <ol className="results">
-            {resultsData.current.map((item, index) => (
-                <li key={"index-" + index}>
-                    <SearchItem {...item} />
-                </li>
-            ))}
+                {resultsData.current.map((item, index) => (
+                    <li key={"index-" + index}>
+                        <SearchItem {...item} />
+                    </li>
+                ))}
             </ol>
 
             <Button colorPalette="orange" className="load-more">Show more</Button>
         </section>
-    )
+    );
 }

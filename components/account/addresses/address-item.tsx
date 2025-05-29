@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Dispatch, memo, SetStateAction, useCallback, useMemo } from "react";
 import { Button, Heading, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { AddressType, removeAddress } from "@/lib/slices/account"
+import { AddressType, removeAddress } from "@/lib/slices/account";
 import style from "./style.module.scss";
 import deleteIcon from "@/public/delete.svg";
 import editIcon from "@/public/edit.svg";
@@ -17,10 +17,10 @@ interface AddressItemType {
 export default memo(function AddressItem({address, setAddAddress, setEditAddress}: AddressItemType) {
 
     const dispatch = useAppDispatch();
-    const addressList = useAppSelector(state => state.accountSlice.addressList)
+    const addressList = useAppSelector(state => state.accountSlice.addressList);
 
     const header = useMemo(() => {
-        return address.firstName + ' ' + address.lastName.substring(0, 1) + " - " + address.address;
+        return address.firstName + " " + address.lastName.substring(0, 1) + " - " + address.address;
     }, []);
 
     const handleAddressDeletion = useCallback(() => {
@@ -64,5 +64,5 @@ export default memo(function AddressItem({address, setAddAddress, setEditAddress
                 </Button>
             </div>
         </div>
-    )
-})
+    );
+});

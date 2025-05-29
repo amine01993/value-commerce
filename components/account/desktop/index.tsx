@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -14,7 +14,7 @@ import personalIcon from "@/public/personal-info.svg";
 
 export default function Account({ children }: Readonly<{ children: React.ReactNode; }>) {
 
-    const pathname = usePathname()
+    const pathname = usePathname();
     const iconWidth = 17;
 
     return (

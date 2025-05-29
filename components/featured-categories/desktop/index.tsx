@@ -138,7 +138,7 @@ export default function FeaturedCategoriesDesktop() {
             if(listRef.current) {
                 listRef.current.removeEventListener("scrollend", handleScrollEnd);
             }
-        }
+        };
     });
 
     return (
@@ -153,10 +153,10 @@ export default function FeaturedCategoriesDesktop() {
                     ))}
                 </ul>
                 
-                <Button variant="subtle" aria-label="Show previous items" onClick={scrollLeft} className={style['left-control'] + ' ' + (carouselStart ? style.hide : '')}>
+                <Button variant="subtle" aria-label="Show previous items" onClick={scrollLeft} className={style["left-control"] + " " + (carouselStart ? style.hide : "")}>
                     <Image src={chevronLeftIcon} alt="Show previous items" height={16} width={16} />
                 </Button>
-                <Button variant="subtle" aria-label="Show next items" onClick={scrollRight} className={style['right-control'] + ' ' + (carouselEnd ? style.hide : '')}>
+                <Button variant="subtle" aria-label="Show next items" onClick={scrollRight} className={style["right-control"] + " " + (carouselEnd ? style.hide : "")}>
                     <Image src={chevronRightIcon} alt="Show next items" height={16} width={16} />
                 </Button>
             </div>

@@ -37,5 +37,5 @@ export default function SubMenu() {
                 </li>
             </ol>
         </nav>
-    )
+    );
 }

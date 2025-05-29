@@ -11,12 +11,12 @@ import addIcon from "@/public/plus.svg";
 
 export default function Addresses() {
 
-    const addressList = useAppSelector(state => state.accountSlice.addressList)
+    const addressList = useAppSelector(state => state.accountSlice.addressList);
     const [addAddress, setAddAddress] = useState(false);
     const [editAddress, setEditAddress] = useState("");
 
     const handleNewAddress = useCallback(() => {
-        setAddAddress(true)
+        setAddAddress(true);
     }, []);
 
     return (
@@ -26,21 +26,21 @@ export default function Addresses() {
             
             {!addAddress && (
                 <>
-                {addressList.length === 0 && (
-                    <Heading as="h2" fontSize="md" className="subtitle">You have no saved shipping addresses.</Heading>
-                )}
-                {addressList.length > 0 && (
-                    <Heading as="h2" fontSize="md" className="subtitle">You have {addressList.length} saved shipping address.</Heading>
-                )}
+                    {addressList.length === 0 && (
+                        <Heading as="h2" fontSize="md" className="subtitle">You have no saved shipping addresses.</Heading>
+                    )}
+                    {addressList.length > 0 && (
+                        <Heading as="h2" fontSize="md" className="subtitle">You have {addressList.length} saved shipping address.</Heading>
+                    )}
 
-                {addressList.length > 0 && addressList.map(addr => (
-                    <AddressItem key={addr.id} address={addr} setAddAddress={setAddAddress} setEditAddress={setEditAddress} />
-                ))}
+                    {addressList.length > 0 && addressList.map(addr => (
+                        <AddressItem key={addr.id} address={addr} setAddAddress={setAddAddress} setEditAddress={setEditAddress} />
+                    ))}
 
-                <Button colorPalette="orange" variant="plain" className="add-address" fontSize="md" onClick={handleNewAddress}>
-                    <Image src={addIcon} alt="Plus Icon" height={20} />
+                    <Button colorPalette="orange" variant="plain" className="add-address" fontSize="md" onClick={handleNewAddress}>
+                        <Image src={addIcon} alt="Plus Icon" height={20} />
                     Add a new address
-                </Button>
+                    </Button>
                 </>
             )}
 

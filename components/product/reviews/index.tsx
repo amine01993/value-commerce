@@ -79,102 +79,102 @@ export default function ProductReviews() {
     return (
         <section className={style.reviews}>
 
-        <Accordion.Root collapsible defaultValue={["reviews"]} variant="plain">
-            <Accordion.Item value="reviews">
-                <Accordion.ItemTrigger>
-                    <Heading as="h2" size="xl">Customer Reviews</Heading>
-                    <Accordion.ItemIndicator />
-                </Accordion.ItemTrigger>
-                <Accordion.ItemContent>
-                    <Accordion.ItemBody className="content">
-                        <Heading as="h3" size="lg">Ratings</Heading>
+            <Accordion.Root collapsible defaultValue={["reviews"]} variant="plain">
+                <Accordion.Item value="reviews">
+                    <Accordion.ItemTrigger>
+                        <Heading as="h2" size="xl">Customer Reviews</Heading>
+                        <Accordion.ItemIndicator />
+                    </Accordion.ItemTrigger>
+                    <Accordion.ItemContent>
+                        <Accordion.ItemBody className="content">
+                            <Heading as="h3" size="lg">Ratings</Heading>
 
-                        <div className="rating-container">
-                            <div>{rating}</div>
-                            <RatingGroup.Root allowHalf count={5} defaultValue={roundedRating} size="sm" colorPalette="yellow">
-                                <RatingGroup.HiddenInput />
-                                <RatingGroup.Control />
-                            </RatingGroup.Root>
-                        </div>
-                        <Text color="var(--chakra-colors-gray-700)">Average rating based on {ratingCount} reviews</Text>
+                            <div className="rating-container">
+                                <div>{rating}</div>
+                                <RatingGroup.Root allowHalf count={5} defaultValue={roundedRating} size="sm" colorPalette="yellow">
+                                    <RatingGroup.HiddenInput />
+                                    <RatingGroup.Control />
+                                </RatingGroup.Root>
+                            </div>
+                            <Text color="gray.700">Average rating based on {ratingCount} reviews</Text>
 
-                        <Text fontWeight="semibold" className="breakdown">Rating Breakdown</Text>
+                            <Text fontWeight="semibold" className="breakdown">Rating Breakdown</Text>
 
-                        <ol className="breakdown-list">
-                            {stars.current.map((item, ) => (
-                                <li key={"rating-" + item.nbr}>
-                                    <Text>{item.nbr} star</Text>
-                                    <Progress.Root size="lg" colorPalette="yellow" defaultValue={item.percentage}>
-                                        <Progress.Track>
-                                            <Progress.Range />
-                                        </Progress.Track>
-                                    </Progress.Root>
-                                    <Text>{item.percentage}%</Text>
-                                </li>
-                            ))}
-                        </ol>
-
-                        <Button variant="outline" colorPalette="orange" size="lg" className="write-btn">Write Your Review</Button>
-
-                        <Separator bgColor="var(--chakra-colors-gray-300)" />
-                        
-                        <Heading as="h3" size="lg">Reviewer Recommendation</Heading>
-                        <div className="rating-summary">
-                            <Image src={smileyIcon} alt="Smiley Face" height={32} width={32} />
-                            <Text fontWeight="bold">67%</Text>
-                        </div>
-                        <Text>Of the <b>123 reviews</b> who responded, 83 would recommend this product.</Text>
-
-                        <div className="filter">
-                            <Switch.Root className="verified" size="lg">
-                                <Switch.HiddenInput />
-                                <Switch.Label>Verified Buyers Only</Switch.Label>
-                                <Switch.Control colorPalette="orange" />
-                            </Switch.Root>
-
-                            <Select.Root collection={sortTypes.current} className="sort">
-                                <Select.HiddenSelect />
-                                <Select.Label>Sort</Select.Label>
-                                <Select.Control>
-                                    <Select.Trigger>
-                                    <Select.ValueText placeholder="Select framework" />
-                                    </Select.Trigger>
-                                    <Select.IndicatorGroup>
-                                    <Select.Indicator />
-                                    </Select.IndicatorGroup>
-                                </Select.Control>
-                                <Portal>
-                                    <Select.Positioner>
-                                    <Select.Content>
-                                        {sortTypes.current.items.map((type, ) => (
-                                        <Select.Item item={type} key={"sorttype-" + type.value}>
-                                            {type.label}
-                                            <Select.ItemIndicator />
-                                        </Select.Item>
-                                        ))}
-                                    </Select.Content>
-                                    </Select.Positioner>
-                                </Portal>
-                            </Select.Root>
-                        </div>
-
-                        <div className="review-list">
-                            <ol>
-                                {reviews.current.map((review, index) => (
-                                    <li key={"review-index-" + index}>
-                                        <Review {...review} />
+                            <ol className="breakdown-list">
+                                {stars.current.map((item, ) => (
+                                    <li key={"rating-" + item.nbr}>
+                                        <Text>{item.nbr} star</Text>
+                                        <Progress.Root size="lg" colorPalette="yellow" defaultValue={item.percentage}>
+                                            <Progress.Track>
+                                                <Progress.Range />
+                                            </Progress.Track>
+                                        </Progress.Root>
+                                        <Text>{item.percentage}%</Text>
                                     </li>
                                 ))}
                             </ol>
-                            <Button variant="solid" colorPalette="orange" size="lg" className="load-more">Explore all Reviews</Button>
+
                             <Button variant="outline" colorPalette="orange" size="lg" className="write-btn">Write Your Review</Button>
-                        </div>
+
+                            <Separator bgColor="gray.300" />
+                        
+                            <Heading as="h3" size="lg">Reviewer Recommendation</Heading>
+                            <div className="rating-summary">
+                                <Image src={smileyIcon} alt="Smiley Face" height={32} width={32} />
+                                <Text fontWeight="bold">67%</Text>
+                            </div>
+                            <Text>Of the <b>123 reviews</b> who responded, 83 would recommend this product.</Text>
+
+                            <div className="filter">
+                                <Switch.Root className="verified" size="lg">
+                                    <Switch.HiddenInput />
+                                    <Switch.Label>Verified Buyers Only</Switch.Label>
+                                    <Switch.Control colorPalette="orange" />
+                                </Switch.Root>
+
+                                <Select.Root collection={sortTypes.current} className="sort">
+                                    <Select.HiddenSelect />
+                                    <Select.Label>Sort</Select.Label>
+                                    <Select.Control>
+                                        <Select.Trigger>
+                                            <Select.ValueText placeholder="Select framework" />
+                                        </Select.Trigger>
+                                        <Select.IndicatorGroup>
+                                            <Select.Indicator />
+                                        </Select.IndicatorGroup>
+                                    </Select.Control>
+                                    <Portal>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {sortTypes.current.items.map((type, ) => (
+                                                    <Select.Item item={type} key={"sorttype-" + type.value}>
+                                                        {type.label}
+                                                        <Select.ItemIndicator />
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Portal>
+                                </Select.Root>
+                            </div>
+
+                            <div className="review-list">
+                                <ol>
+                                    {reviews.current.map((review, index) => (
+                                        <li key={"review-index-" + index}>
+                                            <Review {...review} />
+                                        </li>
+                                    ))}
+                                </ol>
+                                <Button variant="solid" colorPalette="orange" size="lg" className="load-more">Explore all Reviews</Button>
+                                <Button variant="outline" colorPalette="orange" size="lg" className="write-btn">Write Your Review</Button>
+                            </div>
 
 
-                    </Accordion.ItemBody>
-                </Accordion.ItemContent>
-            </Accordion.Item>
-        </Accordion.Root>
+                        </Accordion.ItemBody>
+                    </Accordion.ItemContent>
+                </Accordion.Item>
+            </Accordion.Root>
 
         </section>
     );

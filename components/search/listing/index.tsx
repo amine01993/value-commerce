@@ -73,14 +73,14 @@ export default function Listing() {
         <section className={style.listing}>
             <Heading as="h2" size="md" fontWeight="normal" className="count">42 results</Heading>
             <ol>
-            {results.current.map((item, index) => (
-                <li key={"index-" + index}>
-                    <SearchItem {...item} />
-                </li>
-            ))}
+                {results.current.map((item, index) => (
+                    <li key={"index-" + index}>
+                        <SearchItem {...item} />
+                    </li>
+                ))}
             </ol>
 
             <Button colorPalette="orange" className="load-more">Show more</Button>
         </section>
-    )
+    );
 }

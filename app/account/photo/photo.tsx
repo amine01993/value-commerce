@@ -24,7 +24,7 @@ export default function Photo() {
 
     const handleFileChange = useCallback((details: FileUploadFileChangeDetails) => {
 
-        const files = details.acceptedFiles
+        const files = details.acceptedFiles;
         if(files.length > 0) {
             const reader = new FileReader();
 
@@ -48,8 +48,8 @@ export default function Photo() {
         const { x, y } = getTouchCoords(event);
 
         if(wrapperRef.current && maskRef.current) {
-            maskRef.current.style.setProperty('--mask-x', wrapperRef.current.scrollLeft + x + 'px');
-            maskRef.current.style.setProperty('--mask-y', wrapperRef.current.scrollTop + y + 'px');
+            maskRef.current.style.setProperty("--mask-x", wrapperRef.current.scrollLeft + x + "px");
+            maskRef.current.style.setProperty("--mask-y", wrapperRef.current.scrollTop + y + "px");
         }
 
         lastTouchX.current = x;
@@ -59,18 +59,18 @@ export default function Photo() {
     const handleTouchEnd = useCallback(() => {
         
         if(handleRef.current && wrapperRef.current) {
-            handleRef.current.style.top = wrapperRef.current.scrollTop + lastTouchY.current - circleRadius.current + 'px';
-            handleRef.current.style.left = wrapperRef.current.scrollLeft + lastTouchX.current - circleRadius.current + 'px';
+            handleRef.current.style.top = wrapperRef.current.scrollTop + lastTouchY.current - circleRadius.current + "px";
+            handleRef.current.style.left = wrapperRef.current.scrollLeft + lastTouchX.current - circleRadius.current + "px";
         }
         drawSelectedImage();
-        enableScroll()
+        enableScroll();
     }, []);
 
     const handleTouchCancel = useCallback(() => {
         
         if(handleRef.current && wrapperRef.current) {
-            handleRef.current.style.top = wrapperRef.current.scrollTop + lastTouchY.current - circleRadius.current + 'px';
-            handleRef.current.style.left = wrapperRef.current.scrollLeft + lastTouchX.current - circleRadius.current + 'px';
+            handleRef.current.style.top = wrapperRef.current.scrollTop + lastTouchY.current - circleRadius.current + "px";
+            handleRef.current.style.left = wrapperRef.current.scrollLeft + lastTouchX.current - circleRadius.current + "px";
         }
         drawSelectedImage();
         enableScroll();
@@ -82,11 +82,11 @@ export default function Photo() {
             const hDiff = parseInt(handleRef.current.style.left) - prevScrollLeft.current;
             const vDiff = parseInt(handleRef.current.style.top) - prevScrollTop.current;
             
-            handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + 'px';
-            handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + 'px';
+            handleRef.current.style.left = hDiff + wrapperRef.current.scrollLeft + "px";
+            handleRef.current.style.top = vDiff + wrapperRef.current.scrollTop + "px";
             
-            maskRef.current.style.setProperty('--mask-x', hDiff + wrapperRef.current.scrollLeft + circleRadius.current + 'px');
-            maskRef.current.style.setProperty('--mask-y', vDiff + wrapperRef.current.scrollTop + circleRadius.current + 'px');
+            maskRef.current.style.setProperty("--mask-x", hDiff + wrapperRef.current.scrollLeft + circleRadius.current + "px");
+            maskRef.current.style.setProperty("--mask-y", vDiff + wrapperRef.current.scrollTop + circleRadius.current + "px");
 
             prevScrollLeft.current = wrapperRef.current.scrollLeft;
             prevScrollTop.current = wrapperRef.current.scrollTop;
@@ -131,7 +131,7 @@ export default function Photo() {
     const drawSelectedImage = useCallback(() => {
 
         if(canvasRef.current && wrapperRef.current && imageRef.current && handleRef.current) {
-            const ctx = canvasRef.current.getContext('2d');
+            const ctx = canvasRef.current.getContext("2d");
     
             if(ctx) {
                 ctx.drawImage(
@@ -168,19 +168,19 @@ export default function Photo() {
 
     const disableScroll = useCallback(() => {
         if(wrapperRef.current) {
-            wrapperRef.current.style.overflow = 'hidden'
+            wrapperRef.current.style.overflow = "hidden";
         }
     }, []);
 
     const enableScroll = useCallback(() => {
         if(wrapperRef.current) {
-            wrapperRef.current.style.removeProperty('overflow')
+            wrapperRef.current.style.removeProperty("overflow");
         }
     }, []);
 
     const onSave = useCallback(() => {
         if(canvasRef.current && imageRef.current) {
-            console.log('onSave', canvasRef.current.toDataURL())
+            console.log("onSave", canvasRef.current.toDataURL());
         }
     }, []);
 
@@ -192,19 +192,19 @@ export default function Photo() {
                 updateImageDimensions();
                 imageRef.current.onload = () => {
                     updateImageDimensions();
-                }
+                };
             }
 
             if(handleRef.current && maskRef.current && wrapperRef.current) {
                 const rect = wrapperRef.current.getBoundingClientRect();
                 
-                maskRef.current.style.setProperty('--mask-x', rect.width / 2 + 'px');
-                maskRef.current.style.setProperty('--mask-y', rect.height / 2 + 'px');
-                maskRef.current.style.width = imageRef.current.width + 'px';
-                maskRef.current.style.height = imageRef.current.height + 'px';
+                maskRef.current.style.setProperty("--mask-x", rect.width / 2 + "px");
+                maskRef.current.style.setProperty("--mask-y", rect.height / 2 + "px");
+                maskRef.current.style.width = imageRef.current.width + "px";
+                maskRef.current.style.height = imageRef.current.height + "px";
                 
-                handleRef.current.style.top = rect.height / 2 - circleRadius.current + 'px';
-                handleRef.current.style.left = rect.width / 2 - circleRadius.current + 'px';
+                handleRef.current.style.top = rect.height / 2 - circleRadius.current + "px";
+                handleRef.current.style.left = rect.width / 2 - circleRadius.current + "px";
                 
                 prevScrollLeft.current = 0;
                 prevScrollTop.current = 0;
@@ -214,7 +214,7 @@ export default function Photo() {
         }
 
         return () => {
-        }
+        };
     }, [image]);
 
     return (
@@ -227,10 +227,10 @@ export default function Photo() {
                 <div className="img-wrapper" ref={wrapperRef} onScroll={handleScroll} onScrollEnd={handleScrollEnd}>
                     {image && (
                         <>
-                        <img src={image} alt="Personal Photo" className="personal-img" ref={imageRef} />
-                        <div className="masked-element" ref={maskRef}></div>
-                        <div className="drag-handle" draggable="false" ref={handleRef}
-                            onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onTouchCancel={handleTouchCancel}></div>
+                            <img src={image} alt="Personal Photo" className="personal-img" ref={imageRef} />
+                            <div className="masked-element" ref={maskRef}></div>
+                            <div className="drag-handle" draggable="false" ref={handleRef}
+                                onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onTouchCancel={handleTouchCancel}></div>
                         </>
                     )}
                     {!image && (
@@ -245,16 +245,16 @@ export default function Photo() {
                     <div className="input-group">
                         <InputGroup
                             endElement={
-                            <FileUpload.ClearTrigger asChild>
-                                <CloseButton
-                                    me="-1"
-                                    size="xs"
-                                    variant="plain"
-                                    focusVisibleRing="inside"
-                                    focusRingWidth="2px"
-                                    pointerEvents="auto"
-                                />
-                            </FileUpload.ClearTrigger>
+                                <FileUpload.ClearTrigger asChild>
+                                    <CloseButton
+                                        me="-1"
+                                        size="xs"
+                                        variant="plain"
+                                        focusVisibleRing="inside"
+                                        focusRingWidth="2px"
+                                        pointerEvents="auto"
+                                    />
+                                </FileUpload.ClearTrigger>
                             }
                         >
                             <Input placeholder="No file selected" size="lg" asChild>

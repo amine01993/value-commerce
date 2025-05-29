@@ -1,4 +1,4 @@
-import { memo, RefObject, useEffect } from "react"
+import { memo, RefObject, useEffect } from "react";
 
 
 interface HiddenCanvasType {
@@ -10,7 +10,7 @@ export default memo(function HiddenCanvas({ref, circleRadius}: HiddenCanvasType)
 
     useEffect(() => {
         if(ref.current) {
-            const ctx = ref.current.getContext('2d');
+            const ctx = ref.current.getContext("2d");
             if(ctx) {
                 ctx.clearRect(0, 0, ref.current.width, ref.current.height);
 
@@ -23,5 +23,5 @@ export default memo(function HiddenCanvas({ref, circleRadius}: HiddenCanvasType)
 
     return (
         <canvas ref={ref} width="200" height="200"></canvas>
-    )
-})
+    );
+});

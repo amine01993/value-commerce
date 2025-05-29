@@ -19,7 +19,7 @@ export default function HeaderDesktop() {
     return (
         <header className={style.header}>
             <div className={style.main}>
-                <Link href={'/'} title="Go to home page">
+                <Link href={"/"} title="Go to home page">
                     <Image src={logo} alt="Website official logo" height={70} />
                 </Link>
 
@@ -30,71 +30,71 @@ export default function HeaderDesktop() {
                     <SearchNav />
                 </div>
 
-                <nav className={style.menu + ' ' + (loggedIn ? '' : style['logged-out'])}>
+                <nav className={style.menu + " " + (loggedIn ? "" : style["logged-out"])}>
                     <ol>
                         {!loggedIn && (
                             <>
-                            <li>
-                                <Button colorPalette="orange" variant="ghost" aria-label="Show cart">
-                                    <Image src={cartIcon} alt="Cart Icon" height={25} />
-                                </Button>
-                            </li>
-                            <li>
-                                <Button colorPalette="orange" variant="outline">
+                                <li>
+                                    <Button colorPalette="orange" variant="ghost" aria-label="Show cart">
+                                        <Image src={cartIcon} alt="Cart Icon" height={25} />
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="outline">
                                     Log in
-                                </Button>
-                            </li>
-                            <li>
-                                <Button colorPalette="orange" variant="solid">
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="solid">
                                     Sign up
-                                </Button>
-                            </li>
-                            <li>
-                                <Dialog.Root placement="center">
-                                    <Dialog.Trigger asChild>
-                                        <Button colorPalette="orange" variant="outline" aria-label="Click to select a langage">
-                                            <Image src={globeIcon} alt="Globe Icon" height={25} />
-                                        </Button>
-                                    </Dialog.Trigger>
-                                    <Portal>
-                                        <Dialog.Backdrop />
-                                        <Dialog.Positioner>
-                                            <Dialog.Content>
-                                                <Dialog.Body>
-                                                    <LanguagesDesktop />
-                                                </Dialog.Body>
-                                                <Dialog.CloseTrigger asChild>
-                                                    <CloseButton size="md" />
-                                                </Dialog.CloseTrigger>
-                                            </Dialog.Content>
-                                        </Dialog.Positioner>
-                                    </Portal>
-                                </Dialog.Root>
-                            </li>
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Dialog.Root placement="center">
+                                        <Dialog.Trigger asChild>
+                                            <Button colorPalette="orange" variant="outline" aria-label="Click to select a langage">
+                                                <Image src={globeIcon} alt="Globe Icon" height={25} />
+                                            </Button>
+                                        </Dialog.Trigger>
+                                        <Portal>
+                                            <Dialog.Backdrop />
+                                            <Dialog.Positioner>
+                                                <Dialog.Content>
+                                                    <Dialog.Body>
+                                                        <LanguagesDesktop />
+                                                    </Dialog.Body>
+                                                    <Dialog.CloseTrigger asChild>
+                                                        <CloseButton size="md" />
+                                                    </Dialog.CloseTrigger>
+                                                </Dialog.Content>
+                                            </Dialog.Positioner>
+                                        </Portal>
+                                    </Dialog.Root>
+                                </li>
                             </>
                         )}
                         {loggedIn && (
                             <>
-                            <li>
-                                <Button colorPalette="orange" variant="ghost" aria-label="Show favorite items">
-                                    <Image src={heartIcon} alt="Heart Icon" height={25} />
-                                </Button>
-                            </li>
-                            <li>
-                                <Button colorPalette="orange" variant="ghost" aria-label="Show cart">
-                                    <Image src={cartIcon} alt="Cart Icon" height={25} />
-                                </Button>
-                            </li>
-                            <li>
-                                <Button colorPalette="orange" variant="ghost" aria-label="Show notifications">
-                                    <Image src={bellIcon} alt="Bell Icon" height={25} />
-                                </Button>
-                            </li>
-                            <li>
-                                <Button colorPalette="orange" variant="ghost" aria-label="Show user information">
-                                    <Image src={profileIcon} alt="User profile icon" height={25} />
-                                </Button>
-                            </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="ghost" aria-label="Show favorite items">
+                                        <Image src={heartIcon} alt="Heart Icon" height={25} />
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="ghost" aria-label="Show cart">
+                                        <Image src={cartIcon} alt="Cart Icon" height={25} />
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="ghost" aria-label="Show notifications">
+                                        <Image src={bellIcon} alt="Bell Icon" height={25} />
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button colorPalette="orange" variant="ghost" aria-label="Show user information">
+                                        <Image src={profileIcon} alt="User profile icon" height={25} />
+                                    </Button>
+                                </li>
                             </>
                         )}
                     </ol>

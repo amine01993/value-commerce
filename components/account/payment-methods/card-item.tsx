@@ -3,7 +3,7 @@ import Image from "next/image";
 import { memo, useCallback, useMemo } from "react";
 import { Button, Separator, Tag, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { CardType, removeCard } from "@/lib/slices/account"
+import { CardType, removeCard } from "@/lib/slices/account";
 import AddressItem from "./address-item";
 import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
@@ -16,11 +16,11 @@ interface CardItemType {
 export default memo(function CardItem({card}: CardItemType) {
 
     const dispatch = useAppDispatch();
-    const cardList = useAppSelector(state => state.accountSlice.cardList)
+    const cardList = useAppSelector(state => state.accountSlice.cardList);
 
     const expiry = useMemo(() => {
         return card.expiry.replace(/\s/g, "");
-    }, [card.expiry])
+    }, [card.expiry]);
 
     const handleCardDeletion = useCallback(() => {
         dispatch(removeCard(card.id));
@@ -57,5 +57,5 @@ export default memo(function CardItem({card}: CardItemType) {
                 </Button>
             </div>
         </div>
-    )
-})
+    );
+});

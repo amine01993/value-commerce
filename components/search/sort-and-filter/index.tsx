@@ -130,11 +130,11 @@ export default function SortAndFilter() {
     ]);
 
     const handleFilterDrawer = useCallback((details: DrawerOpenChangeDetails) => {
-        setOpen(details.open)
+        setOpen(details.open);
     }, []);
 
     const closeFilterDrawer = useCallback(() => {
-        setOpen(false)
+        setOpen(false);
     }, []);
 
     useEffect(() => {
@@ -261,7 +261,7 @@ export default function SortAndFilter() {
 
             <FilterTags />
 
-            <Separator bgColor="var(--chakra-colors-gray-300)" />
+            <Separator bgColor="gray.300" />
         </section>
     );
 }

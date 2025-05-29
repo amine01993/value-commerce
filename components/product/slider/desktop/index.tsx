@@ -122,7 +122,7 @@ export default function ProductSlider() {
         else if(event.key === "ArrowRight") {
             const elem = olList.current?.querySelector("li:nth-child(" + (selectedIndex + 1) + ")");
             if(elem) {
-                (elem.nextElementSibling as HTMLLIElement)?.focus()
+                (elem.nextElementSibling as HTMLLIElement)?.focus();
             }
         }
         
@@ -167,23 +167,23 @@ export default function ProductSlider() {
                     <Image src={expandIcon} alt="Expand Icon" height={16} width={16} priority />
                 </Button>
                 {selectedIndex > 0 && (
-                <Button className="arrow-left-btn" variant="plain" aria-label="Show the previous slide" onClick={previousSlide}>
-                    <Image src={chevronLeftIcon} alt="Left arrow Icon" height={16} width={16} priority />
-                </Button>
+                    <Button className="arrow-left-btn" variant="plain" aria-label="Show the previous slide" onClick={previousSlide}>
+                        <Image src={chevronLeftIcon} alt="Left arrow Icon" height={16} width={16} priority />
+                    </Button>
                 )}
                 {selectedIndex < data.current.length - 1 && (
-                <Button className="arrow-right-btn" variant="plain" aria-label="Show the next slide" onClick={nextSlide}>
-                    <Image src={chevronRightIcon} alt="Right arrow Icon" height={16} width={16} priority />
-                </Button>
+                    <Button className="arrow-right-btn" variant="plain" aria-label="Show the next slide" onClick={nextSlide}>
+                        <Image src={chevronRightIcon} alt="Right arrow Icon" height={16} width={16} priority />
+                    </Button>
                 )}
             </div>
             <div className="slide-index">{selectedIndex + 1} of {data.current.length}</div>
             <div className="slides">
                 <ol ref={olList} onKeyDown={handleKeyDown}>
                     {data.current.map((slide, index) => (
-                    <li key={"slide-" + index} onFocus={() => handleSlideFocus(index)} tabIndex={0}>
-                        <Image src={slide.img} alt={slide.alt} height={118} width={118} priority className={index === selectedIndex ? 'active' : undefined} />
-                    </li>
+                        <li key={"slide-" + index} onFocus={() => handleSlideFocus(index)} tabIndex={0}>
+                            <Image src={slide.img} alt={slide.alt} height={118} width={118} priority className={index === selectedIndex ? "active" : undefined} />
+                        </li>
                     ))}
                 </ol>
             </div>

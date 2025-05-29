@@ -16,7 +16,7 @@ interface AddAddressFormType {
 export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress, setEditAddress }: AddAddressFormType) {
 
     const dispatch = useAppDispatch();
-    const addressList = useAppSelector(state => state.accountSlice.addressList)
+    const addressList = useAppSelector(state => state.accountSlice.addressList);
     const addr = useMemo(() => {
         const tmp = addressList.find(a => a.id === addrId);
         return tmp;
@@ -39,14 +39,14 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
         {label: "Yukon", value: "YT"},
     ]);
 
-    const [firstName, setFirstName] = useState(addr?.firstName ?? "")
-    const [lastName, setLastName] = useState(addr?.lastName ?? "")
-    const [phoneNumber, setPhoneNumber] = useState(addr?.phoneNumber ?? "")
-    const [address, setAddress] = useState(addr?.address ?? "")
-    const [city, setCity] = useState(addr?.city ?? "")
-    const [province, setProvince] = useState(addr?.province ?? "")
-    const [postalCode, setPostalCode] = useState(addr?.postalCode ?? "")
-    const [isDefault, setIsDefault] = useState(addr?.isDefault ?? false)
+    const [firstName, setFirstName] = useState(addr?.firstName ?? "");
+    const [lastName, setLastName] = useState(addr?.lastName ?? "");
+    const [phoneNumber, setPhoneNumber] = useState(addr?.phoneNumber ?? "");
+    const [address, setAddress] = useState(addr?.address ?? "");
+    const [city, setCity] = useState(addr?.city ?? "");
+    const [province, setProvince] = useState(addr?.province ?? "");
+    const [postalCode, setPostalCode] = useState(addr?.postalCode ?? "");
+    const [isDefault, setIsDefault] = useState(addr?.isDefault ?? false);
 
     const handleFirstNameChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setFirstName(event.target.value);
@@ -96,20 +96,20 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
             province,
             postalCode,
             isDefault,
-        }))
+        }));
 
         setAddAddress(false);
-        setEditAddress("")
+        setEditAddress("");
         
     }, [firstName, lastName, phoneNumber, address, city, province, postalCode, isDefault, addressList]);
 
     const cancelForm = useCallback(() => {
         setAddAddress(false);
-        setEditAddress("")
+        setEditAddress("");
     }, []);
 
     return (
-        <form className={style['address-form']} onSubmit={saveAddress}>
+        <form className={style["address-form"]} onSubmit={saveAddress}>
             <Heading as="h2" className="title">Add a new address</Heading>
 
             <div className="fields">
@@ -144,7 +144,7 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
                     <NativeSelect.Root>
                         <NativeSelect.Field placeholder="- Select -" value={province} onChange={handleProvinceChange}>
                             {provinceList.current.map(p => (
-                            <option value={p.value} key={'province-' + p.value}>{p.label}</option>
+                                <option value={p.value} key={"province-" + p.value}>{p.label}</option>
                             ))}
                         </NativeSelect.Field>
                         <NativeSelect.Indicator />
@@ -183,5 +183,5 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
             </div>
         </form>
     );
-})
+});
 

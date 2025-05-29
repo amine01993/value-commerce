@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 
 export default async function PhotoPage() {
@@ -14,20 +14,20 @@ export default async function PhotoPage() {
 
     const Photo = dynamic(() => import("./photo"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     const PhotoDesktop = dynamic(() => import("./photo-desktop"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     return (
         <>
-        {isMobile && (
-            <Photo />
-        )}
-        {!isMobile && (
-            <PhotoDesktop />
-        )}
+            {isMobile && (
+                <Photo />
+            )}
+            {!isMobile && (
+                <PhotoDesktop />
+            )}
         </>
     );
 }

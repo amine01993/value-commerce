@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 
 export default async function PersonalDetailPage() {
@@ -14,20 +14,20 @@ export default async function PersonalDetailPage() {
 
     const PersonalDetail = dynamic(() => import("./personal-detail"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     const PersonalDetailDesktop = dynamic(() => import("./personal-detail-desktop"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     return (
         <>
-        {isMobile && (
-            <PersonalDetail />
-        )}
-        {!isMobile && (
-            <PersonalDetailDesktop />
-        )}
+            {isMobile && (
+                <PersonalDetail />
+            )}
+            {!isMobile && (
+                <PersonalDetailDesktop />
+            )}
         </>
     );
 }

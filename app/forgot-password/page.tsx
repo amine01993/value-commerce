@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import ForgotPassword from "./forgot-password";
 import ForgotPasswordDesktop from "./forgot-password-desktop";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 
 export default async function ForgotPasswordPage() {
@@ -15,12 +15,12 @@ export default async function ForgotPasswordPage() {
 
     return (
         <>
-        {isMobile && (
-            <ForgotPassword />
-        )}
-        {!isMobile && (
-            <ForgotPasswordDesktop />
-        )}
+            {isMobile && (
+                <ForgotPassword />
+            )}
+            {!isMobile && (
+                <ForgotPasswordDesktop />
+            )}
         </>
     );
 }

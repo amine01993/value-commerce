@@ -13,24 +13,24 @@ export default async function AccountLayout({
 
     const Account = dynamic(() => import("@/components/account"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     const AccountDesktop = dynamic(() => import("@/components/account/desktop"), {
         loading: () => <p>Loading...</p>,
-    })
+    });
 
     return (
         <>
-        {isMobile && (
-            <Account>
-                {children}
-            </Account>
-        )}
-        {!isMobile && (
-            <AccountDesktop>
-                {children}
-            </AccountDesktop>
-        )}
+            {isMobile && (
+                <Account>
+                    {children}
+                </Account>
+            )}
+            {!isMobile && (
+                <AccountDesktop>
+                    {children}
+                </AccountDesktop>
+            )}
         </>
     );
 }

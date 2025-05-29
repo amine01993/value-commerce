@@ -2,14 +2,14 @@
 import Image from "next/image";
 import { ChangeEvent, Dispatch, FormEvent, memo, SetStateAction, useCallback, useRef, useState } from "react";
 import { Button, Checkbox, CheckboxCheckedChangeDetails, Field, Heading, Input, InputGroup, Separator, Text } from "@chakra-ui/react";
-import { usePaymentInputs } from "react-payment-inputs"
-import cardImages, { type CardImages } from "react-payment-inputs/images"
+import { usePaymentInputs } from "react-payment-inputs";
+import cardImages, { type CardImages } from "react-payment-inputs/images";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { randomString } from "@/utils/common";
 import { addCard, AddressType, saveAddress } from "@/lib/slices/account";
 import AddAddressForm from "./add-address-form";
 import AddressItem from "./address-item";
-import style from "./style.module.scss"
+import style from "./style.module.scss";
 import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
 import paymentIcon from "@/public/payment.svg";
@@ -22,15 +22,15 @@ interface AddPaymentFormType {
 export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormType) {
 
     const dispatch = useAppDispatch();
-    const cardList = useAppSelector(state => state.accountSlice.cardList)
-    const addressList = useAppSelector(state => state.accountSlice.addressList)
+    const cardList = useAppSelector(state => state.accountSlice.cardList);
+    const addressList = useAppSelector(state => state.accountSlice.addressList);
     const images = useRef(cardImages as unknown as CardImages);
-    const { meta, wrapperProps, getCardNumberProps, getExpiryDateProps, getCVCProps, getCardImageProps } = usePaymentInputs()
+    const { meta, wrapperProps, getCardNumberProps, getExpiryDateProps, getCVCProps, getCardImageProps } = usePaymentInputs();
     
-    const [cardNumber, setCardNumber] = useState("")
-    const [expiry, setExpiry] = useState("")
-    const [cvc, setCvc] = useState("")
-    const [isDefault, setIsDefault] = useState(false)
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiry, setExpiry] = useState("");
+    const [cvc, setCvc] = useState("");
+    const [isDefault, setIsDefault] = useState(false);
     const [cardAddress, setCardAddress] = useState<AddressType>();
     const [addAddress, setAddAddress] = useState(false);
 
@@ -47,7 +47,7 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
     }, []);
 
     const handleDefaultChange = useCallback((details: CheckboxCheckedChangeDetails) => {
-        setIsDefault(Boolean(details.checked))
+        setIsDefault(Boolean(details.checked));
     }, []);
 
     const handleNewAddress = useCallback(() => {
@@ -62,7 +62,7 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
         if(cardAddress) {
             if(!cardAddress.id) {
                 cardAddress.id = randomString(10);
-                dispatch(saveAddress(cardAddress))
+                dispatch(saveAddress(cardAddress));
             }
 
             const number = cardNumber.slice(0, cardNumber.length - 4).replace(/[0-9]/g, "*") + cardNumber.slice(cardNumber.length - 4);
@@ -73,7 +73,7 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
                 type: meta.cardType.type,
                 isDefault,
                 address: cardAddress!,
-            }))
+            }));
         }
 
         setAddPayment(false);
@@ -98,12 +98,12 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
                     <Field.Label>Card Number</Field.Label>
                     <InputGroup {...wrapperProps} endElement={(
                         <>
-                        {meta.cardType && (
-                            <svg {...getCardImageProps({ images: images.current })} />
-                        )}
-                        {!meta.cardType && (
-                            <Image src={paymentIcon} alt="Account Payment Methods" width={17} />
-                        )}
+                            {meta.cardType && (
+                                <svg {...getCardImageProps({ images: images.current })} />
+                            )}
+                            {!meta.cardType && (
+                                <Image src={paymentIcon} alt="Account Payment Methods" width={17} />
+                            )}
                         </>
                     )}>
                         <Input {...getCardNumberProps({ onChange: handleCardChange })} />
@@ -127,24 +127,24 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
 
             {addressList.length > 0 && (
                 <>
-                <Heading as="h3" fontSize="sm" className="title">Choose a billing address</Heading>
+                    <Heading as="h3" fontSize="sm" className="title">Choose a billing address</Heading>
 
-                {addressList.map(addr => (
-                    <AddressItem 
-                        key={'select-' + addr.id} 
-                        address={addr} 
-                        selected={cardAddress && cardAddress?.id === addr.id || !cardAddress && addr.isDefault}
-                        setCardAddress={setCardAddress}
-                        setAddAddress={setAddAddress}
-                    />  
-                ))}
+                    {addressList.map(addr => (
+                        <AddressItem 
+                            key={"select-" + addr.id} 
+                            address={addr} 
+                            selected={cardAddress && cardAddress?.id === addr.id || !cardAddress && addr.isDefault}
+                            setCardAddress={setCardAddress}
+                            setAddAddress={setAddAddress}
+                        />  
+                    ))}
 
-                {!addAddress && (
-                    <Button colorPalette="orange" variant="ghost" className={style['add-address']} onClick={handleNewAddress}>
-                        <Image src={addIcon} alt="Plus Icon" height={17} />
+                    {!addAddress && (
+                        <Button colorPalette="orange" variant="ghost" className={style["add-address"]} onClick={handleNewAddress}>
+                            <Image src={addIcon} alt="Plus Icon" height={17} />
                         Add a new address
-                    </Button>
-                )}
+                        </Button>
+                    )}
                 </>
             )}
             {(addAddress || addressList.length === 0) && (
@@ -166,5 +166,5 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
             </div>
         </form>
     );
-})
+});
 

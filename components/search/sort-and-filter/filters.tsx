@@ -21,7 +21,7 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
     const searchParams = useSearchParams();
     const dispatch = useAppDispatch();
 
-    const category = useMemo(() => searchParams.get('c'), [searchParams]);
+    const category = useMemo(() => searchParams.get("c"), [searchParams]);
     
     const priceRange = useAppSelector(state => state.searchSlice.priceRange);
     const brands = useAppSelector(state => state.searchSlice.brands);
@@ -83,11 +83,11 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
                         <Accordion.ItemBody className="content">
                             <ol>
                                 {categoriesData.current.map((item) => (
-                                <li key={"value-" + item.value}>
-                                    <Link href={"/search?" + queryParamsString(searchParams, {c: item.value})} passHref legacyBehavior>
-                                        <LinkUI fontWeight={category === item.value ? "bold" : undefined}>{item.label} <span className="count">({item.count})</span></LinkUI>
-                                    </Link>
-                                </li>
+                                    <li key={"value-" + item.value}>
+                                        <Link href={"/search?" + queryParamsString(searchParams, {c: item.value})} passHref legacyBehavior>
+                                            <LinkUI fontWeight={category === item.value ? "bold" : undefined}>{item.label} <span className="count">({item.count})</span></LinkUI>
+                                        </Link>
+                                    </li>
                                 ))}
                             </ol>
                         </Accordion.ItemBody>
@@ -145,13 +145,13 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
                             <CheckboxGroup value={brands} onValueChange={val => handleBrandsChange(val)} name="brands" colorPalette="blue">
                                 <ol>
                                     {brandsData.current.map((item) => (
-                                    <li key={"value-" + item.value}>
-                                        <Checkbox.Root value={item.value}>
-                                            <Checkbox.HiddenInput />
-                                            <Checkbox.Control />
-                                            <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
-                                        </Checkbox.Root>
-                                    </li>
+                                        <li key={"value-" + item.value}>
+                                            <Checkbox.Root value={item.value}>
+                                                <Checkbox.HiddenInput />
+                                                <Checkbox.Control />
+                                                <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
+                                            </Checkbox.Root>
+                                        </li>
                                     ))}
                                 </ol>
                             </CheckboxGroup>
@@ -174,19 +174,19 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
                             <RadioGroup.Root value={rating} onValueChange={e => handleRatingChange(e.value!)} name="rating" colorPalette="blue">
                                 <ol>
                                     {ratingsData.current.map((item) => (
-                                    <li key={"value-" + item.value}>
-                                        <RadioGroup.Item value={item.value}>
-                                            <RadioGroup.ItemHiddenInput />
-                                            <RadioGroup.ItemIndicator />
-                                            <RadioGroup.ItemText>
-                                                <RatingGroup.Root allowHalf count={5} defaultValue={Number(item.value)} size="sm" colorPalette="yellow" readOnly>
-                                                    <RatingGroup.HiddenInput />
-                                                    <RatingGroup.Control />
-                                                </RatingGroup.Root>
-                                                {item.label} <span className="count">({item.count})</span>
-                                            </RadioGroup.ItemText>
-                                        </RadioGroup.Item>
-                                    </li>
+                                        <li key={"value-" + item.value}>
+                                            <RadioGroup.Item value={item.value}>
+                                                <RadioGroup.ItemHiddenInput />
+                                                <RadioGroup.ItemIndicator />
+                                                <RadioGroup.ItemText>
+                                                    <RatingGroup.Root allowHalf count={5} defaultValue={Number(item.value)} size="sm" colorPalette="yellow" readOnly>
+                                                        <RatingGroup.HiddenInput />
+                                                        <RatingGroup.Control />
+                                                    </RatingGroup.Root>
+                                                    {item.label} <span className="count">({item.count})</span>
+                                                </RadioGroup.ItemText>
+                                            </RadioGroup.Item>
+                                        </li>
                                     ))}
                                 </ol>
                             </RadioGroup.Root>
@@ -209,13 +209,13 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
                             <CheckboxGroup value={availabilities} onValueChange={val => handleAvailabilitiesChange(val)} name="availabilities" colorPalette="blue">
                                 <ol>
                                     {availabilitiesData.current.map((item) => (
-                                    <li key={"value-" + item.value}>
-                                        <Checkbox.Root value={item.value}>
-                                            <Checkbox.HiddenInput />
-                                            <Checkbox.Control />
-                                            <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
-                                        </Checkbox.Root>
-                                    </li>
+                                        <li key={"value-" + item.value}>
+                                            <Checkbox.Root value={item.value}>
+                                                <Checkbox.HiddenInput />
+                                                <Checkbox.Control />
+                                                <Checkbox.Label>{item.label} <span className="count">({item.count})</span></Checkbox.Label>
+                                            </Checkbox.Root>
+                                        </li>
                                     ))}
                                 </ol>
                             </CheckboxGroup>
@@ -224,5 +224,5 @@ export default function Filters({defaultPriceRange, categoriesData, brandsData, 
                 </Accordion.Item>
             </Accordion.Root>
         </div>
-    )
+    );
 }

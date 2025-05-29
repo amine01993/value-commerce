@@ -13,7 +13,7 @@ export default function SearchNav() {
     return (
         <div className={style.search}>
             <Input placeholder="Search for anything" size="lg" defaultValue={query} />
-            <Button colorPalette={'orange'} variant="solid" size="lg" aria-label="Search for anything">
+            <Button colorPalette="orange" variant="solid" size="lg" aria-label="Search for anything">
                 <Image src={searchIcon} alt="Search Icon" height={25} priority />
             </Button>
         </div>

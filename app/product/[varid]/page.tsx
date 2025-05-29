@@ -20,12 +20,12 @@ export default async function ProductPage({params}: ProductPageParams) {
 
     return (
         <>
-        {isMobile && (
-            <Product varid={varid} />
-        )}
-        {!isMobile && (
-            <ProductDesktop varid={varid} />
-        )}
+            {isMobile && (
+                <Product varid={varid} />
+            )}
+            {!isMobile && (
+                <ProductDesktop varid={varid} />
+            )}
         </>
     );
 }

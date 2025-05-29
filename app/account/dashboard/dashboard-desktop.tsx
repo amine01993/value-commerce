@@ -69,18 +69,18 @@ export default function DashboardDesktop() {
                     <div className="purchases">
                         {purchasesData.current.length > 0 && (
                             <>
-                            <div className="purchase-header"></div>
-                            <div className="purchase-header">
-                                <Text fontWeight="semibold">Order date</Text>
-                            </div>
-                            <div className="purchase-header">
-                                <Text fontWeight="semibold">Total price</Text>
-                            </div>
-                            <div className="purchase-header">
-                                <Text fontWeight="semibold">Payment type</Text>
-                            </div>
-                            <div className="purchase-header"></div>
-                            <div className="purchase-info"></div>
+                                <div className="purchase-header"></div>
+                                <div className="purchase-header">
+                                    <Text fontWeight="semibold">Order date</Text>
+                                </div>
+                                <div className="purchase-header">
+                                    <Text fontWeight="semibold">Total price</Text>
+                                </div>
+                                <div className="purchase-header">
+                                    <Text fontWeight="semibold">Payment type</Text>
+                                </div>
+                                <div className="purchase-header"></div>
+                                <div className="purchase-info"></div>
                             </>
                         )}
                         {purchasesData.current.length > 0 && purchasesData.current.map((purchase, index) => (

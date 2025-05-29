@@ -159,7 +159,7 @@ export default function Banners() {
             if(listElem.current) {
                 listElem.current.removeEventListener("scrollend", handleScrollEnd);
             }
-        }
+        };
     }, [activeIndex]);
 
     useEffect(() => {
@@ -183,7 +183,7 @@ export default function Banners() {
                     </li>
                     {data.current.map((item, index) => (
                         <li key={"banner-index" + index} aria-hidden={index + 1 === activeIndex ? undefined : true} 
-                            className={Math.abs(activeIndex - (index + 1)) < 2 ? '' : style.hide}>
+                            className={Math.abs(activeIndex - (index + 1)) < 2 ? "" : style.hide}>
                             <Banner {...item} />
                         </li>
                     ))}
@@ -207,7 +207,7 @@ export default function Banners() {
                             isActive = index === activeIndex - 1;
                         }
                         
-                        return <li key={"dot-index" + index} className={isActive ? style.active : ''}></li>
+                        return <li key={"dot-index" + index} className={isActive ? style.active : ""}></li>;
                     })}
                 </ul>
             </div>

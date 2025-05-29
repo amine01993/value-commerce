@@ -52,9 +52,9 @@ export default function Review({fullname, rating, title, reviewedAt, verifiedPur
                 <Text fontWeight="semibold">{title}</Text>
             </div>
 
-            <Text color="var(--chakra-colors-gray-700)">Reviewed on {reviewDate}</Text>
+            <Text color="gray.700">Reviewed on {reviewDate}</Text>
             
-            {verifiedPurchase && <Text fontWeight="semibold" color="var(--chakra-colors-orange-400)">Verified Purchase</Text>}
+            {verifiedPurchase && <Text fontWeight="semibold" color="orange.400">Verified Purchase</Text>}
             
             <Text className="customer-content">{content}</Text>
 
@@ -72,20 +72,20 @@ export default function Review({fullname, rating, title, reviewedAt, verifiedPur
             )}
 
             <div className="actions">
-                <Button variant="plain" color="var(--chakra-colors-orange-600)" fontWeight="semibold">
+                <Button variant="plain" color="orange.600" fontWeight="semibold">
                     <Image src={thumbsUpIcon} alt="Thumbs Up" width={20} height={20} />
                     Helpful{helpfulCount > 0 ? ` (${helpfulCount})` : ""}
                 </Button>
-                <Button variant="plain" color="var(--chakra-colors-orange-600)" fontWeight="semibold">
+                <Button variant="plain" color="orange.600" fontWeight="semibold">
                     <Image src={thumbsDownIcon} alt="Thumbs Down" width={20} height={20} />
                     Not helpful{notHelpfulCount > 0 ? ` (${notHelpfulCount})` : ""}
                 </Button>
-                <Button variant="plain" color="var(--chakra-colors-orange-600)" fontWeight="semibold">
+                <Button variant="plain" color="orange.600" fontWeight="semibold">
                     Report
                 </Button>
             </div>
 
-            <Separator bgColor="var(--chakra-colors-gray-300)" />
+            <Separator bgColor="gray.300" />
         </div>
-    )
+    );
 }

@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import Login from "./login";
 import LoginDesktop from "./login-desktop";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 interface LoginPageParams {
     searchParams: Promise<{q: string}>;
@@ -22,12 +22,12 @@ export default async function LoginPage(
 
     return (
         <>
-        {isMobile && (
-            <Login />
-        )}
-        {!isMobile && (
-            <LoginDesktop />
-        )}
+            {isMobile && (
+                <Login />
+            )}
+            {!isMobile && (
+                <LoginDesktop />
+            )}
         </>
     );
 }

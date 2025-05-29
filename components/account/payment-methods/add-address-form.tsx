@@ -28,13 +28,13 @@ export default memo(function AddAddressForm({ setCardAddress }: AddAddressFormTy
         {label: "Yukon", value: "YT"},
     ]);
 
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [phoneNumber, setPhoneNumber] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [province, setProvince] = useState("")
-    const [postalCode, setPostalCode] = useState("")
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [province, setProvince] = useState("");
+    const [postalCode, setPostalCode] = useState("");
 
     const handleFirstNameChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setFirstName(event.target.value);
@@ -78,7 +78,7 @@ export default memo(function AddAddressForm({ setCardAddress }: AddAddressFormTy
     }, [firstName, lastName, phoneNumber, address, city, province, postalCode]);
 
     return (
-        <div className={style['address-form']}>
+        <div className={style["address-form"]}>
             <Heading as="h2" fontSize="md" className="title">Add a new address</Heading>
 
             <div className="fields">
@@ -114,7 +114,7 @@ export default memo(function AddAddressForm({ setCardAddress }: AddAddressFormTy
                         <NativeSelect.Root size="lg">
                             <NativeSelect.Field placeholder="- Select -" value={province} onChange={handleProvinceChange}>
                                 {provinceList.current.map(p => (
-                                <option value={p.value} key={'province-' + p.value}>{p.label}</option>
+                                    <option value={p.value} key={"province-" + p.value}>{p.label}</option>
                                 ))}
                             </NativeSelect.Field>
                             <NativeSelect.Indicator />
@@ -139,5 +139,5 @@ export default memo(function AddAddressForm({ setCardAddress }: AddAddressFormTy
             </div>
         </div>
     );
-})
+});
 

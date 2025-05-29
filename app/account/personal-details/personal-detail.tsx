@@ -29,7 +29,7 @@ export default function PersonalDetail() {
     }, [editName, editPhone, editEmail, editPassword]);
 
     const fullName = useMemo(() => {
-        return firstName + " " + lastName
+        return firstName + " " + lastName;
     }, [firstName, lastName]);
 
     const passwordText = useMemo(() => {
@@ -40,7 +40,7 @@ export default function PersonalDetail() {
         });
         const tokens = passwordLastUpdate.split("-");
         const date = new Date(+tokens[2], +tokens[0] - 1, +tokens[1]);
-        return `(First created on ${formatter.format(date)})`
+        return `(First created on ${formatter.format(date)})`;
     }, [passwordLastUpdate]);
 
     const handlePreferenceUpdate = useCallback((details: RadioGroupValueChangeDetails) => {
@@ -72,26 +72,26 @@ export default function PersonalDetail() {
             <div className="personal-detail">
                 {!editing && (
                     <>
-                    <div className="edit">
-                        <Text as="label" fontWeight="semibold">Name</Text>
-                        <Text>{fullName}</Text>
-                        <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditName}>Edit</Button>
-                    </div>
-                    <div className="edit">
-                        <Text as="label" fontWeight="semibold">Phone Number</Text>
-                        <Text>{phone}</Text>
-                        <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditPhone}>Edit</Button>
-                    </div>
-                    <div className="edit">
-                        <Text as="label" fontWeight="semibold">Email Address</Text>
-                        <Text>{email}</Text>
-                        <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditEmail}>Edit</Button>
-                    </div>
-                    <div className="edit">
-                        <Text as="label" fontWeight="semibold">Account Password</Text>
-                        <Text>{passwordText}</Text>
-                        <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditPassword}>Edit</Button>
-                    </div>
+                        <div className="edit">
+                            <Text as="label" fontWeight="semibold">Name</Text>
+                            <Text>{fullName}</Text>
+                            <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditName}>Edit</Button>
+                        </div>
+                        <div className="edit">
+                            <Text as="label" fontWeight="semibold">Phone Number</Text>
+                            <Text>{phone}</Text>
+                            <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditPhone}>Edit</Button>
+                        </div>
+                        <div className="edit">
+                            <Text as="label" fontWeight="semibold">Email Address</Text>
+                            <Text>{email}</Text>
+                            <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditEmail}>Edit</Button>
+                        </div>
+                        <div className="edit">
+                            <Text as="label" fontWeight="semibold">Account Password</Text>
+                            <Text>{passwordText}</Text>
+                            <Button variant="plain" fontSize="md" fontWeight="semibold" onClick={startEditPassword}>Edit</Button>
+                        </div>
                     </>
                 )}
 

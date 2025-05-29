@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import Register from "./register";
 import RegisterDesktop from "./register-desktop";
-import {metadata} from "@/app/layout"
+import {metadata} from "@/app/layout";
 
 interface RegisterPageParams {
     searchParams: Promise<{q: string}>;
@@ -22,12 +22,12 @@ export default async function RegisterPage(
 
     return (
         <>
-        {isMobile && (
-            <Register />
-        )}
-        {!isMobile && (
-            <RegisterDesktop />
-        )}
+            {isMobile && (
+                <Register />
+            )}
+            {!isMobile && (
+                <RegisterDesktop />
+            )}
         </>
     );
 }

@@ -39,7 +39,7 @@ const accountSlice = createSlice({
         addCard(state: AccountState, action: PayloadAction<CardType>) {
             if(action.payload.isDefault) {
                 state.cardList.forEach(c => {
-                    c.isDefault = false
+                    c.isDefault = false;
                 });
             }
             state.cardList.push(action.payload);
@@ -52,7 +52,7 @@ const accountSlice = createSlice({
             if(addrIndex > -1) {
                 if(action.payload.isDefault) {
                     state.addressList.forEach((addr, index) => {
-                        if(addrIndex !== index) addr.isDefault = false
+                        if(addrIndex !== index) addr.isDefault = false;
                     });
                 }
                 state.addressList[addrIndex] = action.payload;
@@ -60,7 +60,7 @@ const accountSlice = createSlice({
             else {
                 if(action.payload.isDefault) {
                     state.addressList.forEach(addr => {
-                        addr.isDefault = false
+                        addr.isDefault = false;
                     });
                 }
                 state.addressList.push(action.payload);
