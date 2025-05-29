@@ -1,0 +1,61 @@
+
+.address {
+    border: 1px solid black;
+    padding: 1.1rem 0.7rem 0.5rem;
+    margin-top: 1rem;
+    
+    :global {
+
+        h3 {
+            span {
+                color: var(--chakra-colors-gray-600);
+                margin-left: 1rem;
+            }
+        }
+        
+        .content {
+
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+    }
+}
+
+.address-form {
+    border: 1px solid black;
+    padding: 1.5rem;
+    margin: 2rem 0;
+
+    :global {
+
+        .title {
+            margin-bottom: 1rem;
+        }
+    
+        .fields {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+            margin-bottom: 1.3rem;
+        }
+    
+        .province {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    
+        [role=separator] {
+            background-color: var(--chakra-colors-gray-300);
+        }
+    }
+}

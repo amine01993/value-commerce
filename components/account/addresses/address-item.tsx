@@ -4,9 +4,9 @@ import { Dispatch, memo, SetStateAction, useCallback, useMemo } from "react";
 import { Button, Heading, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { AddressType, removeAddress } from "@/lib/slices/account"
+import style from "./style.module.scss";
 import deleteIcon from "@/public/delete.svg";
 import editIcon from "@/public/edit.svg";
-import style from "./addresses.module.scss";
 
 interface AddressItemType {
     address: AddressType;

@@ -1,0 +1,65 @@
+
+.address-form {
+    border: 1px dashed black;
+    padding: 1rem;
+    margin: 1rem 0;
+
+    :global {
+
+        .title {
+            margin-bottom: 1rem;
+        }
+    
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+    }
+}
+
+.address {
+
+    &.selectable.selected {
+        outline: 2px solid var(--chakra-colors-orange-600);
+        outline-offset: -2px;
+    }
+
+    &.selectable {
+        position: relative;
+        outline: 1px solid black;
+        outline-offset: -1px;
+        padding: 1rem;
+        margin-bottom: 1.1rem;
+        border-radius: .3rem;
+    }
+
+    :global { 
+
+        h3 {
+            p {
+                color: var(--chakra-colors-gray-600);
+            }
+        }
+        
+        .content {
+
+        }
+
+        .checked {
+            position: absolute;
+            right: 1rem;
+            top: 1.2rem;
+        }
+    }
+}
+
+.add-address {
+    width: 100%;
+    justify-content: flex-start;
+    border: 1px dashed;
+    padding-left: 1.3rem;
+    height: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

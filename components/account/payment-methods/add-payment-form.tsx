@@ -9,7 +9,7 @@ import { randomString } from "@/utils/helpers";
 import { addCard, AddressType, saveAddress } from "@/lib/slices/account";
 import AddAddressForm from "./add-address-form";
 import AddressItem from "./address-item";
-import style from "./payment-methods.module.scss"
+import style from "./style.module.scss"
 import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
 import paymentIcon from "@/public/payment.svg";

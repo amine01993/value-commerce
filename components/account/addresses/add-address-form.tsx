@@ -5,7 +5,7 @@ import { withMask } from "use-mask-input";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { randomString } from "@/utils/helpers";
 import { saveAddress as saveAddr } from "@/lib/slices/account";
-import style from "./addresses.module.scss";
+import style from "./style.module.scss";
 
 interface AddAddressFormType {
     editAddress: string;

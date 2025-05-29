@@ -3,7 +3,7 @@ import { ChangeEvent, Dispatch, memo, SetStateAction, useCallback, useEffect, us
 import { Field, Heading, Input, NativeSelect } from "@chakra-ui/react";
 import { withMask } from "use-mask-input";
 import { AddressType } from "@/lib/slices/account";
-import style from "./payment-methods.module.scss";
+import style from "./style.module.scss";
 
 interface AddAddressFormType {
     setCardAddress: Dispatch<SetStateAction<AddressType | undefined>>;

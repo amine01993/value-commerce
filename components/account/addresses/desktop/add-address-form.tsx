@@ -5,7 +5,7 @@ import { withMask } from "use-mask-input";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { randomString } from "@/utils/helpers";
 import { saveAddress as saveAddr } from "@/lib/slices/account";
-import style from "./addresses.module.scss";
+import style from "./style.module.scss";
 
 interface AddAddressFormType {
     editAddress: string;
@@ -110,57 +110,55 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
 
     return (
         <form className={style['address-form']} onSubmit={saveAddress}>
-            <Heading as="h2" fontSize="md" className="title">Add a new address</Heading>
+            <Heading as="h2" className="title">Add a new address</Heading>
 
             <div className="fields">
-                <Field.Root required>
-                    <Field.Label fontSize="md">First Name <Field.RequiredIndicator /></Field.Label>
-                    <Input size="lg" value={firstName} onChange={handleFirstNameChange} />
+                <Field.Root required gridColumn="span 2">
+                    <Field.Label>First Name <Field.RequiredIndicator /></Field.Label>
+                    <Input value={firstName} onChange={handleFirstNameChange} />
                 </Field.Root>
 
-                <Field.Root required>
-                    <Field.Label fontSize="md">Last Name <Field.RequiredIndicator /></Field.Label>
-                    <Input size="lg" value={lastName} onChange={handleLastNameChange} />
+                <Field.Root required gridColumn="span 2">
+                    <Field.Label>Last Name <Field.RequiredIndicator /></Field.Label>
+                    <Input value={lastName} onChange={handleLastNameChange} />
                 </Field.Root>
 
-                <Field.Root required>
-                    <Field.Label fontSize="md">Phone Number <Field.RequiredIndicator /></Field.Label>
-                    <Input size="lg" placeholder="(999) 999-9999" ref={phoneMask.current} value={phoneNumber} onChange={handlePhoneChange} />
+                <Field.Root required gridColumn="span 2">
+                    <Field.Label>Phone Number <Field.RequiredIndicator /></Field.Label>
+                    <Input placeholder="(999) 999-9999" ref={phoneMask.current} value={phoneNumber} onChange={handlePhoneChange} />
                     <Field.HelperText>We’ll only call you if there’s an issue with the order</Field.HelperText>
                 </Field.Root>
 
-                <Field.Root required>
-                    <Field.Label fontSize="md">Address <Field.RequiredIndicator /></Field.Label>
-                    <Input size="lg" value={address} onChange={handleAddressChange} />
+                <Field.Root required gridColumn="span 4">
+                    <Field.Label>Address <Field.RequiredIndicator /></Field.Label>
+                    <Input value={address} onChange={handleAddressChange} />
+                </Field.Root>
+
+                <Field.Root required gridColumn="span 2">
+                    <Field.Label>City <Field.RequiredIndicator /></Field.Label>
+                    <Input value={city} onChange={handleCityChange} />
                 </Field.Root>
 
                 <Field.Root required>
-                    <Field.Label fontSize="md">City <Field.RequiredIndicator /></Field.Label>
-                    <Input size="lg" value={city} onChange={handleCityChange} />
+                    <Field.Label>Province <Field.RequiredIndicator /></Field.Label>
+                    <NativeSelect.Root>
+                        <NativeSelect.Field placeholder="- Select -" value={province} onChange={handleProvinceChange}>
+                            {provinceList.current.map(p => (
+                            <option value={p.value} key={'province-' + p.value}>{p.label}</option>
+                            ))}
+                        </NativeSelect.Field>
+                        <NativeSelect.Indicator />
+                    </NativeSelect.Root>
                 </Field.Root>
 
-                <div className="province">
-                    <Field.Root required>
-                        <Field.Label fontSize="md">Province <Field.RequiredIndicator /></Field.Label>
-                        <NativeSelect.Root size="lg">
-                            <NativeSelect.Field placeholder="- Select -" value={province} onChange={handleProvinceChange}>
-                                {provinceList.current.map(p => (
-                                <option value={p.value} key={'province-' + p.value}>{p.label}</option>
-                                ))}
-                            </NativeSelect.Field>
-                            <NativeSelect.Indicator />
-                        </NativeSelect.Root>
-                    </Field.Root>
+                <Field.Root required>
+                    <Field.Label>Postal Code <Field.RequiredIndicator /></Field.Label>
+                    <Input value={postalCode} onChange={handlePostalCodeChange} />
+                </Field.Root>
 
-                    <Field.Root required>
-                        <Field.Label fontSize="md">Postal Code <Field.RequiredIndicator /></Field.Label>
-                        <Input size="lg" value={postalCode} onChange={handlePostalCodeChange} />
-                    </Field.Root>
-                </div>
-
-                <Field.Root disabled>
-                    <Field.Label fontSize="md">Country</Field.Label>
-                    <NativeSelect.Root disabled size="lg">
+                <Field.Root disabled gridColumn="span 2">
+                    <Field.Label>Country</Field.Label>
+                    <NativeSelect.Root disabled>
                         <NativeSelect.Field>
                             <option value="CA">Canada</option>
                         </NativeSelect.Field>
@@ -168,18 +166,20 @@ export default memo(function AddAddressForm({ editAddress: addrId, setAddAddress
                     </NativeSelect.Root>
                 </Field.Root>
 
-                <Separator />
-                <Checkbox.Root colorPalette="orange" checked={isDefault} onCheckedChange={handleDefaultChange}>
-                    <Checkbox.HiddenInput />
-                    <Checkbox.Control />
-                    <Checkbox.Label fontSize="md">Set as default shipping address</Checkbox.Label>
-                </Checkbox.Root>
-                <Separator />
+                <div className="default-field">
+                    <Separator />
+                    <Checkbox.Root colorPalette="orange" checked={isDefault} onCheckedChange={handleDefaultChange}>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label>Set as default shipping address</Checkbox.Label>
+                    </Checkbox.Root>
+                    <Separator />
+                </div>
             </div>
 
             <div className="actions">
-                <Button colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
-                <Button colorPalette="orange" variant="plain" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelForm}>Cancel</Button>
+                <Button colorPalette="orange" fontWeight="semibold" type="submit">Save</Button>
+                <Button colorPalette="orange" variant="ghost" fontWeight="semibold" onClick={cancelForm}>Cancel</Button>
             </div>
         </form>
     );

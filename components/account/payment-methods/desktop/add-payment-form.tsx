@@ -9,7 +9,7 @@ import { randomString } from "@/utils/helpers";
 import { addCard, AddressType, saveAddress } from "@/lib/slices/account";
 import AddAddressForm from "./add-address-form";
 import AddressItem from "./address-item";
-import style from "./payment-methods.module.scss"
+import style from "./style.module.scss"
 import mastercardIcon from "@/public/logo_mastercard.svg";
 import visaIcon from "@/public/logo_visa.svg";
 import paymentIcon from "@/public/payment.svg";
@@ -85,47 +85,49 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
 
     return (
         <form className="payment-form" onSubmit={saveCard}>
-            <Heading as="h2" fontSize="md" className="title">Add a new credit card</Heading>
+            <Heading as="h2" fontSize="sm" className="title">Add a new credit card</Heading>
             
-            <Text>We accept the following:</Text>
+            <Text fontSize="sm">We accept the following:</Text>
             <div className="payment-methods">
-                <span><Image src={mastercardIcon} alt="Master Card" height={25} width={39} /></span>
-                <span><Image src={visaIcon} alt="Visa Card" height={25} width={63} /></span>
+                <span><Image src={mastercardIcon} alt="Master Card" height={20} /></span>
+                <span><Image src={visaIcon} alt="Visa Card" height={20} /></span>
             </div>
 
-            <Field.Root>
-                <Field.Label fontSize="md">Card Number</Field.Label>
-                <InputGroup {...wrapperProps} endElement={(
-                    <>
-                    {meta.cardType && (
-                        <svg {...getCardImageProps({ images: images.current })} />
-                    )}
-                    {!meta.cardType && (
-                        <Image src={paymentIcon} alt="Account Payment Methods" width={20} />
-                    )}
-                    </>
-                )}>
-                    <Input {...getCardNumberProps({ onChange: handleCardChange })} size="lg" />
-                </InputGroup>
-            </Field.Root>
-
-            <div className="expiry">
+            <div className="payment-fields">
                 <Field.Root>
-                    <Field.Label fontSize="md">Expiry</Field.Label>
-                    <Input {...getExpiryDateProps({ onChange: handleExpiryChange })} size="lg" />
+                    <Field.Label>Card Number</Field.Label>
+                    <InputGroup {...wrapperProps} endElement={(
+                        <>
+                        {meta.cardType && (
+                            <svg {...getCardImageProps({ images: images.current })} />
+                        )}
+                        {!meta.cardType && (
+                            <Image src={paymentIcon} alt="Account Payment Methods" width={17} />
+                        )}
+                        </>
+                    )}>
+                        <Input {...getCardNumberProps({ onChange: handleCardChange })} />
+                    </InputGroup>
                 </Field.Root>
 
-                <Field.Root>
-                    <Field.Label fontSize="md">CVC</Field.Label>
-                    <Input {...getCVCProps({ onChange: handleCvcChange })} size="lg" />
-                </Field.Root>
+                <div className="expiry">
+                    <Field.Root>
+                        <Field.Label>Expiry</Field.Label>
+                        <Input {...getExpiryDateProps({ onChange: handleExpiryChange })} />
+                    </Field.Root>
+
+                    <Field.Root>
+                        <Field.Label>CVC</Field.Label>
+                        <Input {...getCVCProps({ onChange: handleCvcChange })} />
+                    </Field.Root>
+                </div>
             </div>
 
             <Separator />
 
             {addressList.length > 0 && (
                 <>
-                <Heading as="h3" fontSize="md" className="title">Choose a billing address</Heading>
+                <Heading as="h3" fontSize="sm" className="title">Choose a billing address</Heading>
 
                 {addressList.map(addr => (
                     <AddressItem 
@@ -138,14 +140,14 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
                 ))}
 
                 {!addAddress && (
-                    <Button colorPalette="orange" variant="plain" className={style['add-address']} fontSize="md" onClick={handleNewAddress}>
-                        <Image src={addIcon} alt="Plus Icon" height={20} />
+                    <Button colorPalette="orange" variant="ghost" className={style['add-address']} onClick={handleNewAddress}>
+                        <Image src={addIcon} alt="Plus Icon" height={17} />
                         Add a new address
                     </Button>
                 )}
                 </>
             )}
-            {addAddress && (
+            {(addAddress || addressList.length === 0) && (
                 <AddAddressForm setCardAddress={setCardAddress} />
             )}
 
@@ -154,13 +156,13 @@ export default memo(function AddPaymentForm({ setAddPayment }: AddPaymentFormTyp
             <Checkbox.Root colorPalette="orange" checked={isDefault} onCheckedChange={handleDefaultChange}>
                 <Checkbox.HiddenInput />
                 <Checkbox.Control />
-                <Checkbox.Label fontSize="md">Set as default credit card</Checkbox.Label>
+                <Checkbox.Label>Set as default credit card</Checkbox.Label>
             </Checkbox.Root>
             <Separator />
 
             <div className="actions">
-                <Button colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
-                <Button colorPalette="orange" variant="plain" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelForm}>Cancel</Button>
+                <Button colorPalette="orange" fontWeight="semibold" type="submit">Save</Button>
+                <Button colorPalette="orange" variant="ghost" fontWeight="semibold" onClick={cancelForm}>Cancel</Button>
             </div>
         </form>
     );

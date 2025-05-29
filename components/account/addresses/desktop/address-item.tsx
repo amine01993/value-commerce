@@ -4,9 +4,9 @@ import { Dispatch, memo, SetStateAction, useCallback, useMemo } from "react";
 import { Button, Heading, Text } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { AddressType, removeAddress } from "@/lib/slices/account"
+import style from "./style.module.scss";
 import deleteIcon from "@/public/delete.svg";
 import editIcon from "@/public/edit.svg";
-import style from "./addresses.module.scss";
 
 interface AddressItemType {
     address: AddressType;
@@ -38,10 +38,10 @@ export default memo(function AddressItem({address, setAddAddress, setEditAddress
 
     return (
         <div className={style.address}>
-            <Heading as="h3" fontSize="md">
+            <Heading as="h3" fontSize="sm">
                 {header}
                 {address.isDefault && (
-                    <Text as="span" fontSize="sm">Default</Text>
+                    <Text as="span" fontSize="xs">Default</Text>
                 )}
             </Heading>
 
@@ -53,13 +53,13 @@ export default memo(function AddressItem({address, setAddAddress, setEditAddress
             </Text>
 
             <div className="actions">
-                <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleAddressDeletion}>
-                    <Image src={deleteIcon} alt="Delete Address" height={20} />
+                <Button colorPalette="orange" variant="ghost" onClick={handleAddressDeletion}>
+                    <Image src={deleteIcon} alt="Delete Address" height={17} />
                     Remove
                 </Button>
 
-                <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleAddressEdition}>
-                    <Image src={editIcon} alt="Edit Address" height={20} />
+                <Button colorPalette="orange" variant="ghost" onClick={handleAddressEdition}>
+                    <Image src={editIcon} alt="Edit Address" height={17} />
                     Edit
                 </Button>
             </div>

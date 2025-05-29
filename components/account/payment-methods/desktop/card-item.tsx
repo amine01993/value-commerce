@@ -41,8 +41,8 @@ export default memo(function CardItem({card}: CardItemType) {
                     </Tag.Root>
                 )}
             </div>
-            <Text className="info">{card.number}</Text>
-            <Text className="info">Expires on {expiry}</Text>
+            <Text className="info" fontSize="sm">{card.number}</Text>
+            <Text className="info" fontSize="sm">Expires on {expiry}</Text>
 
             <Separator />
 
@@ -51,8 +51,8 @@ export default memo(function CardItem({card}: CardItemType) {
             <AddressItem address={card.address} />
 
             <div className="actions">
-                <Button colorPalette="orange" fontSize="md" size="lg" variant="plain" onClick={handleCardDeletion}>
-                    <Image src={deleteIcon} alt="Delete Address" height={20} />
+                <Button colorPalette="orange" variant="ghost" onClick={handleCardDeletion}>
+                    <Image src={deleteIcon} alt="Delete Address" height={17} />
                     Remove
                 </Button>
             </div>

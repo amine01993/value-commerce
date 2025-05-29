@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Dispatch, memo, SetStateAction, useCallback, useMemo } from "react";
 import { Heading, Text } from "@chakra-ui/react";
 import { AddressType } from "@/lib/slices/account"
-import style from "./payment-methods.module.scss";
+import style from "./style.module.scss";
 import checkmarkIcon from "@/public/checkmark.svg"
 
 interface AddressItemType {

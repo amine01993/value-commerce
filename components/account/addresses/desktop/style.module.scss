@@ -1,0 +1,73 @@
+
+.address {
+    border: 1px solid black;
+    padding: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    
+    :global {
+
+        h3 {
+            span {
+                color: var(--chakra-colors-gray-600);
+                margin-left: 1rem;
+            }
+        }
+        
+        .content {
+
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+
+            button {
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+.address-form {
+    border: 1px solid black;
+    padding: 1.5rem;
+    margin: 2rem 0;
+
+    :global {
+
+        .title {
+            margin-bottom: 1rem;
+            font-size: var(--chakra-font-sizes-sm);
+        }
+    
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .default-field {
+            grid-column: span 4;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0 0;
+        }
+    
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-self: flex-end;
+        }
+    
+        [role=separator] {
+            background-color: var(--chakra-colors-gray-300);
+        }
+    }
+}
