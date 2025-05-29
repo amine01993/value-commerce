@@ -3,7 +3,7 @@ import { ChangeEvent, Dispatch, FormEvent, memo, SetStateAction, useCallback, us
 import { Button, Checkbox, CheckboxCheckedChangeDetails, Field, Heading, Input, NativeSelect, Separator } from "@chakra-ui/react";
 import { withMask } from "use-mask-input";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { randomString } from "@/utils/helpers";
+import { randomString } from "@/utils/common";
 import { saveAddress as saveAddr } from "@/lib/slices/account";
 import style from "./style.module.scss";
 

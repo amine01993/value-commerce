@@ -5,7 +5,7 @@ import { Button, Checkbox, CheckboxCheckedChangeDetails, Field, Heading, Input, 
 import { usePaymentInputs } from "react-payment-inputs"
 import cardImages, { type CardImages } from "react-payment-inputs/images"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { randomString } from "@/utils/helpers";
+import { randomString } from "@/utils/common";
 import { addCard, AddressType, saveAddress } from "@/lib/slices/account";
 import AddAddressForm from "./add-address-form";
 import AddressItem from "./address-item";

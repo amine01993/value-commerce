@@ -3,6 +3,48 @@
     padding-right: 2rem;
 
     :global {
+        h1 {
+            margin: 1rem auto 2.5rem;
+            text-align: center;
+        }
 
+        .subtitle {
+            margin-top: 2rem;
+        }
+
+        .preferences {
+            border: 1px solid black;
+            margin-top: 3rem;
+            padding: 1rem;
+
+            h2 {
+                margin-bottom: 1.2rem;
+            }
+
+            [role=separator] {
+                margin: 2rem 0 1.2rem;
+            }
+
+            button {
+                margin-top: 1.2rem;
+            }
+        }
+
+        .field {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .chakra-switch__root {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .note {
+            margin-top: 1.8rem;
+        }
+        
     }
 }

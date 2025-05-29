@@ -1,7 +1,7 @@
 
 import { Dispatch, memo, SetStateAction, useCallback, useMemo, useState } from "react";
 import { Accordion, Button, CloseButton, Drawer, Heading, Switch, SwitchCheckedChangeDetails, Text } from "@chakra-ui/react";
-import style from "./preference-center.module.scss"
+import style from "./style.module.scss"
 
 interface CookiePreferenceType {
     setOpenCookies: Dispatch<SetStateAction<boolean>>;
@@ -42,33 +42,33 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
     return (
         <Drawer.Content className={style["cookie-drawer"]}>
             <Drawer.Header>
-                <Drawer.Title fontSize="xl">Cookie Preferences</Drawer.Title>
+                <Drawer.Title fontSize="md">Cookie Preferences</Drawer.Title>
             </Drawer.Header>
             <Drawer.Body>
                 <div className="description">
-                    <Text fontSize="md">
+                    <Text fontSize="sm">
                         When you visit any website, it may store or retrieve information on your device, mostly in the form of cookies. 
                         Cookies are vital to enhancing site performance and delivering helpful, personalized content. 
                         You can explore the different types of cookies below.
                     </Text>
-                    <Text fontSize="md">
+                    <Text fontSize="sm">
                         Since your privacy is important to us, you can choose to only enable some types of cookies.
                         <Text as="span" fontWeight="semibold">However, disabling them may impact your shopping experience and the services we offer.</Text>
                     </Text>
                 </div>
 
-                <Button size="lg" colorPalette="orange" className={"accept-all" + (allSelected ? " hide" : "")} onClick={acceptAll}>
+                <Button colorPalette="orange" className={"accept-all" + (allSelected ? " hide" : "")} onClick={acceptAll}>
                     Accept all
                 </Button>
 
-                <Accordion.Root multiple defaultValue={[]} variant="enclosed" size="lg">
+                <Accordion.Root multiple defaultValue={[]} variant="enclosed">
                     <Accordion.Item value="essential">
                         <Accordion.ItemTrigger>
                             <Accordion.ItemIndicator />
-                            <Heading flex="1" as="h4" fontSize="md">
+                            <Heading flex="1" as="h4" fontSize="sm">
                                 Essential Cookies
                             </Heading>
-                            <Text color="orange.600" fontWeight="semibold" fontSize="md">Always active</Text>
+                            <Text color="orange.600" fontWeight="semibold" fontSize="sm">Always active</Text>
                         </Accordion.ItemTrigger>
                         
                         <Accordion.ItemContent>
@@ -82,11 +82,11 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
                     <Accordion.Item value="performance">
                         <Accordion.ItemTrigger>
                             <Accordion.ItemIndicator />
-                            <Heading flex="1" as="h4" fontSize="md">
+                            <Heading flex="1" as="h4" fontSize="sm">
                                 Performance Cookies
                             </Heading>
                         </Accordion.ItemTrigger>
-                        <Switch.Root colorPalette="green" size="lg" checked={performance} onCheckedChange={handlePerformanceChange}>
+                        <Switch.Root colorPalette="green" checked={performance} onCheckedChange={handlePerformanceChange}>
                             <Switch.HiddenInput />
                             <Switch.Control />
                         </Switch.Root>
@@ -101,11 +101,11 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
                     <Accordion.Item value="functional">
                         <Accordion.ItemTrigger>
                             <Accordion.ItemIndicator />
-                            <Heading flex="1" as="h4" fontSize="md">
+                            <Heading flex="1" as="h4" fontSize="sm">
                                 Functional Cookies
                             </Heading>
                         </Accordion.ItemTrigger>
-                        <Switch.Root colorPalette="green" size="lg" checked={functional} onCheckedChange={handleFunctionalChange}>
+                        <Switch.Root colorPalette="green" checked={functional} onCheckedChange={handleFunctionalChange}>
                             <Switch.HiddenInput />
                             <Switch.Control />
                         </Switch.Root>
@@ -120,11 +120,11 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
                     <Accordion.Item value="targeting">
                         <Accordion.ItemTrigger>
                             <Accordion.ItemIndicator />
-                            <Heading flex="1" as="h4" fontSize="md">
+                            <Heading flex="1" as="h4" fontSize="sm">
                                 Targeting Cookies
                             </Heading>
                         </Accordion.ItemTrigger>
-                        <Switch.Root colorPalette="green" size="lg" checked={targeting} onCheckedChange={handleTargetingChange}>
+                        <Switch.Root colorPalette="green" checked={targeting} onCheckedChange={handleTargetingChange}>
                             <Switch.HiddenInput />
                             <Switch.Control />
                         </Switch.Root>
@@ -139,7 +139,7 @@ export default memo(function CookiePreference({setOpenCookies}: CookiePreference
                 </Accordion.Root>
             </Drawer.Body>
             <Drawer.Footer>
-                <Button variant="outline" size="lg" colorPalette="orange" onClick={savePreferences}>
+                <Button variant="outline" colorPalette="orange" onClick={savePreferences}>
                     Save Preference
                 </Button>
             </Drawer.Footer>
