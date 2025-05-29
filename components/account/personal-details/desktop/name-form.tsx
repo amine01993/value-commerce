@@ -38,21 +38,21 @@ export default memo(function NameForm({ firstN, lastN, setEditName }: NameFormTy
 
     return (
         <form onSubmit={saveName}>
-            <Text fontWeight="semibold">Edit your name</Text>
+            <Text fontWeight="semibold" fontSize="sm">Edit your name</Text>
 
             <Field.Root>
-                <Field.Label fontSize="md">First Name</Field.Label>
-                <Input size="lg" placeholder="First Name" value={firstName} onChange={handleFirstNameChange} />
+                <Field.Label>First Name</Field.Label>
+                <Input placeholder="First Name" value={firstName} onChange={handleFirstNameChange} />
             </Field.Root>
 
             <Field.Root>
-                <Field.Label fontSize="md">Last Name</Field.Label>
-                <Input size="lg" placeholder="Last Name" value={lastName} onChange={handleLastNameChange} />
+                <Field.Label>Last Name</Field.Label>
+                <Input placeholder="Last Name" value={lastName} onChange={handleLastNameChange} />
             </Field.Root>
 
             <div className="actions">
-                <Button variant="plain" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelEditName}>Cancel</Button>
-                <Button variant="solid" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
+                <Button variant="ghost" colorPalette="orange" fontWeight="semibold" onClick={cancelEditName}>Cancel</Button>
+                <Button variant="solid" colorPalette="orange" fontWeight="semibold" type="submit">Save</Button>
             </div>
         </form>
     );

@@ -33,16 +33,16 @@ export default memo(function PhoneForm({ phone, setEditPhone }: PhoneFormType) {
 
     return (
         <form onSubmit={savePhone}>
-            <Text fontWeight="semibold">Edit your phone number</Text>
+            <Text fontWeight="semibold" fontSize="sm">Edit your phone number</Text>
 
             <Field.Root>
-                <Field.Label fontSize="md">Mobile</Field.Label>
-                <Input size="lg" placeholder="(999) 999-9999" ref={phoneMask.current} value={phoneNumber} onChange={handlePhoneChange} />
+                <Field.Label>Mobile</Field.Label>
+                <Input placeholder="(999) 999-9999" ref={phoneMask.current} value={phoneNumber} onChange={handlePhoneChange} />
             </Field.Root>
 
             <div className="actions">
-                <Button variant="plain" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelEditPhone}>Cancel</Button>
-                <Button variant="solid" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
+                <Button variant="ghost" colorPalette="orange" fontWeight="semibold" onClick={cancelEditPhone}>Cancel</Button>
+                <Button variant="solid" colorPalette="orange" fontWeight="semibold" type="submit">Save</Button>
             </div>
         </form>
     );

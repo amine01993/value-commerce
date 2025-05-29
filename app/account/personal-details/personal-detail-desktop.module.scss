@@ -1,9 +1,97 @@
 
 .page {
-    max-width: 1340px;
-    margin: 5rem auto 1rem;
-
+    
     :global {
+        h1 {
+            margin: 1rem auto 2.5rem;
+            text-align: center;
+        }
 
+        .wrapper {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .personal-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            
+            .edit {
+                display: grid;
+                grid-template-areas: "l a" "v a";
+                row-gap: 0.3rem;
+                grid-template-columns: 1fr;
+
+                label {
+                    grid-row: l;
+                }
+
+                p {
+                    grid-area: v;
+                    color: var(--chakra-colors-gray-600);
+                }
+
+                button {
+                    grid-area: a;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.7rem;
+
+                .actions {
+                    display: flex;
+                    gap: 1rem;
+                    align-self: flex-end;
+                }
+
+                [role=separator] {
+                    margin: 0;
+                }
+
+                .subtitle {
+                    margin-top: -1rem;
+                }
+            }
+        }
+
+        [role=separator] {
+            background-color: var(--chakra-colors-gray-300);
+
+            &[aria-orientation=vertical] {
+                height: 300px;
+            }
+        }
+
+        .personal-preferences, .personal-detail {
+            width: 100%;
+        }
+
+        .preferences {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+
+            label {
+                align-items: flex-start;
+
+                [data-part=item-control] {
+                    position: relative;
+                    top: 0.3rem;
+                }
+            }
+
+            .description {
+                color: var(--chakra-colors-gray-600);
+                margin-top: .5rem;
+            }
+        }
     }
 }

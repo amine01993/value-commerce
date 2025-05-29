@@ -43,33 +43,33 @@ export default memo(function EmailForm({ currentEmail, setEditEmail }: EmailForm
 
     return (
         <form onSubmit={saveEmail}>
-            <Text fontWeight="semibold">Current email</Text>
-            <Text className="subtitle">{currentEmail}</Text>
+            <Text fontWeight="semibold" fontSize="sm">Current email</Text>
+            <Text className="subtitle" fontSize="sm">{currentEmail}</Text>
 
             <Separator />
 
-            <Text fontWeight="semibold">Edit your email address</Text>
-            <Text className="subtitle">After making this change, use your new email to sign into your account.</Text>
+            <Text fontWeight="semibold" fontSize="sm">Edit your email address</Text>
+            <Text className="subtitle" fontSize="sm">After making this change, use your new email to sign into your account.</Text>
 
             <Field.Root>
-                <Field.Label fontSize="md">New Email</Field.Label>
-                <Input size="lg" placeholder="Enter New Email" value={email} onChange={handleEmailChange} />
+                <Field.Label>New Email</Field.Label>
+                <Input placeholder="Enter New Email" value={email} onChange={handleEmailChange} />
             </Field.Root>
 
             <Field.Root>
-                <Field.Label fontSize="md">Confirm New Email</Field.Label>
-                <Input size="lg" placeholder="Enter Email Confirmation" value={emailConfirmation} onChange={handleEmailConfirmationChange} />
+                <Field.Label>Confirm New Email</Field.Label>
+                <Input placeholder="Enter Email Confirmation" value={emailConfirmation} onChange={handleEmailConfirmationChange} />
             </Field.Root>
 
             <Field.Root>
-                <Field.Label fontSize="md">Account Password</Field.Label>
-                <PasswordInput size="lg" placeholder="Enter Password" value={password} onChange={handlePasswordChange} />
+                <Field.Label>Account Password</Field.Label>
+                <PasswordInput placeholder="Enter Password" value={password} onChange={handlePasswordChange} />
                 <Field.HelperText>For your security, please enter your password to verify this change.</Field.HelperText>
             </Field.Root>
 
             <div className="actions">
-                <Button variant="plain" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" onClick={cancelEditEmail}>Cancel</Button>
-                <Button variant="solid" colorPalette="orange" fontSize="md" fontWeight="semibold" size="lg" type="submit">Save</Button>
+                <Button variant="ghost" colorPalette="orange" fontWeight="semibold" onClick={cancelEditEmail}>Cancel</Button>
+                <Button variant="solid" colorPalette="orange" fontWeight="semibold" type="submit">Save</Button>
             </div>
         </form>
     );
