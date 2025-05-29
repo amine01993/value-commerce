@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { TouchEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Button, CloseButton, FileUpload, FileUploadFileChangeDetails, Heading, Input, InputGroup, Text } from "@chakra-ui/react";
 import style from "./photo.module.scss";
+import { clamp } from "@/utils/helpers";
 import HiddenCanvas from "@/components/account/photo/hidden-canvas";
 import placeholder from "@/public/photo-placeholder.jpg";
 
@@ -37,48 +38,11 @@ export default function Photo() {
         }
     }, []);
 
-    // const handleDrag = useCallback((event: DragEvent) => {
-    //     const { x, y } = getCoords(event);
-
-    //     if(maskRef.current) {
-    //         maskRef.current.style.setProperty('--mask-x', x + 'px');
-    //         maskRef.current.style.setProperty('--mask-y', y + 'px');
-    //     }
-    // }, []);
-
-    // const handleDragEnd = useCallback((event: DragEvent) => {
-                    
-    //     const { x, y } = getCoords(event);
-    //     if(maskRef.current) {
-    //         maskRef.current.style.setProperty('--mask-x', x + 'px');
-    //         maskRef.current.style.setProperty('--mask-y', y + 'px');
-    //     }
-
-    //     if(handleRef.current && wrapperRef.current) {
-    //         handleRef.current.style.top = wrapperRef.current.scrollTop + y - circleRadius.current + 'px';
-    //         handleRef.current.style.left = wrapperRef.current.scrollLeft + x - circleRadius.current + 'px';
-    //     }
-
-    //     // ctx.drawImage(
-    //     //     image,
-    //     //     -x + circleRadius - dropArea.scrollLeft,
-    //     //     -y + circleRadius,
-    //     //     imageWidth,
-    //     //     imageHeight
-    //     // );
-
-    //     // console.log('imgdara', canvas.toDataURL());
-    // }, []);
-
-    // const handleDragOver = useCallback((event: DragEvent) => {
-    //     event.preventDefault();
-    // }, []);
-
     const handleTouchStart = useCallback(() => {
         disableScroll();
     }, []);
 
-    const handleTouchMove = useCallback((event: TouchEvent) => {
+    const handleTouchMove = useCallback((event: TouchEvent<HTMLDivElement>) => {
         if(event.cancelable) event.preventDefault();
 
         const { x, y } = getTouchCoords(event);
@@ -133,34 +97,31 @@ export default function Photo() {
         drawSelectedImage();
     }, []);
 
-    const updateImageRange = useCallback(() => {
-        console.log('updateImageRange');
+    const updateImageDimensions = useCallback(() => {
+        
         if(wrapperRef.current && imageRef.current) {
             imageRef.current.style.height = "";
             imageRef.current.style.width = "";
             imageRef.current.style.minWidth = "";
 
-            // wrapper height = 270px
+            // original image dimensions
             const nw = imageRef.current.naturalWidth;
             const nh = imageRef.current.naturalHeight;
-            // w = ?,  height = 270px
-            const rect = wrapperRef.current.getBoundingClientRect();
-            const w = rect.width - 2;
-            const h = rect.height - 2;
 
-            console.log('natural', nw, nh)
-            console.log('other dims', w, h)
-            console.log('ratios', nw / nh, w / h)
+            // wrapper dimenstions
+            const rect = wrapperRef.current.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+
+            // set rendered image dimenstions
             if(nw / nh < w / h) {
                 // vertical scroll
                 const newHeight = nh / nw * w;
-                console.log('newHeight', newHeight)
                 imageRef.current.style.height = newHeight + "px";
             }
             else {
                 // horizontal scroll
                 const newWidth = nw / nh * h;
-                console.log('newWidth', newWidth)
                 imageRef.current.style.width = newWidth + "px";
                 imageRef.current.style.minWidth = newWidth + "px";
             }
@@ -185,27 +146,6 @@ export default function Photo() {
 
     }, []);
 
-    // const getCoords = useCallback((event: DragEvent) => {
-
-    //     let newX = 0, newY = 0;
-
-    //     if(wrapperRef.current && imageRef.current) {
-    //         const rect = wrapperRef.current.getBoundingClientRect();
-    //         newX = event.x - rect.x;
-    //         newY = event.y - rect.y;
-
-    //         if (newX < circleRadius.current) newX = circleRadius.current;
-    //         else if (newX > imageRef.current.width - circleRadius.current) newX = imageRef.current.width - circleRadius.current;
-    //         if (newY < circleRadius.current) newY = circleRadius.current;
-    //         else if (newY > imageRef.current.height - circleRadius.current) newY = imageRef.current.height - circleRadius.current;
-    //     }
-
-    //     return {
-    //         x: newX,
-    //         y: newY,
-    //     };
-    // }, []);
-
     const getTouchCoords = useCallback((event: TouchEvent) => {
 
         let newX = 0, newY = 0;
@@ -216,10 +156,8 @@ export default function Photo() {
             newX = touch.clientX - rect.x;
             newY = touch.clientY - rect.y;
 
-            if (newX < circleRadius.current) newX = circleRadius.current;
-            else if (newX > rect.width - circleRadius.current) newX = rect.width - circleRadius.current;
-            if (newY < circleRadius.current) newY = circleRadius.current;
-            else if (newY > rect.height - circleRadius.current) newY = rect.height - circleRadius.current;
+            newX = clamp(circleRadius.current, newX, rect.width - circleRadius.current);
+            newY = clamp(circleRadius.current, newY, rect.height - circleRadius.current);
         }
 
         return {
@@ -251,9 +189,9 @@ export default function Photo() {
         if(imageRef.current) {
 
             if(!imageRef.current.onload) {
-                updateImageRange();
+                updateImageDimensions();
                 imageRef.current.onload = () => {
-                    updateImageRange();
+                    updateImageDimensions();
                 }
             }
 
@@ -267,39 +205,15 @@ export default function Photo() {
                 
                 handleRef.current.style.top = rect.height / 2 - circleRadius.current + 'px';
                 handleRef.current.style.left = rect.width / 2 - circleRadius.current + 'px';
-                // handleRef.current.addEventListener('drag', handleDrag);
-                // handleRef.current.addEventListener('dragend', handleDragEnd);
-
-                handleRef.current.addEventListener('touchstart', handleTouchStart);
-                handleRef.current.addEventListener('touchmove', handleTouchMove);
-                handleRef.current.addEventListener('touchend', handleTouchEnd);
-                handleRef.current.addEventListener('touchcancel', handleTouchCancel);
                 
-                // wrapperRef.current.addEventListener('dragover', handleDragOver);
                 prevScrollLeft.current = 0;
                 prevScrollTop.current = 0;
-                wrapperRef.current.addEventListener('scroll', handleScroll);
-                wrapperRef.current.addEventListener('scrollend', handleScrollEnd);
 
                 drawSelectedImage();
             }
         }
 
         return () => {
-            if(handleRef.current) {
-                handleRef.current.removeEventListener('touchstart', handleTouchStart);
-                handleRef.current.removeEventListener('touchmove', handleTouchMove);
-                handleRef.current.removeEventListener('touchend', handleTouchEnd);
-                handleRef.current.removeEventListener('touchcancel', handleTouchCancel);
-                // handleRef.current.removeEventListener('drag', handleDrag);
-                // handleRef.current.removeEventListener('dragend', handleDragEnd);
-            }
-
-            if(wrapperRef.current) {
-                // wrapperRef.current.removeEventListener('dragover', handleDragOver);
-                wrapperRef.current.removeEventListener('scroll', handleScroll);
-                wrapperRef.current.removeEventListener('scrollend', handleScrollEnd);
-            }
         }
     }, [image]);
 
@@ -310,13 +224,13 @@ export default function Photo() {
             
             <div className="preview">
                 <Text as="label" fontWeight="semibold">Image preview</Text>
-                <div className="img-wrapper" ref={wrapperRef}>
+                <div className="img-wrapper" ref={wrapperRef} onScroll={handleScroll} onScrollEnd={handleScrollEnd}>
                     {image && (
                         <>
                         <img src={image} alt="Personal Photo" className="personal-img" ref={imageRef} />
                         <div className="masked-element" ref={maskRef}></div>
-                        {/* <div className="drag-handle" draggable="true" ref={handleRef}></div> */}
-                        <div className="drag-handle" draggable="false" ref={handleRef}></div>
+                        <div className="drag-handle" draggable="false" ref={handleRef}
+                            onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onTouchCancel={handleTouchCancel}></div>
                         </>
                     )}
                     {!image && (

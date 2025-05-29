@@ -51,3 +51,11 @@ export function randomString(length: number): string {
     window.crypto.getRandomValues(array);
     return Array.from(array, (n) => charset[n % charset.length]).join('');
 }
+
+export function clamp(min: number, value: number, max: number) {
+    if(value < min)
+        return min;
+    if(value > max)
+        return max;
+    return value;
+}
