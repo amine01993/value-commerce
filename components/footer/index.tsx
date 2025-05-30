@@ -61,7 +61,7 @@ export default function Footer() {
                 <li>
                     <Drawer.Root size="full" placement="bottom">
                         <Drawer.Trigger asChild>
-                            <Button variant="plain">
+                            <Button variant="plain" size="lg">
                                 <Image src={globeIcon} alt="Globe Icon" height={25} /> {language.label}
                             </Button>
                         </Drawer.Trigger>
@@ -81,12 +81,12 @@ export default function Footer() {
                     </Drawer.Root>
                 </li>
                 <li>
-                    <Button variant="plain">
+                    <Button variant="plain" size="lg">
                         Cookie settings
                     </Button>
                 </li>
                 <li>
-                    <Button variant="plain">
+                    <Button variant="plain" size="lg">
                         <Image src={logo} alt="Website official logo" height={50} />  &copy; 2025 Value Commerce, Inc.
                     </Button>
                 </li>

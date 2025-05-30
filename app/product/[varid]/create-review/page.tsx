@@ -4,33 +4,33 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import {metadata} from "@/app/layout";
 
-interface ProductPageParams {
+interface CreateReviewPageParams {
     params: Promise<{varid: string}>;
 }
 
-export default async function ProductPage({params}: ProductPageParams) {
+export default async function CreateReviewPage({params}: CreateReviewPageParams) {
 
     const { device } = userAgent({ headers: await headers() });
     const isMobile = device?.type === "mobile";
     
     const {varid} = await params;
-    metadata.title = `Product ${varid}`;
+    metadata.title = `Create a review | Product ${varid}`;
 
-    const Product = dynamic(() => import("./product"), {
+    const CreateReview = dynamic(() => import("./create-review"), {
         loading: () => <p>Loading...</p>,
     });
 
-    const ProductDesktop = dynamic(() => import("./product-desktop"), {
+    const CreateReviewDesktop = dynamic(() => import("./create-review-desktop"), {
         loading: () => <p>Loading...</p>,
     });
-
+    
     return (
         <>
             {isMobile && (
-                <Product varid={varid} />
+                <CreateReview varid={varid} />
             )}
             {!isMobile && (
-                <ProductDesktop varid={varid} />
+                <CreateReviewDesktop varid={varid} />
             )}
         </>
     );
