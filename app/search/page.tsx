@@ -1,8 +1,7 @@
 
+import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import Search from "./search";
-import SearchDesktop from "./search-desktop";
 import {metadata} from "@/app/layout";
 
 interface SearchPageParams {
@@ -19,6 +18,14 @@ export default async function SearchPage(
     const {q = ""} = await searchParams;
   
     metadata.title = `Search Results For: ${q} | Value Commerce`;
+
+    const Search = dynamic(() => import("./search"), {
+        loading: () => <p>Loading...</p>,
+    });
+
+    const SearchDesktop = dynamic(() => import("./search-desktop"), {
+        loading: () => <p>Loading...</p>,
+    });
 
     return (
         <>

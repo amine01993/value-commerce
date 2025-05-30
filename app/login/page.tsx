@@ -1,8 +1,7 @@
 
+import dynamic from "next/dynamic";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-import Login from "./login";
-import LoginDesktop from "./login-desktop";
 import {metadata} from "@/app/layout";
 
 interface LoginPageParams {
@@ -19,6 +18,14 @@ export default async function LoginPage(
     const {q = ""} = await searchParams;
   
     metadata.title = `Log in | Value Commerce`;
+
+    const Login = dynamic(() => import("./login"), {
+        loading: () => <p>Loading...</p>,
+    });
+
+    const LoginDesktop = dynamic(() => import("./login-desktop"), {
+        loading: () => <p>Loading...</p>,
+    });
 
     return (
         <>
